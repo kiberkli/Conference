@@ -1,0 +1,27 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.AttendeeFunction"; 
+    classProperties = (attendees, lable); 
+    externalName = attendeefunction; 
+    fetchSpecificationDictionary = {}; 
+    name = AttendeeFunction; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendeeFunction; sourceAttribute = id; }); 
+            name = attendees; 
+        }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            documentation = "The function of the attendee:<br>\r- Teacher<br>\r- Teacher Trainer<br>\r- Administrator<br>\r- IT Staff/Manager<br>\r- Management/Executive"; 
+        }; 
+    }; 
+}

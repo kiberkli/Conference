@@ -1,0 +1,123 @@
+AttendeeProfileForm : WOForm {
+}
+
+SalutationPopupMenu : WOPopUpButton {
+	list = saluationLists;
+	item = saluationItem;
+	selection = attendee.salutation;
+	noSelectionString = "Select one";
+}
+
+Function : WOPopUpButton {
+	list = attendeeFunctionList;
+	item = attendeeFunctionItem;
+	displayString = attendeeFunctionItem.lable;
+	selection = attendee.function;
+	noSelectionString = "Make a selection";
+}
+
+
+JobTitle : WOTextField {
+	value = attendee.jobTitle;
+	style = "width: 100%;";
+}
+
+NameLast : WOTextField {
+	value = attendee.nameFamily;
+	style = "width: 100%;";
+}
+
+NameGiven : WOTextField {
+	value = attendee.nameGiven;
+	style = "width: 100%;";
+}
+
+UserEmailAddress : WOTextField {
+	value = userEmailaddress;
+	style = "width: 100%;";
+}
+
+UserPassword : WOPasswordField {
+	value = userPassword;
+	style = "width: 100%;";
+}
+
+UserPasswordVerified : WOPasswordField {
+	value = userPasswordVerified;
+	style = "width: 100%;";
+}
+
+Company : WOTextField {
+	value = attendee.companyName;
+	style = "width: 100%;";
+}
+
+Street1 : WOTextField {
+	value = attendee.addressStreet1;
+	style = "width: 100%;";
+}
+
+Street2 : WOTextField {
+	value = attendee.addressStreet2;
+	style = "width: 100%;";
+}
+
+City : WOTextField {
+	value = attendee.addressCity;
+	style = "width: 100%;";
+}
+
+State : WOTextField {
+	value = attendee.addressState;
+	style = "width: 100%;";
+}
+
+PostalCode : WOTextField {
+	value = attendee.addressPostalCode;
+	style = "width: 100%;";
+}
+
+Country : WOTextField {
+	value = attendee.addressCountry;
+	style = "width: 100%;";
+}
+
+
+Phone : WOTextField {
+	value = attendee.phone;
+	style = "width: 100%;";
+}
+
+Fax : WOTextField {
+	value = attendee.fax;
+	style = "width: 100%;";
+}
+
+SpecialNeeds : WOCheckBoxList {
+	list = specialNeedList;
+	item = specialNeedInList;
+	displayString = specialNeedInList.lable;
+	selections = attendee.specialNeeds;
+	type = "checkbox";
+	suffix = "<br>";
+}
+
+SpecialNeedsNotes : WOText {
+	value = attendee.specialNeedsNotes;
+	style = "width: 100%; height: 100%;";
+}
+
+CancelForm : WOSubmitButton {
+	action = cancelAttendeeProfile;
+	value = "Cancel";
+}
+
+SubmitForm : WOSubmitButton {
+	action = saveAttendeeProfile;
+	value = "Save Changes";
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}
+

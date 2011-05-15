@@ -1,0 +1,110 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+VenueLable: WOString {
+	value = venue.lable;
+}
+
+RegistrationForm : WOForm {
+	multipleSubmit = true;
+}
+
+NameGiven : WOTextField {
+	value = nameGiven;
+}
+
+NameFamily : WOTextField {
+	value = nameFamily;
+}
+
+UserEMailAddress : WOTextField {
+	value = userEMailAddress;
+}
+
+UserPassword : WOTextField {
+	value = userPassword;
+	type = "password";
+}
+
+UserPasswordVerified : WOTextField {
+	value = userPasswordVerified;
+	type = "password";
+}
+
+SubmitForm : WOSubmitButton {
+	action = submitForm;
+	value = "Next";
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}
+
+
+
+
+
+CompanyName : WOTextField {
+	value = companyName;
+	style = "width: 100%";
+}
+
+Street1 : WOTextField {
+	value = addressStreet1;
+	style = "width: 100%";
+}
+
+Street2 : WOTextField {
+	value = addressStreet2;
+	style = "width: 100%";
+}
+
+City : WOTextField {
+	value = addressCity;
+	style = "width: 100%";
+}
+
+PostalCode : WOTextField {
+	value = addressPostalCode;
+	style = "width: 100%";
+}
+
+Country : WOTextField {
+	value = addressCountry;
+	style = "width: 100%";
+}
+
+Fax : WOTextField {
+	value = fax;
+	style = "width: 100%";
+}
+
+Phone : WOTextField {
+	value = phone;
+	style = "width: 100%";
+}
+
+State : WOTextField {
+	value = addressState;
+	style = "width: 100%";
+}
+
+SalutationPopupMenu : WOPopUpButton {
+	list = saluationLists;
+	item = saluationItem;
+	selection = salutation;
+	noSelectionString = "Select one";
+}

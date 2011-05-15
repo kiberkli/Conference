@@ -1,0 +1,87 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdministratorForm : WOForm {
+	action = SaveFormData;
+}
+
+FullName : WOTextField {
+	value = fullName;
+}
+
+Username : WOTextField {
+	value = username;
+}
+
+Email : WOTextField {
+	value = emailAddres;
+}
+
+Password : WOTextField {
+	value = password;
+	type = "password";
+}
+
+PasswordConfirm : WOTextField {
+	value = passwordConfirm;
+	type = "password";
+}
+
+Save : WOSubmitButton {
+	action = saveFormData;
+	value = "Save";
+}
+
+DeleteThisAdministrator : WOHyperlink {
+	action = deleteThisAdministrator;
+	title = "Click to delete this Administrator";
+	disabled = pageAdministratorEqualsSessionAdministrator;
+}
+
+MessageOnPage : WOString {
+  value = messageOnPage;
+}
+
+PromptOnPage : WOString {
+	value = promptOnPage;
+}
+
+AdministratorList : WORepetition {
+	list = administratorList;
+	item = administratorInList;
+}
+
+FullNameInList : WOString {
+  value = administratorInList.fullName;
+}
+
+UsernameInList : WOString {
+  value = administratorInList.username;
+}
+
+EmailInList : WOString {
+  value = administratorInList.emailAddress;
+}
+
+LastChangeInList : WOString {
+  value = administratorInList.dateModified;
+  valueWhenEmpty = administratorInList.dateCreated;
+  dateformat = "%a, %b %e, %Y";
+}
+
+EditThisAdministrator : WOHyperlink {
+	action = editSelectedAdministrator;
+}
+
+AdminsBanner : AdminsBanner {	
+}
+

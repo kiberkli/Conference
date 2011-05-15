@@ -1,0 +1,42 @@
+<webobject name = "HotelReservationForm">
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<th class="group" colspan="5">Hotel Information</th>
+</tr>
+<tr>
+	<td colspan="3"><webobject name = "DefaultHotel"/> <webobject name = "VenuFacilityName"/></td>
+</tr>
+<tr>
+	<td style="vertical-align: top;">Or alternate hotel<br><webobject name = "HotelName"/></td>
+	<td style="vertical-align: top;">Address<br><webobject name = "HotelAddress"/></td>
+	<td style="vertical-align: top;">Phone<br><webobject name = "HotelPhone"/></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<th class="group">Rooms</th>
+	<th class="group" style="border-left: 1px solid #dddddd;">Check-in</th>
+	<th class="group">Date</th>
+	<th class="group">Time (approx.)</th>
+	<th class="group" style="border-left: 1px solid #dddddd;">Check-out</th>
+	<th class="group">Date</th>
+	<th class="group">Time (approx.)</th>
+</tr>
+<tr>
+	<td><webobject name = "HotelRooms"/></td>
+	<td>&nbsp;</td>
+	<td nowrap><webobject name = "HotelCheckInDate"/><br>(mm/dd/yy)</td>
+	<td nowrap><webobject name = "HotelCheckInTime"/><br>(hh:mm)</td>
+	<td>&nbsp;</td>
+	<td nowrap><webobject name = "HotelCheckOutDate"/><br>(mm/dd/yy)</td>
+	<td nowrap><webobject name = "HotelCheckOutTime"/><br>(hh:mm)</td>
+</tr>
+<tr>
+<th class="group" nowrap colspan="7">&nbsp;</th>
+</tr>
+<tr>
+	<td colspan="2" class="buttoncell-left"><webobject name = "CancelHotelReservation"/> <input type="reset" value="Revert"></td>
+	<td colspan="5" class="buttoncell-right"><em><webobject name = "HotelReservationError"/></em> <webobject name = "SaveHotelInformation"/></td>
+</tr>
+</table>
+</webobject>

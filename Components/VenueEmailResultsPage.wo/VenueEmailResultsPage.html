@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators Home</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<h3>Message Sent to <webobject name = "VenueLable"/> Attendees</h3>
+
+<p>Your messages has been set to <webobject name = "MessageSent"/> recipients.<p>
+
+<webobject name = "ShowErrorMessages">
+<p><br><hr size="1" width="60%"><br></p>
+
+<p><b>There were <webobject name = "ErrorCount"/> errors:</b><p>
+
+<ul>
+<webobject name = "ErrorList">
+<li><webobject name = "ErrorItem"/></li>
+</webobject>
+</ul>
+
+<p><em>These recipients did not recieve your message.</em></p>
+</webobject>
+
+<p>
+<webobject name = "AdminsHome">Home</webobject>
+|
+Note links top of page
+</p>
+
+</div>
+
+</body>
+</html>

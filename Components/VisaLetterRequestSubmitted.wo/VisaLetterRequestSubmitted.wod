@@ -1,0 +1,26 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+}
+
+VenueLable: WOString {
+	value = venue.lable;
+}
+
+ReturnToConferencePage : WOHyperlink {
+	action = returnToConferencePage;
+}

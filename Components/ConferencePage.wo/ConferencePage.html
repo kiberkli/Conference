@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+<style type="text/css"></style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<webobjects name="AttendeeStyles"></webobjects>
+	<title><webobject name = "VenueLable"/></title>
+</head>
+<body>
+
+<webobject name = "AttendeeBanner"/>
+
+<div class="pagecontent">
+
+<!-- Conference Location Below -->
+<div style="float: right; padding-bottom: 30px; padding-left: 30px; margin-left: 10px; border: 0px; border-left: 1px solid #eeeeee">
+<h4>Conference Location</h4>
+
+<p><b><webobject name = "VenuFacilityName"/></b></p>
+<p><webobject name = "VenueAddress"/></p>
+<p>Tel: <webobject name = "FacilityPhoneURL"><webobject name = "FacilityPhone"/></webobject></p>
+
+<br>
+
+<webobject name = "VenueFacilityMap"/>
+<p><webobject name = "LargeMap">Large Map</webobject></p>
+</div>
+<!-- Conference Location Above -->
+
+<h3 class="venuelable"><webobject name = "VenueLable"/></h3>
+
+<p><b>Dates:</b> <webobject name = "VenueDateStart"/> - <webobject name = "VenueDateEnd"/></p>
+
+<h3>Conference Details</h3>
+
+<p><webobject name = "VenueDescription"/></p>
+
+<!-- Hotel Accommodations Below -->
+<h4>Hotel Accommodations</h4>
+
+<webobject name = "DontShowHotelReservation">
+
+<p><webobject name = "AddHotelReservationLink">Add Your Hotel Information</webobject></p>
+</webobject>
+
+<webobject name = "ShowHotelReservaction">
+<webobject name = "HotelReservationForm">
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<th class="group" colspan="5">Hotel Information</th>
+</tr>
+<tr>
+	<td colspan="3"><webobject name = "DefaultHotel"/> <webobject name = "VenuFacilityName"/></td>
+</tr>
+<tr>
+	<td style="vertical-align: top;">Or alternate hotel<br><webobject name = "HotelName"/></td>
+	<td style="vertical-align: top;">Address<br><webobject name = "HotelAddress"/></td>
+	<td style="vertical-align: top;">Phone<br><webobject name = "HotelPhone"/></td>
+</tr>
+</table>
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<th class="group">Rooms</th>
+	<th class="group" style="border-left: 1px solid #dddddd;">Check-in</th>
+	<th class="group">Date</th>
+	<th class="group">Time (approx.)</th>
+	<th class="group" style="border-left: 1px solid #dddddd;">Check-out</th>
+	<th class="group">Date</th>
+	<th class="group">Time (approx.)</th>
+</tr>
+<tr>
+	<td><webobject name = "HotelRooms"/></td>
+	<td>&nbsp;</td>
+	<td nowrap><webobject name = "HotelCheckInDate"/><br>(mm/dd/yy)</td>
+	<td nowrap><webobject name = "HotelCheckInTime"/><br>(hh:mm)</td>
+	<td>&nbsp;</td>
+	<td nowrap><webobject name = "HotelCheckOutDate"/><br>(mm/dd/yy)</td>
+	<td nowrap><webobject name = "HotelCheckOutTime"/><br>(hh:mm)</td>
+</tr>
+<tr>
+	<td colspan="4" style="text-align: left;"><webobject name = "SaveHotelInformation"/>
+	<input type="reset" value="Revert">
+	<em><webobject name = "HotelReservationError"/></em></td>
+</tr>
+</table>
+</webobject>
+</webobject>
+<!-- Hotel Accommodations Above -->
+
+
+<!-- Travel Information Below -->
+<h4>Travel Information</h4>
+
+<webobject name = "DontShowTravelInformation">
+<p><webobject name = "ShowTravelInformationLink">Add Your Travel Information</webobject></p>
+</webobject>
+
+<webobject name = "ShowTravelInformation">
+<webobject name = "TravelInformationForm">
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<td><b>Arrival:</b></td>
+	<td>Date (mm/dd/yy)<br><webobject name = "ArrivalDate"/></td>
+	<td>Time (hh:mm)<br><webobject name = "ArrivalTime"/></td>
+	<td>From<br><webobject name = "ArrivalFrom"/></td>
+	<td>Flight#:<br><webobject name = "ArrivalFlighNumber"/></td>
+</tr>
+<tr>
+	<td colspan="5"><hr size="1"></td>
+</tr>
+<tr>
+	<td><b>Departure:</b></td>
+	<td>Date (mm/dd/yy)<br><webobject name = "DepartDate"/></td>
+	<td>Time (hh:mm)<br><webobject name = "DepartTime"/></td>
+	<td>To<br><webobject name = "DepartTo"/></td>
+	<td>Flight#:<br><webobject name = "DepartFlighNumber"/></td>
+</tr>
+<tr>
+<td colspan="5" align="right"><webobject name = "SaveTravelInformation"/>
+	<input type="reset" value="Revert">
+	<em><webobject name = "TravelInformationError"/></em></td>
+</tr>
+</table>
+</webobject>
+</webobject>
+
+<!-- 
+
+<h4>Visa Requirements</h4>
+
+<p>
+<webobject name = "LetterOfInviteRequestForm">
+<webobject name = "RequestLetterOfInviteButton"/>
+<webobject name = "AddPassportInformation">Update Passport Information</webobject>
+|
+<webobject name = "LetterOfInviteRequestStatus"/> <em><webobject name = "LetterOfInviteError"/></em>
+</webobject>
+</p>
+-->
+<!-- Travel Information Above -->
+
+<p><br><hr size="1"><br></p>
+
+<webobject name = "EventsList">
+<webobject name = "SelectEvents"/>
+</webobject>
+
+                             
+</div>
+<p class="copyright">Copyright &copy; 2010 DynEd International, Inc.</p>
+</body>
+</html>

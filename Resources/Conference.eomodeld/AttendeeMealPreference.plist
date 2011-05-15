@@ -1,0 +1,27 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.AttendeeMealPreference"; 
+    classProperties = (attendees, lable); 
+    externalName = attendeemealpreference; 
+    fetchSpecificationDictionary = {}; 
+    name = AttendeeMealPreference; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendeeMealPreference; sourceAttribute = id; }); 
+            name = attendees; 
+        }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            documentation = "Meal Preference:<br>\r- None<br>\r- Vegitarian<br>\r- Vegan<br>\r"; 
+        }; 
+    }; 
+}

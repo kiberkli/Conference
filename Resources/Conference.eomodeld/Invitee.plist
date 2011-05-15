@@ -1,0 +1,44 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = emailAddress; 
+            name = emailAddress; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = freeFormName; 
+            name = freeFormName; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = idAdmin; name = idAdmin; prototypeName = id; }, 
+        {allowsNull = N; columnName = idVenue; name = idVenue; prototypeName = id; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.Invitee"; 
+    classProperties = (admin, emailAddress, freeFormName, venue); 
+    externalName = invitee; 
+    fetchSpecificationDictionary = {}; 
+    name = Invitee; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Admin; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAdmin; }); 
+            name = admin; 
+        }, 
+        {
+            destination = Venue; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVenue; }); 
+            name = venue; 
+        }
+    ); 
+}

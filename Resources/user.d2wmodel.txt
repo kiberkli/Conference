@@ -1,0 +1,32 @@
+(
+    1000 : pageConfiguration = 'ListExcelAttendeeSelectedVEvent' => excelFileName = session.excelFileName [ERDDelayedKeyValueAssignment],
+    1000 : pageConfiguration = 'ListExcelAttendeeSelectedVEvent' => displayPropertyKeys = ("attendee.nameFamily","attendee.nameGiven","attendee.phone","attendee.userEmailAddress",participants
+) [com.webobjects.directtoweb.Assignment],
+    1001 : (pageConfiguration = 'ListExcelAttendeeSelectedVEvent' and propertyKey = 'attendee.phone') => displayNameForProperty = Phone [com.webobjects.directtoweb.Assignment],
+    1001 : (pageConfiguration = 'ListExcelAttendeeSelectedVEvent' and propertyKey = 'participants') => displayNameForProperty = Participants [com.webobjects.directtoweb.Assignment],
+    1001 : (pageConfiguration = 'ListExcelAttendeeSelectedVEvent' and propertyKey = 'attendee.nameGiven') => displayNameForProperty = First/Given Name [com.webobjects.directtoweb.Assignment],
+    1001 : (pageConfiguration = 'ListExcelAttendeeSelectedVEvent' and propertyKey = 'attendee.nameFamily') => displayNameForProperty = Last/Family Name [com.webobjects.directtoweb.Assignment],
+    1001 : (pageConfiguration = 'ListExcelAttendeeSelectedVEvent' and propertyKey = 'attendee.userEmailAddress') => displayNameForProperty = E-Mail Address [com.webobjects.directtoweb.Assignment],
+    2000 : pageConfiguration = 'ListExcelAttendee' => excelFileName = session.excelFileName [ERDDelayedKeyValueAssignment],
+    2000 : pageConfiguration = 'ListExcelAttendee' => displayPropertyKeys = (nameFamily,nameGiven,phone,userEmailAddress,companyName,addressStreet1,addressStreet2,addressCity,addressState,addressPostalCode,addressCountry,specialNeedsNotes
+) [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'phone') => displayNameForProperty = Phone [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressCity') => displayNameForProperty = City [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressState') => displayNameForProperty = State [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'companyName') => displayNameForProperty = Company [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressCountry') => displayNameForProperty = Country [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'nameGiven') => displayNameForProperty = First/Given Name [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'nameFamily') => displayNameForProperty = Last/Family Name [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressStreet1') => displayNameForProperty = Street Address 1 [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressStreet2') => displayNameForProperty = Street Address 2 [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'userEmailAddress') => displayNameForProperty = E-Mail Address [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'addressPostalCode') => displayNameForProperty = Postal Code/Zip [com.webobjects.directtoweb.Assignment],
+    2001 : (pageConfiguration = 'ListExcelAttendee' and propertyKey = 'specialNeedsNotes') => displayNameForProperty = Special Needs Notes [com.webobjects.directtoweb.Assignment],
+    3010 : (pageConfiguration like 'ListExcel*TravelInformation' and smartAttribute.className = 'com.webobjects.foundation.NSTimestamp') => formatter = %b %d,%Y %H:%M [com.webobjects.directtoweb.Assignment],
+    3100 : pageConfiguration = 'ListExcelArrivalTravelInformation' => excelFileName = session.excelFileName [ERDDelayedKeyValueAssignment],
+    3100 : pageConfiguration = 'ListExcelArrivalTravelInformation' => displayPropertyKeys = (arrivalDate,"attendee.nameFamily","attendee.nameGiven",arrivalFlightNumber,arrivalFrom,"attendee.phone","attendee.userEmailAddress"
+) [com.webobjects.directtoweb.Assignment],
+    3500 : pageConfiguration = 'ListExcelDepartureTravelInformation' => excelFileName = session.excelFileName [ERDDelayedKeyValueAssignment],
+    3500 : pageConfiguration = 'ListExcelDepartureTravelInformation' => displayPropertyKeys = (departureDate,"attendee.nameFamily","attendee.nameGiven",departureFlightNumber,departureTo,"attendee.phone","attendee.userEmailAddress"
+) [com.webobjects.directtoweb.Assignment]
+)

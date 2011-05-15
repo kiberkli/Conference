@@ -1,0 +1,40 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = attendeeId; 
+            name = attendeeId; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = specialNeedId; 
+            name = specialNeedId; 
+            prototypeName = id; 
+        }
+    ); 
+    attributesUsedForLocking = (attendeeId, specialNeedId); 
+    className = EOGenericRecord; 
+    externalName = attendeespecialneed; 
+    fetchSpecificationDictionary = {}; 
+    name = AttendeeSpecialNeed; 
+    primaryKeyAttributes = (attendeeId, specialNeedId); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = attendeeId; }); 
+            name = attendee; 
+        }, 
+        {
+            destination = SpecialNeed; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = specialNeedId; }); 
+            name = specialNeed; 
+        }
+    ); 
+}

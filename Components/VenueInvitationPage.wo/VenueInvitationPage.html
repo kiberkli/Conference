@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators - Send Invitations</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+
+<div class="pagecontent">
+
+<h3>Send Invitations</h3>
+
+<p>Select the venue and add the names and addresses of people you want to invite. Each invitee will be sent
+an e-mail with an embeded link for registration. Invitees do not show up as registered in the venue details</p>
+
+<webobject name = "InvitationMessageForm">
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<td colspan="3"><em><webobject name = "MessageOnPage"/></em></td>
+</tr>
+<tr>
+	<th class="group" colspan="3">Event</th> 
+</tr>
+<tr>
+	<td colspan="3"><webobject name = "VenueList"/></td> 
+</tr>
+<tr>
+	<th class="group" colspan="3">Recipients</th> 
+</tr>
+<tr>
+	<td><b>Name:</b></td>
+	<td><b>E-mail:</b></td>
+	<td>&nbsp;</td>
+</tr>
+<webobject name = "InviteeList">
+<tr class="alternating">
+	<td><webobject name = "InviteeInListFreeFormName"/></td>
+	<td><webobject name = "InviteeInListEmailAddress"/></td>
+	<td><webobject name = "DeleteInviteeFromList"/></td>
+</tr>
+</webobject>
+<tr>
+	<td><webobject name = "InviteeFreeFormName"/></td>
+	<td><webobject name = "InviteeEmailAddress"/></td>
+	<td><webobject name = "AddInviteeToList"/></td>
+</tr>
+<tr>
+	<td></td>
+</tr>
+<tr>
+	<th class="group" colspan="3">Message</th> 
+</tr>
+<tr>
+	<td colspan="3"><b>Subject:</b> <webobject name = "InvitationSubject"/></td>
+</tr>
+<tr>
+	<td colspan="3"><b>Body:</b><br><webobject name = "InvitationText"/></td>
+</tr>
+<tr>
+	<td class="buttoncell-left"><webobject name = "CancelInvite"/></td>
+	<td colspan="2" class="buttoncell-right">Sent from <webobject name = "AdministratorFullName"/> (<webobject name = "AdministratorEmailAddress"/>)
+	<webobject name = "SendInvite"/></td>
+</tr>
+</table>
+</webobject>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+	attendee = attendee;
+	returnToPage = returnToPage;
+}
+
+AttendeeProfile : AttendeeProfile {
+	attendee = attendee;
+	returnToPage = returnToPage;
+}
+
+DateCreated : WOString {
+	value = attendee.dateRegistered;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Unknown";
+}
+
+DateLastVisit : WOString {
+	value = attendee.dateLastVisit;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Unknown";
+}
+
+DateLastChange : WOString {
+	value = attendee.dateLastEdited;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Never";
+}

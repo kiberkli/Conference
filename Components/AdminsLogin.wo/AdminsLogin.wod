@@ -1,0 +1,39 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+LoginForm : WOForm {
+	multipleSubmit = true;
+}
+
+MessageOnPage : WOString {
+  value = messsageOnPage;
+}
+
+
+ForgotPassword : WOSubmitButton {
+	action = emailPasswordToAdministrator;
+	value = "Forgot Password";
+}
+
+Login : WOSubmitButton {
+	action = loginAdministrator;
+	value = "Login";
+}
+
+Username : WOTextField {
+	value = username;
+}
+
+Password : WOTextField {
+	value = password;
+  	type = "password";
+}

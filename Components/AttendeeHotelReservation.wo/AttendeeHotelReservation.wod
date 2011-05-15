@@ -1,0 +1,73 @@
+HotelReservationForm : WOForm {
+}
+
+DefaultHotel : WOCheckBox {
+	checked = defaultHotel;
+}
+
+VenuFacilityName : WOString {
+	value = venue.facilityName;
+}
+
+HotelName : WOTextField {
+	value = hotelInformation.hotelName;
+	style = "width: 100%;";
+}
+
+HotelAddress : WOText {
+	value = hotelInformation.hotelAddress;
+	style = "width: 100%; height: 50px; overflow: hidden; overflow-x: hidden; overflow-y: hidden; ";
+}
+
+HotelPhone : WOTextField {
+	value = hotelInformation.telephone;
+	style = "width: 100%;";
+}
+
+HotelRooms : WOTextField {
+	value = hotelInformation.numRooms;
+	size = "2";
+	class = "numberfield";
+}
+
+HotelCheckInDate : AjaxDatePicker {
+	value = hotelCheckInDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+HotelCheckInTime : WOTextField {
+	value = hotelCheckInTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+HotelCheckOutDate : AjaxDatePicker {
+	value = hotelCheckOutDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+HotelCheckOutTime : WOTextField {
+	value = hotelCheckOutTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+SaveHotelInformation : WOSubmitButton {
+	action = saveHotelReservation;
+	value = "Save Changes";
+}
+
+HotelReservationError : WOString {
+	value = hotelReservationError;
+}
+
+CancelHotelReservation : WOSubmitButton {
+	action = cancelHotelReservation;
+	value = "Cancel";
+}

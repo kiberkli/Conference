@@ -1,0 +1,36 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+RegisterForm : WOForm {
+	directActionName = "attendeeRegistration";
+	method = "post";
+	name = "RegisterForm";
+	wosid = "";
+}
+
+Submit : WOSubmitButton {
+	directActionName = "attendeeRegistration";
+	value = "Continue";
+	name = "Continue";
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}
+
+AttendeeLostPasswordPage : WOHyperlink {
+	directActionName = "attendeeLostPasswordPage";
+}

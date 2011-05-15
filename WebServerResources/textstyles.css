@@ -1,0 +1,84 @@
+* {
+	color: black;
+	text-transform: none;
+	text-decoration: none;
+	text-overflow: clip;
+	letter-spacing: normal;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: normal;
+	word-spacing: normal;
+	word-wrap: normal;
+	word-break: normal;
+	line-height: normal;
+	font-size: 11px;
+	font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+em {
+	background-color: #FFFF00;
+	color: black;
+	font-weight: bold;
+}
+
+b {
+	color: black;
+	font-weight: bold;
+}
+
+p {
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+
+p.copyright {
+	font-size: 11px;
+	color: #84A4D3;
+	text-align: center;
+	font-family: Verdana, Arial, sans-serif;
+}
+
+i {
+	font-style: italic;
+}
+
+a {
+	text-decoration: underline;
+	color: #3300ff;
+}
+
+h3.venuelable {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-rightt: 0px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", "Lucida Grande", Verdana, Arial, sans-serif;
+	color: #484848;
+	font-variant: normal;
+	font-size: 200%;
+	color: #39217F;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 140%;
+}
+
+h4 {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+input.numberfield {
+	text-align: right;
+}
+
+blockquote {
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+pre {
+	font-family: "Andale Mono", Monaco, "Courier New", Courier, monospace;
+}

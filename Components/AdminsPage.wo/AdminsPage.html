@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+<div class="list">
+<table cellpaddinf="0" cellspacing="0" border="0" class="list" width="100%">
+<tr><th>Name</th><th>Username</th><th>E-Mail Address</th><th>Added/Updated</th><th>&nbsp;</th></tr>
+<webobject name = "AdministratorList">
+<tr>
+<td><webobject name = "FullNameInList"/></td>
+<td><webobject name = "UsernameInList"/></td>
+<td><webobject name = "EmailInList"/></td>
+<td><webobject name = "LastChangeInList"/></td>
+<td><webobject name = "EditThisAdministrator">Edit</webobject></td>
+</tr>
+</webobject>
+</table>
+</div>
+</div>
+
+<webobject name = "AdministratorForm">
+<table cellpadding="0" cellspacing="0" border="0" class="form">
+<tr>
+	<td colspan="3"><b><webobject name = "PromptOnPage"/></b></td>
+</tr>
+<tr>
+	<th>Name:</th><td><webobject name = "FullName"/></td><td><webobject name = "DeleteThisAdministrator">Delete</webobject></td>
+</tr>
+<tr>
+	<th>Username:</th><td><webobject name = "Username"/></td><td></td>
+</tr>
+<tr>
+	<th>E-Mail Address:</th><td><webobject name = "Email"/></td><td></td>
+</tr>
+<tr>
+	<th>Password:</th><td><webobject name = "Password"/></td><td></td>
+</tr>
+<tr>
+	<th>Confirm Password:</th><td><webobject name = "PasswordConfirm"/></td><td></td>
+</tr>
+<tr>
+	<td class="buttoncell-left"><input type="reset" value="Undo" /></td>
+	<td class="buttoncell-right"><em><webobject name = "MessageOnPage"/></em> <webobject name = "Save"/></td><td></td>
+</tr>
+</table>
+</webobject>
+
+</body>
+</html>

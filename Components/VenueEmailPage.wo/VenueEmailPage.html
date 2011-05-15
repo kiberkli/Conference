@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators Home</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<webobject name = "VenuEmailForm">
+<table cellspacing="0" colspacing="0" border="0" class="inline">
+<tr>
+	<td colspan="2"><b>Events</b></td>
+</tr>
+<tr>
+	<td colspan="2">To: <webobject name = "VenuPopupList"/></td>
+</tr>
+<tr>
+	<td colspan="2">Subject: <webobject name = "MessageSubject"/></td>
+</tr>
+<tr>
+	<td colspan="2"><b>Start your message below, include any generic greeting and conclusion</b></td>
+</tr>
+<tr>
+	<td colspan="2"><webobject name = "MessageText"/></td>
+</tr>
+<tr>
+	<td class="buttoncell-left"><webobject name = "CancelButton"/></td>
+	<td class="buttoncell-right"><em><webobject name = "MessageOnScreeen"/></em> <webobject name = "SendEmail"/></td>
+</tr>	
+</table>
+</webobject>
+
+</div>
+
+</body>
+</html>

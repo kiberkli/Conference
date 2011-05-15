@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<webobjects name="ScriptaculousPrototypes"></webobjects>
+	<webobjects name="Scriptaculous"></webobjects>
+	<title>Conference Administrators - Add/Edit/View Venues</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<h3>Existing Venues</h3>
+
+<div class="list">
+<table cellspacing="0" cellpadding="0" border="0" class="list" width="100%">
+<tr>
+	<th>Name</th><th>Dates</th><th>Location</th><th>Invited</th><th>Attendees</th><th>Events</th>
+</tr>
+<webobject name = "VenueList">
+<tr>
+	<td><div style="float: right"><webobject name = "EditVenueInList"><webobject name = "DetailsImage"/></webobject></div><webobject name = "LableInList"/></td>
+	<td><webobject name = "DateStartInList"/> - <webobject name = "DateEndInList"/></td>
+	<td nowrap><b><webobject name = "FacilityNameInList"/></b><br><webobject name = "AddressInList"/></td>
+	<td nowrap><webobject name = "InvitedInList"/> (View)</td>
+	<td nowrap style="text-align: center"><div style="float: right"><webobject name = "VenuAttendeesPage"><webobject name = "ShowImage"/></webobject></div><webobject name = "AttendeesInList"/></td>
+	<td nowrap style="text-align: center"><div style="float: right"><webobject name = "VenueEventsPage"><webobject name = "ShowImage"/></webobject></div><webobject name = "EventsInList"/></td>
+</tr>
+</webobject>
+</table>
+</div>
+</div>
+
+<webobject name = "VenueForm">
+<table cellpadding="0" cellspacing="0" border="0" class="form">
+<tr>
+	<td colspan="3"><b><webobject name = "PromptOnPage"/></b></td>
+</tr>
+<tr>
+	<th nowrap>Name/Short Description</th>
+	<td colspan="2"><webobject name = "Lable"/></td>
+</tr>
+<tr>
+	<th>Dates</th>
+	<td colspan="2" nowrap>From <webobject name = "DateStartPicker"/> 
+	&nbsp;to&nbsp; <webobject name = "DateEndPicker"/></td>
+</tr>
+<tr>
+	<th>Web Page</th>
+	<td colspan="2"><webobject name = "WebpageURL"/></td>
+</tr>
+<tr>
+	<th>Documents URL</th>
+	<td colspan="2"><webobject name = "DocumentsURL"/><br>
+	User name: <webobject name = "DocumentsURLUsername"/>&nbsp;&nbsp;Password: <webobject name = "DocumentsURLPassword"/> 
+	</td>
+</tr>
+<tr>
+	<th>Facility Name</th>
+	<td colspan="2"><webobject name = "FacilityName"/></td>
+</tr>
+<tr>
+	<th>Address/Location</th>
+	<td colspan="2"><webobject name = "MapAddress"/><br>For use in Google Maps</td>
+</tr>
+<tr>
+	<th>Phone</th>
+	<td colspan="2"><webobject name = "FacilityPhone"/></td>
+</tr>
+<tr>
+	<td colspan="3"><b>Description</b></td>
+</tr>
+<tr>
+	<td colspan="3"><webobject name = "Description"/></td>
+</tr>
+<tr>
+	<th>Secret Invitation Code</th>
+	<td><webobject name = "SecretCode"/></td>
+</tr>
+<tr>
+	<td class="buttoncell-left"><webobject name = "CancelVenue"/> <input type="reset" value="Revert" /></td>
+	<td class="buttoncell-right" colspan="2"><em><webobject name = "MessageOnPage"/></em> <webobject name = "SaveFormData"/></td>
+</tr>
+</table>
+</webobject>
+
+</body>
+</html>

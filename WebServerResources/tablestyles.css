@@ -1,0 +1,192 @@
+table {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.inline {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+
+table.inline td, table.inline th {
+	vertical-align: top;
+	padding: 3px;
+	padding-right: 10px;
+	text-align: left;
+}
+
+table.inline th {
+	font-weight: bold;
+	text-align: right;
+	padding-top: 8px;
+}
+
+table.inline tr.alternating:nth-child(odd) {
+	background-color: #f8f8f8;
+}
+
+table.inline tr.alternating:nth-child(even) {
+}
+
+table.standard {
+	background-color: white;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding-left: 50px;
+	padding-bottom: 15px;
+	padding-right: 50px;
+	padding-top: 15px;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+
+	box-shadow: 0px 2px 3px #000000;
+	-moz-box-shadow: 0px 2px 3px #000000;
+	-webkit-box-shadow: 0px 2px 3px #000000;
+
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+table.standard th, table.standard td {
+	text-align: left;
+	vertical-align: top;
+	padding: 5px;
+}
+
+table.standard th {
+	font-weight: bold;
+	color: black;
+}
+
+table.standard tr.alternating:nth-child(odd) {
+	background-color: #e4ecff;
+}
+
+table.standard tr.alternating:nth-child(even) {
+	background-color: white;
+}
+
+table.list {
+	border-color: black;
+	border-style: solid;
+	border-width: 0px;
+	width: 100%;
+	margin: 0px;
+}
+
+table.list th {
+	text-align: left;
+	vertical-align: top;
+	border-bottom-style: solid;
+	border-bottom-color: #7f7f7f;
+	border-bottom-width: 1px;
+	font-weight: bold;
+	border-right-style: solid;
+	border-right-color: #7f7f7f;
+	border-right-width: 1px;
+	padding: 5px;
+	margin: 0px;
+	text-shadow: 1px 1px 1px white;
+	background-color: #dcdcdc;
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	background-image: url(tableheader.png);
+	color: black;
+}
+
+table.list th:last-child {
+	border-right-style: none;
+}
+
+table.list tr:nth-child(odd) {
+	background-color: #e4ecff;
+}
+
+table.list tr:nth-child(even) {
+	background-color: white;
+}
+
+table.list td {
+	vertical-align: top;
+	padding-left: 10px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	border-right-color: #dcdcdc;
+	border-right-style: solid;
+	border-right-width: 1px;
+	margin: 0px;
+	text-shadow: 1px 1px 1px white;
+	background-repeat: repeat-x;
+	color: black;
+}
+
+table.list td:last-child {
+	border-right-style: none;
+	border-right-width: 1px;
+}
+
+table.form {
+	background-color: white;
+	margin-left: auto;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-top: 10px;
+	padding-left: 50px;
+	padding-bottom: 15px;
+	padding-right: 50px;
+	padding-top: 15px;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+
+	box-shadow: 0px 2px 3px #000000;
+	-moz-box-shadow: 0px 2px 3px #000000;
+	-webkit-box-shadow: 0px 2px 3px #000000;
+
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+}
+
+table.form th {
+	text-align: right;
+	vertical-align: top;
+	color: black;
+	font-weight: bold;
+	padding-left: 3px;
+	padding-right: 10px;
+	padding-top: 8px;
+}
+
+table.form td {
+	vertical-align: top;
+	text-align: left;
+	padding: 3px;
+}
+
+table.form td.buttoncell-right, table.inline td.buttoncell-right {
+	text-align: right;
+	padding-top: 10px;
+}
+
+table.form td.buttoncell-left, table.inline td.buttoncell-left {
+	padding-top: 10px;
+	text-align: left;
+}
+
+table.form td.radiobuttons-horizontal div {
+	float: left;
+	margin-top: 3px;
+}
+table.form th.group, table.inline th.group {
+	text-align: left;
+	border-bottom: 1px solid #dddddd;
+	padding-top: 10px;
+	font-weight: bold;
+	color: black;
+}

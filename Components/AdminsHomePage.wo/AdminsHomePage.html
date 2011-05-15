@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators Home</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="menuitem" style="margin-top: 40px;">
+<h3>Conferences</h3>
+<p>View Conferences:
+<ul>
+<webobject name = "FullVenueList">
+<li><webobject name = "VenueEventsPage"><webobject name = "VenueInList"/></webobject> (<webobject name = "VenuInListDateStart"/>)
+<ul>
+<li><webobject name = "VenueAttendeePage">Attendees</webobject>
+<li><webobject name = "VenueEventsStatsPage">Sections</webobject>
+</ul>
+</li>
+<br>
+</webobject>
+</ul><p>
+
+<p><webobject name = "VenuePage">Add/Edit Conferences</webobject></p>
+</div>
+
+<div class="menuitem">
+<h3>Send Invitations</h3>
+<p>Add an attendee name and send an invitation. The attendee will be sent an invitation via email 
+with a link to complete the registration process. <webobject name = "SendAttendeeInvite">More...</webobject></p>
+</div>
+
+<div class="menuitem">
+<h3>Send Email</h3>
+<p>Sends an E-Mail message to attendees of a conference. <webobject name = "VenueEmailPage">More...</webobject></p>
+</div>
+
+<div class="menuitem">
+<h3>Add Administrators</h3>
+<p>Administrators can view all back-end information on this system. They can send invitations, 
+edit attendee profiles and add additional regional managers. Administrators include Regional Managers. <webobject name = "AdminsPage">More...</webobject></p>
+</div>
+
+
+</body>
+</html>

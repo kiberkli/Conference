@@ -1,0 +1,80 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = dateCreated; 
+            name = dateCreated; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = dateLastLogin; 
+            name = dateLastLogin; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateModified; 
+            name = dateModified; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = emailAddress; 
+            name = emailAddress; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = fullName; 
+            name = fullName; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = password; 
+            name = password; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = username; 
+            name = username; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.Admin"; 
+    classProperties = (
+        dateCreated, 
+        dateLastLogin, 
+        dateModified, 
+        emailAddress, 
+        fullName, 
+        invitees, 
+        password, 
+        username, 
+        venues
+    ); 
+    externalName = admin; 
+    fetchSpecificationDictionary = {}; 
+    name = Admin; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Invitee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAdmin; sourceAttribute = id; }); 
+            name = invitees; 
+        }, 
+        {
+            destination = Venue; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAdmin; sourceAttribute = id; }); 
+            name = venues; 
+        }
+    ); 
+}

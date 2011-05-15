@@ -1,0 +1,249 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+	attendee = attendee;
+	returnToPage = thisPageComponet;
+}
+
+VenueLable: WOString {
+	value = venue.lable;
+}
+
+VenueDescription : WOString {
+	value = venue.descriptionForHTML;
+	escapeHTML = false;
+}
+
+VenueAddress : WOString {
+	value = venue.mapAddressForHTML;
+	escapeHTML = false;
+}
+
+LetterOfInviteRequestForm : WOForm {
+	multipleSubmit = true;
+}
+
+RequestLetterOfInviteButton : WOSubmitButton {
+	action = requestLetterOfInvite;
+	value = "Request Letter Now";
+	disabled = disabledRequestLetterOfInviteButton;
+}
+
+HotelReservationForm : WOForm {
+}
+
+DefaultHotel : WOCheckBox {
+	checked = defaultHotel;
+}
+
+HotelName : WOTextField {
+	value = hotelInformation.hotelName;
+	style = "width: 100%;";
+}
+
+HotelAddress : WOText {
+	value = hotelInformation.hotelAddress;
+	style = "width: 100%; height: 50px; overflow: hidden; overflow-x: hidden; overflow-y: hidden; ";
+}
+
+HotelCheckInDate : AjaxDatePicker {
+	value = hotelCheckInDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+HotelCheckInTime : WOTextField {
+	value = hotelCheckInTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+HotelCheckOutDate : AjaxDatePicker {
+	value = hotelCheckOutDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+HotelCheckOutTime : WOTextField {
+	value = hotelCheckOutTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+SaveHotelInformation : WOSubmitButton {
+	action = saveHotelReservation;
+	value = "Update Hotel";
+}
+
+HotelReservationError : WOString {
+	value = hotelReservationError;
+}
+
+ShowHotelReservaction : WOConditional {
+	condition = showHotelReservation;
+}
+
+DontShowHotelReservation : WOConditional {
+	condition = showHotelReservation;
+	negate = true;
+}
+
+AddHotelReservationLink : WOHyperlink {
+	action = addHotelReservations;
+}
+
+HotelPhone : WOTextField {
+	value = hotelInformation.telephone;
+	style = "width: 100%;";
+}
+
+HotelRooms : WOTextField {
+	value = hotelInformation.numRooms;
+	size = "2";
+	class = "numberfield";
+}
+
+ArrivalDate : AjaxDatePicker {
+	value = travelArrivalDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+ArrivalTime : WOTextField {
+	value = travelArrivalTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+ArrivalFrom : WOTextField {
+	value = travelInformation.arrivalFrom;
+}
+
+ArrivalFlighNumber : WOTextField {
+	value = travelInformation.arrivalFlightNumber;
+}
+
+DepartDate : AjaxDatePicker {
+	value = travelDepartDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+DepartTime : WOTextField {
+	value = travelDepartTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+DepartTo : WOTextField {
+	value = travelInformation.departureTo;
+}
+
+DepartFlighNumber : WOTextField {
+	value = travelInformation.departureFlightNumber;
+}
+
+TravelInformationForm : WOForm {
+}
+
+SaveTravelInformation : WOSubmitButton {
+	action = saveTravelInformation;
+	value = "Update";
+}
+
+TravelInformationError : WOString {
+	value = travelInformationError;
+}
+
+DontShowTravelInformation : WOConditional {
+	condition = showTravelInformation;
+	negate = true;
+}
+
+ShowTravelInformation : WOConditional {
+	condition = showTravelInformation;
+}
+
+ShowTravelInformationLink : WOHyperlink {
+	action = addTravelInformation;
+}
+
+VenuFacilityName : WOString {
+	value = venue.facilityName;
+}
+
+EventsList : WOForm {
+}
+
+SelectEvents : WOSubmitButton {
+	action = eventsSignup;
+	value = "Sections";
+}
+
+LetterOfInviteError : WOString {
+	value = letterOfInviteRequestError;
+}
+
+LetterOfInviteRequestStatus : WOString {
+	value = letterOfInviteRequestStatus;
+}
+
+AddPassportInformation : WOHyperlink {
+	action = addPassportInformation;
+}
+
+FacilityPhoneURL : WOHyperlink {
+	href = venue.facilityPhoneURL;
+}
+
+FacilityPhone : WOString {
+	value = venue.facilityPhone;
+}
+
+VenueDateStart : WOString {
+	value = venue.dateStart;
+	dateformat = "%A, %B %e";
+}
+
+VenueDateEnd : WOString {
+	value = venue.dateEnd;
+	dateformat = "%A, %B %e, %Y";
+}
+
+VenueFacilityMap : WOGenericContainer {
+	elementName = "iframe";
+	width = "300";
+	height = "150";
+	frameborder = "0";
+	scrolling = "no";
+	marginheight = "0";
+	marginwidth = "0";
+	src = venue.googleAddressSearchURLEmbedded;
+}
+
+LargeMap : WOHyperlink {
+	href = venue.googleAddressSearchURL;
+	target = "_blank";
+}

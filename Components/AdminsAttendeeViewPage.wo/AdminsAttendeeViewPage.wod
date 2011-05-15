@@ -1,0 +1,154 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {	
+}
+
+AttendeeFirstName : WOString {
+	 value = attendee.nameGiven;
+}
+
+AttendeeLastName : WOString {
+	value = attendee.nameFamily;
+}
+
+
+AttendeeEmailURL : WOHyperlink {
+	href = attendee.userEmailAddressURL
+}
+
+AttendeeEmailAddress : WOString {
+	value = attendee.userEmailAddress;
+}
+
+AttendeePhone : WOString {
+	value = attendee.phone;
+}
+
+AttendeeFax : WOString {
+	value = attendee.fax;
+}
+
+
+AttendeeJobTitle : WOString {
+	value = attendee.jobTitle;
+}
+
+AttendeeCompany : WOString {
+	value = attendee.companyName;
+}
+
+AttendeeCity : WOString {
+	value = attendee.addressCity;
+}
+
+AttendeeState : WOString {
+	value = attendee.addressState;
+}
+
+AttendeeStreet1 : WOString {
+	value = attendee.addressStreet1
+}
+
+AttendeeStreet2 : WOString {
+	value = attendee.addressStreet2;
+}
+
+AttendeeCountry : WOString {
+	value = attendee.addressCountry;
+}
+
+AttendeeZip : WOString {
+	value = attendee.addressPostalCode;
+}
+
+AttendeeNotes : WOString {
+	value = attendee.specialNeedsNotes;
+}
+
+AttendeeSpecialNeedsList : WORepetition {
+	list = attendee.specialNeeds;
+	item = specialNeedInList;
+}
+
+AttendeeSpecialNeedsInList : WOString {
+	value = specialNeedInList.lable;
+}
+
+AttendeeSignupDate : WOString {
+	value = attendee.dateRegistered;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Unknown";
+}
+
+AttendeeDateLastVisit : WOString {
+	value = attendee.dateLastVisit;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Never";
+}
+
+AttendeeDateLastEdit : WOString {
+	value = attendee.dateLastEdited;
+	dateformat = "%B %e, %Y";
+	valueWhenEmpty = "Never";
+}
+
+AttendeeFunction : WOString {
+	value = attendee.function.lable;
+}
+
+PassportInformation : WOConditional {
+	condition =  showPassportInformation;
+}
+
+
+NoPassportInformation : WOConditional {
+	condition =  showPassportInformation;
+	negate = true;
+}
+
+AttendeePassportFamilyName : WOString {
+	value = attendee.passportInformation.nameFamily;
+}
+
+AttendeePassportGiveName : WOString {
+	value = attendee.passportInformation.nameGiven;
+}
+
+AttendeePassportMiddleName : WOString {
+	value = attendee.passportInformation.nameMiddle;
+}
+
+AttendeePassportNationality : WOString {
+	value = attendee.passportInformation.nationality;
+}
+
+
+AttendeePassportDateOfBirth : WOString {
+	value = attendee.passportInformation.birthDate;
+	dateformat = "%e %b %Y";
+}
+
+
+AttendeePassportDateIssued : WOString {
+	value = attendee.passportInformation.passportDateIssued;
+	dateformat = "%e %b %Y";
+}
+
+AttendeePassportDateExpires : WOString {
+	value = attendee.passportInformation.passportDateExpire;
+	dateformat = "%e %b %Y";
+}
+
+AttendeePassportNumber : WOString {
+	value = attendee.passportInformation.passportNumber;
+}

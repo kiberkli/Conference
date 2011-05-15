@@ -1,0 +1,87 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+	attendee = attendee;
+}
+
+VenueLable: WOString {
+	value = venue.lable;
+}
+
+SelectedEventsForm : WOForm {
+}
+
+EventInLlistError : WOString {
+	value = eventInListError;
+}
+
+SelectedEventsListSubmit : WOSubmitButton {
+	action = saveSelectedEventsList;
+	value = "Update";
+}
+
+EventsList : WORepetition {
+	list = eventForAttendeeList;
+	item = eventforAttendeeInList;
+}
+
+EventInListLable : WOString {
+	value = eventforAttendeeInList.event.lable;
+}
+
+EventInListTimeStart : WOString {
+	value = eventforAttendeeInList.event.dateTimeStart;
+	dateformat = "%H:%M";
+}
+
+EventInListTimeEnd : WOString {
+	value = eventforAttendeeInList.event.dateTimeEnd;
+	dateformat = "%H:%M";
+}
+
+EventInListDay : WOString {
+	value = eventforAttendeeInList.event.dateTimeStart;
+	dateformat = "%A";
+}
+
+EventInListDate : WOString {
+	value = eventforAttendeeInList.event.dateTimeStart;
+	dateformat = "%m/%d";
+}
+
+EventInListDescription : WOString {
+	value = eventforAttendeeInList.event.descriptionForHTML;
+	escapeHTML = false;
+}
+
+EventInListMeetingPlace : WOString {
+	value = eventforAttendeeInList.event.meetingPlace;
+}
+
+EventInListParticipants : WOTextField {
+	value = eventforAttendeeInList.participants;
+	size = "2";
+	class = "numberfield";
+}
+
+CompleteRegistrationForm : WOForm {
+}
+
+CompleteRegistration : WOSubmitButton {
+	action = completeRegistration;
+	value = "Finish Registration";
+}

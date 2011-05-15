@@ -1,0 +1,82 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = checkIn; 
+            name = checkIn; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = checkOut; 
+            name = checkOut; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = hotelAddress; 
+            name = hotelAddress; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = hotelName; 
+            name = hotelName; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = idAttendee; 
+            name = idAttendee; 
+            prototypeName = id; 
+        }, 
+        {allowsNull = N; columnName = idVenue; name = idVenue; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = numRooms; 
+            name = numRooms; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = telephone; 
+            name = telephone; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.HotelInformation"; 
+    classProperties = (
+        attendee, 
+        checkIn, 
+        checkOut, 
+        hotelAddress, 
+        hotelName, 
+        numRooms, 
+        telephone, 
+        venue
+    ); 
+    externalName = hotelinformation; 
+    fetchSpecificationDictionary = {}; 
+    name = HotelInformation; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendee; }); 
+            name = attendee; 
+        }, 
+        {
+            destination = Venue; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVenue; }); 
+            name = venue; 
+        }
+    ); 
+}

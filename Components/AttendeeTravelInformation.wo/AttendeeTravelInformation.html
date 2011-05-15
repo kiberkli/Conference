@@ -1,0 +1,28 @@
+<webobject name = "TravelInformationForm">
+<table cellpadding="0" cellspacing="0" border="0" class="inline">
+<tr>
+	<td><b>Arrival:</b></td>
+	<td>Date (mm/dd/yy)<br><webobject name = "ArrivalDate"/></td>
+	<td>Time (hh:mm)<br><webobject name = "ArrivalTime"/></td>
+	<td>From<br><webobject name = "ArrivalFrom"/></td>
+	<td>Flight#:<br><webobject name = "ArrivalFlighNumber"/></td>
+</tr>
+<tr>
+	<th class="group" nowrap colspan="4">&nbsp;</th>
+</tr>
+<tr>
+	<td><b>Departure:</b></td>
+	<td>Date (mm/dd/yy)<br><webobject name = "DepartDate"/></td>
+	<td>Time (hh:mm)<br><webobject name = "DepartTime"/></td>
+	<td>To<br><webobject name = "DepartTo"/></td>
+	<td>Flight#:<br><webobject name = "DepartFlighNumber"/></td>
+</tr>
+<tr>
+<th class="group" nowrap colspan="5">&nbsp;</th>
+</tr>
+<tr>
+	<td colspan="2" class="buttoncell-left"><webobject name = "CancelAttendeeProfile"/> <input type="reset" value="Revert"></td>
+	<td colspan="3" class="buttoncell-right"><em><webobject name = "TravelInformationError"/></em><webobject name = "SaveTravelInformation"/></td>
+</tr>
+</table>
+</webobject>

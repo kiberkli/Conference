@@ -1,0 +1,61 @@
+TravelInformationForm : WOForm {
+	multipleSubmit = true;
+}
+
+ArrivalDate : AjaxDatePicker {
+	value = travelArrivalDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+ArrivalTime : WOTextField {
+	value = travelArrivalTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+ArrivalFrom : WOTextField {
+	value = travelInformation.arrivalFrom;
+}
+
+ArrivalFlighNumber : WOTextField {
+	value = travelInformation.arrivalFlightNumber;
+}
+
+DepartDate : AjaxDatePicker {
+	value = travelDepartDate;
+	format = "%m/%d/%Y";
+	size = "10";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+DepartTime : WOTextField {
+	value = travelDepartTime;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+DepartTo : WOTextField {
+	value = travelInformation.departureTo;
+}
+
+DepartFlighNumber : WOTextField {
+	value = travelInformation.departureFlightNumber;
+}
+
+SaveTravelInformation : WOSubmitButton {
+	action = saveTravelInformation;
+	value = "Save Changes";
+}
+
+TravelInformationError : WOString {
+	value = travelInformationError;
+}
+
+CancelAttendeeProfile : WOSubmitButton {
+	action = cancelAttendeeProfile;
+	value = "Cancel";
+}

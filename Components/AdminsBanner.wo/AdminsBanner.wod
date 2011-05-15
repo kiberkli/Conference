@@ -1,0 +1,21 @@
+FullName: WOString {
+	value = administrator.fullName;
+}
+
+ShowAdminsProfile : WOHyperlink {
+	action = showAdminsProfile;
+}
+
+Logout : WOHyperlink {
+	action = logout;
+}
+
+Home : WOHyperlink {
+	action = home;
+}
+
+LastLogin : WOString {
+	value = administrator.dateLastLogin;
+	dateformat = "%a. %b. %e '%y";
+	valueWhenEmpty = "Unknown";
+}

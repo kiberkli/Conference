@@ -1,0 +1,102 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+	attendee = attendee;
+}
+
+PassportInformationForm : WOForm {
+	multipleSubmit = true;
+}
+
+NameGiven : WOTextField {
+	value = nameGiven;
+	style = "width: 100%";
+}
+
+NameMiddle : WOTextField {
+	value = nameMiddle;
+	style = "width: 100%";
+}
+NameFamily : WOTextField {
+	value = nameFamily;
+	style = "width: 100%";
+}
+
+GenderList : WOPopUpButton {
+	list = genderList;
+	item = genderItemInList;
+	selection = gender;
+	noSelectionString = "Select one";
+}
+
+BirthDate : WOTextField {
+	value = birthDate;
+	size = "10";
+	dateformat = "%m/%d/%Y";
+}
+
+PassportNumber : WOTextField {
+	value = passportNumber;
+	style = "width: 100%";
+}
+
+PassportDateExpire : WOTextField {
+	value = passportDateExpire;
+	dateformat = "%m/%d/%Y";
+	size = "10";
+}
+
+PassportDateIssued : WOTextField {
+	value = passportDateIssued;
+	dateformat = "%m/%d/%Y";
+	size = "10";
+}
+
+//DateArrival : WOTextField {
+//	value = dateArrival;
+//	dateformat = "%m/%d/%Y";
+//	size = "10";
+//}
+
+//DateDeparture : WOTextField {
+//	value = dateDeparture;
+//	dateformat = "%m/%d/%Y";
+//	size = "10";
+//}
+
+Nationality : WOTextField {
+	value = nationality;
+	style = "width: 100%";
+}
+
+messageOnScreen : WOString {
+	value = messageOnScreen;
+}
+
+SubmitPassportInfoOnly : WOSubmitButton {
+	action = savePassportInformationForm;
+	value = "Update";
+}
+
+CancelPassportInfo : WOSubmitButton {
+	action = cancelPassportInformationForm;
+	value = "Cancel";
+}
+
+RevertButton : WOResetButton {
+	value = "Revert";
+}

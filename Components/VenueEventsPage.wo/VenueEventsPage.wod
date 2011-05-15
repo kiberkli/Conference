@@ -1,0 +1,220 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenueLable : WOString {
+	value = venue.lable;
+}
+
+AddEventsForm : WOForm {
+	multipleSubmit = true;
+}
+
+VenueDescription : WOString {
+	value = venue.descriptionForHTML;
+	escapeHTML = false;
+}
+
+WebpageURL : WOHyperlink {
+	href = venue.webpageURL;
+	target = "_blank";
+}
+
+VenueAddress : WOString {
+	value = venue.mapAddressForHTML;
+	escapeHTML = false;
+}
+
+VenueDateStart : WOString {
+	value = venue.dateStart;
+	dateformat = "%A, %B %e";
+}
+
+VenueDateEnd : WOString {
+	value = venue.dateEnd;
+	dateformat = "%A, %B %e, %Y";
+}
+
+EventsList : WORepetition {
+	list = venue.eventsSorted;
+	item = eventInList;
+}
+
+EventInListDay : WOString {
+	value = eventInList.dateTimeStart;
+	dateformat = "%a";
+}
+
+EventInListDate : WOString {
+	value = eventInList.dateTimeStart;
+	dateformat = "%m/%d";
+}
+
+EventInListTimeStart : WOString {
+	value = eventInList.dateTimeStart;
+	dateformat = "%H:%M";
+}
+
+EventInListTimeEnd : WOString {
+	value = eventInList.dateTimeEnd;
+	dateformat = " - %H:%M";
+	valueWhenEmpty = "";
+}
+
+EventInListLable : WOString {
+	value = eventInList.lable;
+}
+
+EventInListDescription : WOString {
+	value = eventInList.descriptionForHTML;
+	escapeHTML = false;
+}
+
+EventInListMeetingPlace : WOString {
+	  value = eventInList.meetingPlace;
+}
+
+EditEventInList : WOHyperlink {
+	action = editEventInList;
+	title = "Edit"; 
+}
+
+VenueDatesList : WOPopUpButton {
+	list = venueDatesList;
+	item = venueDatesListItem;
+	selection = selectedVenueDate;
+	displayString = venueDatesListItemDisplay;
+	noSelectionString = "Date...";
+}
+
+Lable : WOTextField {
+	value = lable;
+	style = "width: 100%;";
+}
+
+Description : WOText {
+	value = description;
+	style = "width: 100%; height: 100px;";
+}
+
+MeetingPlace : WOTextField {
+	value = meetingPlace;
+	style = "width: 100%;";
+}
+
+AddEventToList : WOSubmitButton {
+	action = addEventToList;
+	value = EventSubmitButtonValue;
+}
+
+SubmitEvents : WOForm {
+	multipleSubmit = true;
+}
+
+CancelAllEvents : WOSubmitButton {
+	action = cancelAllEvents;
+	value = "Discard All Changes";
+}
+
+SaveAllEvents : WOSubmitButton {
+	action = saveAllEvents;
+	value = "Save All Changes";
+}
+
+TimeStart : WOTextField {
+	value = dateTimeStart;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+TimeEnd : WOTextField {
+	value = dateTimeEnd;
+	dateformat = "%H:%M";
+	size = "5";
+}
+
+DeleteEventFromList : WOHyperlink {
+	action = deleteEventFromList;
+	title = "Remove";
+}
+
+CurrentTimezone : WOString {
+	value = currentTimezone;
+}
+
+ColorList : WORadioButtonList {
+	list = colorList;
+	item = colorItemInList;
+	selection = selectedColor;
+	prefix = "<tt style='border: 1px solid #202020; background-color: ";
+	suffix = ";'>&nbsp;&nbsp;&nbsp;</tt>&nbsp;&nbsp;&nbsp;";
+}
+
+EventInListColor : WOString {
+	value = eventInList.color;
+}
+
+MessageOnPage : WOString {
+	value = messageOnPage;
+}
+
+VenuFacilityName : WOString {
+	value = venue.facilityName;
+}
+
+VenueFacilityPhone : WOString {
+	value = venue.facilityPhone;
+}
+
+VenuFacilityPhoneLink : WOHyperlink {
+	href = venue.facilityPhoneURL;
+}
+
+VenueAdmin : WOString {
+	value = venue.admin.fullName;
+}
+
+VenueAdminEmail : WOHyperlink {
+	href = venue.admin.emailAddressURL;
+	title = venue.admin.emailAddress;
+}
+
+EmailImage : WOImage {
+	filename = "email.png";
+	class = "smallbutton";
+}
+
+PhoneImage : WOImage {
+	filename = "phone.png";
+	class = "smallbutton";
+}
+
+EditImage : WOImage {
+	filename = "details.png";
+	class = "buttonimage";
+}
+
+RemoveImage : WOImage {
+	filename = "remove.png";
+	class = "buttonimage";
+}
+
+DocumentsURL : WOHyperlink {
+	href = venue.documentsURLFull;
+}
+
+DocumentsURLEmpty : WOConditional {
+	condition = venue.documentsURLEmpty;
+	negate = true;
+}

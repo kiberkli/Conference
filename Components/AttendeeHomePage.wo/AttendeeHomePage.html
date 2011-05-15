@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<webobjects name="AttendeeStyles"></webobjects>
+	<title>DynEd Events</title>
+</head>
+<body>
+
+<webobject name = "AttendeeBanner"/>
+
+<div class="pagecontent">
+
+<div class="floatingbox">
+<webobject name = "RegisterForVenue">
+<b>Register for new Event:</b><br>
+Event Code: <webobject name = "SecretCode"/> <webobject name = "RegisterVenue"/>
+</webobject>
+</div>
+
+<p style="text-align: center;"><em><webobject name = "MessageOnScreen"/></em></p>
+
+<h3>Your Conferences Schedule</h3>
+
+<p>Here you can view details and updates to conferences you have registered for. Update your profile using the link above.</p>
+
+<table cellspacing="0" cellpadding="0" border="0" class="inline">
+<tr>
+	<th class="group"><b>Event</b></th>
+	<th class="group"><b>Dates</b></th>
+	<th class="group"><b>Location</b></th>
+	<th class="group"><b>Hotel Info.</b></th>
+	<th class="group"><b>Travel Info.</b></th>
+	<th class="group"><b>Passport Info.</b></th>
+	<th class="group"><b>Sections</b></th>
+	<th class="group"><b>Downloads</b></th>
+</tr>
+<webobject name = "CurrentAndFutureVenuesAvailable">
+<webobject name = "CurrentAndFutureVenues">
+<tr class="alternating">
+	<td style="min-width: 100px;"><webobject name = "VenuLink"><webobject name = "VenueLable"/></webobject></td>
+	<td nowrap><webobject name = "VenuStartDate"/> - <webobject name = "VenuEndDate"/></td>
+	<td nowrap><b><webobject name = "VenuFacility"/></b><br>
+	<webobject name = "VenuAddress"/><br>
+	Tel: <webobject name = "VenuPhoneLink"><webobject name = "VenuPhone"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "VenuLink"><webobject name = "VenuHotelInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "VenuLink"><webobject name = "VenuTravelInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "PassportInfoLink"><webobject name = "VenuPassportInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "EventsLink"><webobject name = "VenuEventsStauts"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "ShowDownloadsLink"><webobject name = "DocumentsURL">View all downloads</webobject></webobject></td>
+</tr>
+</webobject>
+</webobject>
+<webobject name = "PastVenueAvailable">
+<tr style="background-color: #FFFF00">
+	<td colspan="8"> <b>Expired Events:</b></td>
+</tr>
+<webobject name = "PastVenues">
+<tr class="alternating">
+	<td style="min-width: 100px;"><webobject name = "VenuLink"><webobject name = "VenueLable"/></webobject></td>
+	<td nowrap><webobject name = "VenuStartDate"/> - <webobject name = "VenuEndDate"/></td>
+	<td nowrap><b><webobject name = "VenuFacility"/></b><br>
+	<webobject name = "VenuAddress"/><br>
+	Tel: <webobject name = "VenuPhoneLink"><webobject name = "VenuPhone"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "VenuLink"><webobject name = "VenuHotelInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "VenuLink"><webobject name = "VenuTravelInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "PassportInfoLink"><webobject name = "VenuPassportInfoStatus"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "EventsLink"><webobject name = "VenuEventsStauts"/></webobject></td>
+	<td style="text-align: center;"><webobject name = "DocumentsURL">View all downloads</webobject></td>
+</tr>
+</webobject>
+</webobject>
+</table>
+
+</div>
+
+</body>
+</html>

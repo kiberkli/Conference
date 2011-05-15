@@ -1,0 +1,152 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = dateCreated; 
+            name = dateCreated; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateEnd; 
+            name = dateEnd; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateModified; 
+            name = dateModified; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateStart; 
+            name = dateStart; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = description; 
+            name = description; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = documentsURL; 
+            name = documentsURL; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = documentsURLPassword; 
+            name = documentsURLPassword; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = documentsURLUsername; 
+            name = documentsURLUsername; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = facilityName; 
+            name = facilityName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = facilityPhone; 
+            name = facilityPhone; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = idAdmin; name = idAdmin; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = inactive; 
+            name = inactive; 
+            prototypeName = intBoolean; 
+        }, 
+        {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }, 
+        {
+            allowsNull = N; 
+            columnName = mapAddress; 
+            name = mapAddress; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = secretCode; 
+            name = secretCode; 
+            prototypeName = shortString; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = webpageURL; 
+            name = webpageURL; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.Venue"; 
+    classProperties = (
+        admin, 
+        attendees, 
+        dateCreated, 
+        dateEnd, 
+        dateModified, 
+        dateStart, 
+        description, 
+        documentsURL, 
+        documentsURLPassword, 
+        documentsURLUsername, 
+        events, 
+        facilityName, 
+        facilityPhone, 
+        inactive, 
+        invitees, 
+        lable, 
+        mapAddress, 
+        secretCode, 
+        webpageURL
+    ); 
+    externalName = venue; 
+    fetchSpecificationDictionary = {}; 
+    name = Venue; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Admin; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAdmin; }); 
+            name = admin; 
+        }, 
+        {definition = "venueAttendees.attendee"; name = attendees; }, 
+        {
+            destination = VEvent; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idVenue; sourceAttribute = id; }); 
+            name = events; 
+        }, 
+        {
+            destination = Invitee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idVenue; sourceAttribute = id; }); 
+            name = invitees; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = VenueAttendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = venueId; sourceAttribute = id; }); 
+            name = venueAttendees; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

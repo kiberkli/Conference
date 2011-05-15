@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<webobjects name="AttendeeStyles"></webobjects>
+	<title>Registration - <webobject name = "VenueLable"/></title>
+</head>
+<body>
+
+<webobject name = "RegistrationForm">
+<table cellpadding="0" cellspacing="0" border="0" class="form" style="margin-top: 60px;">
+<tr>
+	<td colspan="4"><h3 class="venuelable"><webobject name = "VenueLable"/> Registration</h3></td>
+</tr>
+<tr>
+	<th class="group" colspan="4">Name</th>
+</tr>
+<tr>
+	<td>Salutation<br><webobject name = "SalutationPopupMenu"/></td>
+	<td>Given/First Name<br><webobject name = "NameGiven"/></td>
+	<td colspan="4">Surname/Family/Last Name<br><webobject name = "NameFamily"/></td>
+</tr>
+<tr>
+	<th class="group" colspan="4">Login Information</th>
+</tr>
+<tr>
+	<td colspan="2">E-Mail<br><webobject name = "UserEMailAddress"/></td>
+	<td colspan="1">Create Password<br><webobject name = "UserPassword"/></td>
+	<td colspan="1">Verify Password<br><webobject name = "UserPasswordVerified"/></td>
+</tr>
+
+<!-- Previously not on this page -->
+<tr>
+	<th class="group" colspan="4">Contact Information</th>
+</tr>
+<tr>
+	<th nowrap>Company Name</th>
+	<td colspan="3"><webobject name = "CompanyName"/></td>
+</tr>
+<tr>
+	<th nowrap>Address</th>
+	<td colspan="3"><webobject name = "Street1"/><br>
+	<webobject name = "Street2"/></td>
+</tr>
+<tr>
+	<th nowrap>City</th>
+	<td colspan="1"><webobject name = "City"/></td>
+	<th>State</th>
+	<td colspan="1"><webobject name = "State"/></td>
+</tr>
+<tr>
+	<th>Postal Code</th>
+	<td colspan="1"><webobject name = "PostalCode"/></td>
+	<th nowrap>Country</th>
+	<td colspan="1"><webobject name = "Country"/></td>
+</tr>
+<tr>
+	<th nowrap>Phone</th>
+	<td colspan="1"><webobject name = "Phone"/> (include country code)</td>
+	<th>Fax Number</th>
+	<td colspan="1"><webobject name = "Fax"/> (include country code)</td>
+</tr>
+<!-- Previously not on this page -->
+
+<tr>
+	<td colspan="4" class="buttoncell-right">
+		<em><webobject name = "MessageOnScreen"/></em>
+		<webobject name = "SubmitForm"/>
+	</td>
+</tr>
+</table>
+</webobject>
+
+</body>
+</html>

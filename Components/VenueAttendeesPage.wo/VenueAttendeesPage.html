@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators - <webobject name = "VenueLable"/> Attendees</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<h3><webobject name = "VenueLable"/> Attendees</h3>
+
+<p style="float: right"><em><webobject name = "MessageOnScreen"/></em></p>
+
+<div class="list" style="height: auto;">
+<table cellspacing="0" cellpadding="0" border="0" class="list" width="100%">
+<tr>
+	<th><div style="float: right"><webobject name = "DownloadAllAttendees"><webobject name = "DownloadImage"/></webobject></div>
+	Name</th>
+	<th>Company</th>
+	<th>Sections</th>
+	<th>Registered</th>
+	<th>Arrival <webobject name = "DownloadArrivals"><webobject name = "DownloadImage"/></webobject>/
+	Depature <webobject name = "DownloadDepartures"><webobject name = "DownloadImage"/></webobject></th>
+</tr>
+<webobject name = "AttendeeList">
+<tr>
+	<td nowrap><div style="float: right">
+	<webobject name = "AttendeeEmail"><webobject name = "EMailImage"/></webobject>
+	<webobject name = "AttendeePhone"><webobject name = "PhoneImage"/></webobject>
+	<webobject name = "AttendeeProfilePage"><webobject name = "DetailsImage"/></webobject>
+	<webobject name = "RemoveAttendee"><webobject name = "RemoveImage"/></webobject>
+	</div>
+	<webobject name = "AttendeeFullName"/>
+	<webobject name = "RegisteredLate"><webobject name = "Star"/></webobject></td>
+	<td><webobject name = "AttendeeCompany"/></td>
+	<td nowrap><webobject name = "AttendeeSelectedEvents">
+	<webobject name = "AttendeeSelectedEventParticipants"/> for <b><webobject name = "AttendeeSelectedEvent"/></b><br>
+	</webobject></td>
+	<td nowrap><webobject name = "AttendeeRegistrationDate"/></td>
+	<td nowrap><webobject name = "AttendeeArrivalDate"/><webobject name = "AttendeeDepartureDate"/></td>
+</tr>
+</webobject>
+</table>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+
+
+The following terms should be changed.
+
+- Venue -> Conference
+- Events/Sessions -> Sections
+

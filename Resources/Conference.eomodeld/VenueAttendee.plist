@@ -1,0 +1,35 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = attendeeId; 
+            name = attendeeId; 
+            prototypeName = id; 
+        }, 
+        {allowsNull = N; columnName = venueId; name = venueId; prototypeName = id; }
+    ); 
+    attributesUsedForLocking = (attendeeId, venueId); 
+    className = EOGenericRecord; 
+    externalName = venueattendee; 
+    fetchSpecificationDictionary = {}; 
+    name = VenueAttendee; 
+    primaryKeyAttributes = (attendeeId, venueId); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = attendeeId; }); 
+            name = attendee; 
+        }, 
+        {
+            destination = Venue; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = venueId; }); 
+            name = venue; 
+        }
+    ); 
+}

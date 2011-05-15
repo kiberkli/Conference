@@ -1,0 +1,81 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenueLable : WOString {
+ 	value = event.venue.lable;
+}
+
+EventLable : WOString {
+	value = event.lable;
+}
+
+AttendeesForEvent : WORepetition {
+	list = attendeeSelectedVEventList;
+	item = attendeeSelectedVEventInList;
+}
+
+AttendeeName : WOString {
+	value = attendeeSelectedVEventInList.attendee.fullName;
+}
+
+AttendeeEventParticipant : WOString {
+	value = attendeeSelectedVEventInList.participants;
+}
+
+AttendeeEmailLink : WOHyperlink {
+	href = attendeeSelectedVEventInList.attendee.userEmailAddressURL;
+	title = attendeeSelectedVEventInList.attendee.userEmailAddress;
+}
+
+EmailImage : WOImage {
+	filename = "email.png";
+	class = "smallbutton";
+}
+
+AttendeePhoneLink : WOHyperlink {
+	href = attendeeSelectedVEventInList.attendee.phoneURL;
+	title = attendeeSelectedVEventInList.attendee.phone;
+}
+
+PhoneImage : WOImage {
+	filename = "phone.png";
+	class = "smallbutton";
+}
+
+EventsForVenu : WORepetition {
+	list = event.venue.eventsSorted;
+	item = eventInList;
+}
+
+VEventParticipants : WOHyperlink {
+	action = vEventParticipants;
+}
+
+EventInListLable : WOString {
+	value = eventInList.lable;
+}
+
+VenueEventsStatsPage : WOHyperlink {
+	action = venueEventsStatsPage;
+}
+
+DownloadAsExcelFile : WOHyperlink {
+	action = downloadAsExcelAction;
+	title = "Download as Excel file"
+}
+
+DownloadImage : WOImage {
+	filename = "download.png";
+}

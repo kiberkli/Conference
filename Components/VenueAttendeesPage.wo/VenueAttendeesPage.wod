@@ -1,0 +1,137 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenueLable : WOString {
+ 	value = venue.lable;
+}
+
+AttendeeList : WORepetition {
+	list = attendeeList;
+	item = attendeeInList;
+}
+
+AttendeeFullName : WOString {
+	value = attendeeInList.fullName;
+}
+
+AttendeeCompany : WOString {
+	value = attendeeInList.companyName;
+}
+
+AttendeeSelectedEvents : WORepetition {
+	list = attendeeSelectedEventList;
+	item = attendeeSelectedEventInList;	
+}
+
+AttendeeSelectedEventParticipants : WOString {
+	value = attendeeSelectedEventInList.participants;
+}
+
+AttendeeSelectedEvent : WOString {
+	value = attendeeSelectedEventInList.event.lable;
+}
+
+AttendeeRegistrationDate : WOString {
+	value = attendeeInList.dateRegistered;
+	dateformat = "%b %e, '%y";
+	valueWhenEmpty = "n/a";
+}
+
+AttendeeArrivalDate : WOString {
+	value = attendeeInListTravelArrival;
+	dateformat = "%a %b %e";
+	valueWhenEmpty = "n/a";
+}
+
+AttendeeDepartureDate : WOString {
+	value = attendeeInListTravelDeparture;
+	dateformat = " / %a %b %e '%y";
+	valueWhenEmpty = "";
+}
+
+AttendeeEmail : WOHyperlink {
+	href = attendeeInList.userEmailAddressURL;
+	title = attendeeInList.userEmailAddress;
+}
+
+AttendeePhone : WOHyperlink {
+	href = attendeeInList.phoneURL;
+	title = attendeeInList.phone;
+	disabled = attendeeInListNoPhone;
+}
+
+EMailImage : WOImage {
+	filename = "email.png";
+	class = "smallbutton";
+}
+
+PhoneImage : WOImage {
+	filename = "phone.png";
+	class = "smallbutton";
+}
+
+RemoveImage : WOImage {
+	filename = "remove.png";
+	class = "smallbutton";
+}
+
+RemoveAttendee : WOHyperlink {
+	action = removeAttendee;
+	title = "Un-register/Remove";
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}
+
+DownloadImage : WOImage {
+	filename = "download.png";
+	class = "smallbutton";
+}
+
+DownloadAllAttendees : WOHyperlink {
+	action = downloadAllAttenseesAsExcel;
+	title = "Download all attendees";
+}
+
+DownloadArrivals : WOHyperlink {
+	action = downloadArrivalsAsExcel; 
+	title = "Download attendees by arrivals";
+}
+
+DownloadDepartures : WOHyperlink {
+	action = downloadDeparturesAsExcel;
+	title = "Download attendees by departures";
+}
+
+AttendeeProfilePage : WOHyperlink {
+	action = attendeeProfilePage;
+	title = "Edit Attendee Profile";
+}
+
+DetailsImage : WOImage {
+	filename = "details.png";
+	class = "smallbutton";
+}
+
+RegisteredLate : WOConditional {
+	condition = lateRegistration;
+}
+
+Star : WOImage {
+	filename = "Star.png";
+	class = "smallbutton";
+	title = "Registered late";
+}

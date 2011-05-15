@@ -1,0 +1,27 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = lable; name = lable; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.AttendeeType"; 
+    classProperties = (attendees, lable); 
+    externalName = attendeetype; 
+    fetchSpecificationDictionary = {}; 
+    name = AttendeeType; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendeeType; sourceAttribute = id; }); 
+            name = attendees; 
+        }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            documentation = "This table describes the type of attendee this person is:<br>\r- Staff<br>\r- Speaker<br>\r- Attendee"; 
+        }; 
+    }; 
+}

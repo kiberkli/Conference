@@ -1,0 +1,21 @@
+GRANT ALL ON conference.* TO 'wouser'@'localhost' IDENTIFIED BY 'wo347user';
+GRANT ALL ON conference.* TO 'wouser'@'%.corp.dyned.com' IDENTIFIED BY 'wo347user';
+
+
+REVOKE ALL ON recordsserver.* FROM 'wouser'@'localhost';
+REVOKE ALL ON recordsserver.* FROM 'wouser'@'%.corp.dyned.com';
+
+
+# Dumping the database
+
+mysqldump -u root -p \
+	--skip-opt \
+	--add-drop-table \
+	--add-locks \
+	--create-options \
+	--default-character-set=utf8 \
+	--dump-date \
+	--extended-insert \
+	--single-transaction \
+	conference \
+	> conference-`date "+%Y-%m-%d"`.sql

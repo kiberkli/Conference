@@ -1,0 +1,25 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.SpecialNeed"; 
+    classProperties = (attendees, lable); 
+    externalName = specialneed; 
+    fetchSpecificationDictionary = {}; 
+    name = SpecialNeed; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {definition = "attendeeSpecialNeeds.attendee"; name = attendees; }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = AttendeeSpecialNeed; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = specialNeedId; sourceAttribute = id; }); 
+            name = attendeeSpecialNeeds; 
+            propagatesPrimaryKey = Y; 
+        }
+    ); 
+}

@@ -1,0 +1,49 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenueLable : WOString {
+ 	value = venue.lable;
+}
+
+VenueEvents : WORepetition {
+	list = venue.eventsSorted;
+	item = eventInList;
+}
+
+EventInListLabel : WOString {
+	value = eventInList.lable;
+}
+
+SignupCount : WOString {
+	value = eventInList.attendeeSelectedVEvents.@count;
+}
+
+Participants : WOString {
+	value = numberOfVEventSignUps;
+}
+
+EventDescription : WOString {
+	value = eventInList.descriptionForHTML;
+	escapeHTML = false;
+}
+
+VEventsParticipants : WOHyperlink {
+	action = vEventParticipants;
+	title = "Show Participants";
+}
+
+FollowImage : WOImage {
+	filename = "follow.png";
+}

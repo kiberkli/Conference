@@ -1,0 +1,34 @@
+Logo : WOImage {
+	filename = "Logo.png";
+	width = "70";
+	height = "60";
+	class = "logo";
+	align = "left";
+}
+
+LastName : WOString {
+	value = attendee.nameFamily;
+}
+
+Salutation : WOString {
+	value = attendee.salutation;
+}
+
+Logout : WOHyperlink {
+	action = logout;
+}
+
+LastLogin : WOString {
+	value = attendee.dateLastVisit;
+	dateformat = "%a. %b. %e '%y";
+	valueWhenEmpty = "Unknown";
+}
+
+AttendeeProfilePage : WOHyperlink {
+	action = attendeeProfilePage;
+	
+}
+
+AttendeeHomePage : WOHyperlink {
+	action = attendeeHomePage;
+}

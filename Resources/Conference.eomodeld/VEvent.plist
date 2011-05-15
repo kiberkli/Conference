@@ -1,0 +1,65 @@
+{
+    attributes = (
+        {allowsNull = Y; columnName = color; name = color; prototypeName = longText; }, 
+        {
+            allowsNull = N; 
+            columnName = dateTimeEnd; 
+            name = dateTimeEnd; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateTimeStart; 
+            name = dateTimeStart; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = description; 
+            name = description; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {allowsNull = N; columnName = idVenue; name = idVenue; prototypeName = id; }, 
+        {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = meetingPlace; 
+            name = meetingPlace; 
+            prototypeName = longText; 
+        }
+    ); 
+    className = "com.dyned.conf.eom.VEvent"; 
+    classProperties = (
+        attendeeSelectedVEvents, 
+        color, 
+        dateTimeEnd, 
+        dateTimeStart, 
+        description, 
+        lable, 
+        meetingPlace, 
+        venue
+    ); 
+    externalName = vevent; 
+    fetchSpecificationDictionary = {}; 
+    name = VEvent; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = AttendeeSelectedVEvent; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idVEvent; sourceAttribute = id; }); 
+            name = attendeeSelectedVEvents; 
+        }, 
+        {
+            destination = Venue; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVenue; }); 
+            name = venue; 
+        }
+    ); 
+}

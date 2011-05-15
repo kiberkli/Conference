@@ -1,0 +1,19 @@
+VenuLable : WOString {
+	value = venue.lable;
+}
+
+AttendeeEmail : WOString {
+	value = attendee.userEmailAddress
+}
+
+LoginLink : WOHyperlink {
+	href = "http://www.dyned.com/beijingconference/attendeelogin";
+}
+
+ConferenceLink : WOHyperlink {
+	href = venue.webpageURL;
+}
+
+AdminForVenu : WOString {
+	value = venue.admin.fullName;
+}

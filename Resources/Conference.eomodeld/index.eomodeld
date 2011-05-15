@@ -1,0 +1,62 @@
+{
+    EOModelVersion = "2.1"; 
+    adaptorName = JDBC; 
+    connectionDictionary = {
+        URL = "jdbc:mysql://localhost/conference?useUnicode=yes&characterEncoding=UTF-8"; 
+        password = wo347user; 
+        username = wouser; 
+    }; 
+    entities = (
+        {className = "com.dyned.conf.eom.Admin"; name = Admin; }, 
+        {className = "com.dyned.conf.eom.Attendee"; name = Attendee; }, 
+        {className = "com.dyned.conf.eom.AttendeeFunction"; name = AttendeeFunction; }, 
+        {
+            className = "com.dyned.conf.eom.AttendeeMealPreference"; 
+            name = AttendeeMealPreference; 
+        }, 
+        {
+            className = "com.dyned.conf.eom.AttendeeSelectedVEvent"; 
+            name = AttendeeSelectedVEvent; 
+        }, 
+        {className = EOGenericRecord; name = AttendeeSpecialNeed; }, 
+        {className = "com.dyned.conf.eom.AttendeeType"; name = AttendeeType; }, 
+        {className = "com.dyned.conf.eom.HotelInformation"; name = HotelInformation; }, 
+        {className = "com.dyned.conf.eom.Invitee"; name = Invitee; }, 
+        {
+            className = "com.dyned.conf.eom.PassportInformation"; 
+            name = PassportInformation; 
+        }, 
+        {className = "com.dyned.conf.eom.SpecialNeed"; name = SpecialNeed; }, 
+        {
+            className = "com.dyned.conf.eom.TravelInformation"; 
+            name = TravelInformation; 
+        }, 
+        {className = "com.dyned.conf.eom.Venue"; name = Venue; }, 
+        {className = EOGenericRecord; name = VenueAttendee; }, 
+        {className = "com.dyned.conf.eom.VEvent"; name = VEvent; }
+    ); 
+    userInfo = {
+        "_EntityModeler" = {
+            activeDatabaseConfigName = Deployed; 
+            databaseConfigs = {
+                Default = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:mysql://localhost/conference?useUnicode=yes&characterEncoding=UTF-8"; 
+                        username = root; 
+                    }; 
+                    prototypeEntityName = EOJDBCMySQLPrototypes; 
+                }; 
+                Deployed = {
+                    adaptorName = JDBC; 
+                    connectionDictionary = {
+                        URL = "jdbc:mysql://localhost/conference?useUnicode=yes&characterEncoding=UTF-8"; 
+                        password = wo347user; 
+                        username = wouser; 
+                    }; 
+                    prototypeEntityName = EOJDBCMySQLPrototypes; 
+                }; 
+            }; 
+        }; 
+    }; 
+}

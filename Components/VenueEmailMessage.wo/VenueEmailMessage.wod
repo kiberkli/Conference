@@ -1,0 +1,17 @@
+MessageText : WOString {
+	value = messageText;
+	escapeHTML = false;
+}
+
+
+VenueWebPageLink : WOHyperlink {
+	href = venue.webpageURL;
+}
+
+VeneuLabel : WOString {
+	value = venue.lable;
+}
+
+LoginPage : WOHyperlink {
+	href = "http://www.dyned.com/beijingconference/attendeelogin";
+}

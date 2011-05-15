@@ -1,0 +1,43 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+MessageSent : WOString {
+	value = messagesSent;
+}
+
+ErrorCount : WOString {
+	value = errorsForMessages.count;
+}
+
+ErrorList : WORepetition {
+	list = errorsForMessages;
+	item = errorItem;
+}
+
+ErrorItem : WOString {
+	value = errorItem;
+}
+
+VenueLable : WOString {
+	value = venue.lable;
+}
+
+ShowErrorMessages : WOConditional {
+	condition = showErrorMessages;
+}
+
+AdminsHome : WOHyperlink {
+	action = adminsHomePage;
+}

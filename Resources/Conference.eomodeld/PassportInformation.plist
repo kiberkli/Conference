@@ -1,0 +1,102 @@
+{
+    attributes = (
+        {
+            allowsNull = N; 
+            columnName = birthDate; 
+            name = birthDate; 
+            prototypeName = date; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = birthPlace; 
+            name = birthPlace; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = dateArrival; 
+            name = dateArrival; 
+            prototypeName = date; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = dateDeparture; 
+            name = dateDeparture; 
+            prototypeName = date; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = daterequested; 
+            name = dateRequested; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = gender; 
+            name = gender; 
+            prototypeName = shortString; 
+        }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = nameFamily; 
+            name = nameFamily; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = nameGiven; 
+            name = nameGiven; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = nameMiddle; 
+            name = nameMiddle; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = nationality; 
+            name = nationality; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = passportDateExpire; 
+            name = passportDateExpire; 
+            prototypeName = date; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = passportDateIssued; 
+            name = passportDateIssued; 
+            prototypeName = date; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = passportNumber; 
+            name = passportNumber; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.PassportInformation"; 
+    classProperties = (
+        birthDate, 
+        birthPlace, 
+        dateRequested, 
+        gender, 
+        nameFamily, 
+        nameGiven, 
+        nameMiddle, 
+        nationality, 
+        passportDateExpire, 
+        passportDateIssued, 
+        passportNumber
+    ); 
+    externalName = passportinformation; 
+    fetchSpecificationDictionary = {}; 
+    name = PassportInformation; 
+    primaryKeyAttributes = (id); 
+}

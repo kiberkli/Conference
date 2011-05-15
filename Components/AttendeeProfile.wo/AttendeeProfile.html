@@ -1,0 +1,85 @@
+
+<webobject name = "AttendeeProfileForm">
+<table cellspacing="0" cellpadding="0" border="0" class="inline">
+<tr>
+<th class="group" nowrap colspan="4">Personal Information</th>
+</tr>
+<tr>
+	<th nowrap>Salutation</th>
+	<td colspan="3"><webobject name = "SalutationPopupMenu"/></td>
+</tr>
+<tr>
+	<th nowrap>Family/Last Name</th>
+	<td colspan="3"><webobject name = "NameLast"/></td>
+</tr>
+<tr>
+	<th nowrap>First/Given Name</th>
+	<td colspan="3"><webobject name = "NameGiven"/></td>
+</tr>
+<tr>
+	<th nowrap>Job Title</th>
+	<td colspan="3"><webobject name = "JobTitle"/></td>
+</tr>
+<tr>
+	<th nowrap>Job Description</th>
+	<td colspan="3"><webobject name = "Function"/></td>
+</tr>
+<tr>
+	<th nowrap>E-Mail Address</th>
+	<td colspan="3"><webobject name = "UserEmailAddress"/> (Needed when logging in)</td>
+</tr>
+<tr>
+	<th nowrap>Change Password</th>
+	<td><webobject name = "UserPassword"/></td>
+	<th nowrap>Verify Password</th>
+	<td><webobject name = "UserPasswordVerified"/></td>
+</tr>
+
+<tr>
+<th class="group" nowrap colspan="4">Contact Information</th>
+</tr>
+<tr>
+	<th nowrap>Company/Organization</th>
+	<td colspan="3"><webobject name = "Company"/></td>
+</tr>
+<tr>
+	<th nowrap>Street Address</th>
+	<td colspan="3"><webobject name = "Street1"/><br><webobject name = "Street2"/></td>
+</tr>
+<tr>
+	<th nowrap>City</th>
+	<td><webobject name = "City"/></td>
+	<th nowrap>Sate</th>
+	<td><webobject name = "State"/></td>
+</tr>
+<tr>
+	<th nowrap>Postal Code/Zip</th>
+	<td><webobject name = "PostalCode"/></td>
+	<th nowrap>Country</th>
+	<td><webobject name = "Country"/></td>
+</tr>
+<tr>
+	<th nowrap>Phone</th>
+	<td><webobject name = "Phone"/><br>(Include country code)</td>
+	<th nowrap>Fax</th>
+	<td><webobject name = "Fax"/><br>(Include country code)</td>
+</tr>
+
+<tr>
+<th class="group" nowrap colspan="4">Special Needs</th>
+</tr>
+<tr>
+	<td nowrap><webobject name = "SpecialNeeds"/></td>
+	<td nowrap colspan="3">Notes<br><webobject name = "SpecialNeedsNotes"/></td>
+</tr>
+
+<tr>
+<th class="group" nowrap colspan="4">&nbsp;</th>
+</tr>
+<tr>
+	<td class="buttoncell-left" colspan="1"><webobject name = "CancelForm"/> <input type="reset" value="Revert"></td>
+	<td class="buttoncell-right" colspan="3"><em><webobject name = "MessageOnScreen"/></em> <webobject name = "SubmitForm"/></td>
+</tr>
+
+</table>
+</webobject>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators - Attendee Information</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<table cellspacing="0" cellpadding="0" border="0" class="inline" style="width: auto; float: right;">
+<tr>
+	<td><b>Sign-up Date</b></td><td><webobject name = "AttendeeSignupDate"/></td>
+</tr>
+<tr>
+	<td><b>Last Visit</b></td><td><webobject name = "AttendeeDateLastVisit"/></td>
+</tr>
+<tr>
+	<td><b>Last Change</b></td><td><webobject name = "AttendeeDateLastEdit"/></td>
+</tr>
+</table>
+
+<h3>Profile for <webobject name = "AttendeeFirstName"/> <webobject name = "AttendeeLastName"/></h3>
+
+<table cellspaing="0" cellpadding="0" border="0" class="inline">
+<tr>
+	<th class="group" colspan="4">Contact Information</th>
+</tr>
+<tr>
+	<td colspan="1">Last/Family Name</td>
+	<td colspan="3">Fist/Given Name</td>
+</tr>
+<tr>
+	<td colspan="1"><b><webobject name = "AttendeeLastName"/></b></td>
+	<td colspan="3"><b><webobject name = "AttendeeFirstName"/></b></td>
+</tr>
+<tr>
+	<td>E-Mail</td>
+	<td colspan="3"><b><webobject name = "AttendeeEmailURL"><webobject name = "AttendeeEmailAddress"/></webobject></b></td>
+</tr>
+<tr>
+	<td>Phone</td>
+	<td><b><webobject name = "AttendeePhone"/></b></td>
+	<td>Fax</td>
+	<td><b><webobject name = "AttendeeFax"/></b></td>
+</tr>
+<tr>
+	<td>Job Title</td>
+	<td><b><webobject name = "AttendeeJobTitle"/></b></td>
+	<td>Type</td>
+	<td><b><webobject name = "AttendeeFunction"/></b></td>
+</tr>
+<tr>
+	<td>Company/Organization</td>
+	<td colspan="3"><b><webobject name = "AttendeeCompany"/></b></td>
+</tr>
+<tr>
+	<td>Street Address</td>
+	<td colspan="3"><b><webobject name = "AttendeeStreet1"/><br><webobject name = "AttendeeStreet2"/></b></td>
+</tr>
+<tr>
+	<td>City</td>
+	<td><b><webobject name = "AttendeeCity"/></b></td>
+	<td>State</td>
+	<td><b><webobject name = "AttendeeState"/></b></td>
+</tr>
+<tr>
+	<td>Postal Code/Zip</td>
+	<td><b><webobject name = "AttendeeZip"/></b></td>
+	<td>Country</td>
+	<td><b><webobject name = "AttendeeCountry"/></b></td>
+</tr>
+<tr>
+	<th class="group" colspan="4">Special Needs</th>
+</tr>
+<tr>
+	<td colspan="4">
+	<webobject name = "AttendeeSpecialNeedsList"><webobject name = "AttendeeSpecialNeedsInList"/></webobject>
+	</td>
+</tr>
+<tr>
+	<td colspan="4">Notes<b><br><webobject name = "AttendeeNotes"/></b></td>
+</tr>
+<tr>
+	<th class="group" colspan="4">Passport Information</th>
+</tr>
+<webobject name = "PassportInformation">
+<tr>
+	<td>Surname</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportFamilyName"/></b></td>
+</tr>
+<tr>
+	<td>Given Name</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportGiveName"/> <webobject name = "AttendeePassportMiddleName"/></b></td>
+</tr>
+<tr>
+	<td>Nationality</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportNationality"/></b></td>
+</tr>
+<tr>
+	<td>Date of birth</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportDateOfBirth"/></b></td>
+</tr>
+<tr>
+	<td>Passport No</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportNumber"/></b></td>
+</tr>
+<tr>
+	<td>Date of issued</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportDateIssued"/></b></td>
+</tr>
+<tr>
+	<td>Date of expiration</td>
+	<td colspan="3"><b><webobject name = "AttendeePassportDateExpires"/></b></td>
+</tr>
+</webobject>
+<webobject name = "NoPassportInformation">
+<tr>
+	<td colspan="4">Not Provided</td>
+</tr>
+</webobject>
+</table>
+
+</div>
+
+</body>
+</html>

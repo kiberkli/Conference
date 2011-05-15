@@ -1,0 +1,95 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+InvitationMessageForm : WOForm {
+	multipleSubmit = true;
+}
+
+MessageOnPage : WOString {
+	value = messageOnPage;
+}
+
+InviteeFreeFormName : WOTextField {
+	value = inviteeFreeFormName;
+	style = "width: 100%;";
+}
+
+InvitationText : WOText {
+	value = invitationText;
+	style = "width: 100%; height: 200px;";
+}
+
+InviteeEmailAddress : WOTextField {
+	value = inviteeEmailAddress;
+	style = "width: 100%;";
+}
+
+InviteeList : WORepetition {
+	list = inviteeList;
+	item = inviteeInlist;
+}
+
+InviteeInListFreeFormName : WOString {
+	value = inviteeInlist.freeFormName;
+}
+
+InviteeInListEmailAddress : WOString {
+	value = inviteeInlist.emailAddress;
+}
+
+AddInviteeToList : WOImageButton {
+	action = addInviteeToList;
+	filename = "add.png";
+	title = "Add";
+	class = "smallbutton";
+}
+
+DeleteInviteeFromList : WOImageButton {
+	action = deleteInviteeFromList;
+	filename = "remove.png";
+	title = "Remove";
+	class = "smallbutton"
+}
+
+CancelInvite : WOSubmitButton {
+	action = cancelInvite;
+	value = "Cancel";
+}
+
+SendInvite : WOSubmitButton {
+	action = sendInvitation;
+	value = "Send Invitation";
+}
+
+InvitationSubject : WOTextField {
+	value = invitationSubject;
+	style = "width: 100%;";
+}
+
+VenueList : WOPopUpButton {
+	list = venueList;
+	item = venueInList;
+	displayString = venueInList.lable;
+	selection = venueSelected;
+	noSelectionString = "Make a selection...";
+}
+
+AdministratorFullName : WOString {
+	value = administrator.fullName;
+}
+
+AdministratorEmailAddress : WOString {
+	value = administrator.emailAddress;
+}

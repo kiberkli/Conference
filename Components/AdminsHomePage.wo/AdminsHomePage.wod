@@ -1,0 +1,56 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+SendAttendeeInvite : WOHyperlink {
+	action = sendAttendeeInvite;
+}
+
+VenuePage : WOHyperlink {
+	action = venuePage;
+}
+
+FullVenueList : WORepetition {
+	list = venueList;
+	item = venueInList;
+}
+
+VenueEventsPage : WOHyperlink {
+	action =  venueEventsPage;
+}
+
+VenueInList : WOString {
+	  value = venueInList.lable;
+}
+
+VenueEmailPage : WOHyperlink {
+	action = venueEmailPage;
+}
+
+VenueAttendeePage : WOHyperlink {
+	action = venueAttendeesPage;
+}
+
+AdminsPage : WOHyperlink {
+	action = adminsPage;
+}
+
+VenueEventsStatsPage : WOHyperlink {
+	action = venueEventsStatsPage;
+}
+
+VenuInListDateStart : WOString {
+	value = venueInList.dateStart;
+	dateformat = "%b %d, %Y";
+}

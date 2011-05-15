@@ -1,0 +1,50 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenuPopupList : WOPopUpButton {
+	list = venueList;
+	item = venueInList;
+	selection = venueSelected;
+	displayString = venueInListPopupDisplayString;
+	noSelectionString = "Make a selection...";
+}
+
+MessageText : WOText {
+	value = messageText;
+	style = "width: 600px; height: 400px;";
+}
+
+VenuEmailForm : WOForm {
+	multipleSubmit = true;
+}
+
+CancelButton : WOSubmitButton {
+	action = cancelEmail;
+	value = "Cancel, discard message";
+}
+
+SendEmail : WOSubmitButton {
+	action = sendEmail;
+	value = "Send Now";
+}
+
+MessageOnScreeen : WOString {
+	value = messageOnScreen;
+}
+
+MessageSubject : WOTextField {
+	value = messageSubject;
+	style = "width: 100%;";
+}

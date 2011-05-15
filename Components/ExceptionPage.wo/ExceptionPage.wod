@@ -1,0 +1,19 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+LoginPage : WOHyperlink {
+	directActionName = "default";
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}

@@ -1,0 +1,17 @@
+body {
+	background-image: url(attendeebackground.jpg);
+	background-position: top left;
+	background-attachment: scroll;
+	padding: 0px;
+	margin: 0px;
+
+/*	background-color: #eeeeee; */
+}
+
+table.inline input[type="text"], table.inline input[type="password"], table.inline textarea {
+	border: 1px solid #999999;
+	padding: 2px;
+	background-color: #f8f8f8;
+	color: #000099;
+}
+

@@ -1,0 +1,129 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+AttendeeBanner : AttendeeBanner {
+	attendee = attendee;
+}
+
+PastVenues : WORepetition {
+	list = attendee.pastVenues;
+	item = venueInList;
+}
+
+CurrentAndFutureVenues : WORepetition {
+	list = attendee.currentAndFutureVenues;
+	item = venueInList;
+}
+
+VenueLable : WOString {
+	value = venueInList.lable;
+}
+
+VenuStartDate : WOString {
+	value = venueInList.dateStart;
+	dateformat = "%b. %e"
+}
+
+VenuEndDate : WOString {
+	value = venueInList.dateEnd;
+	dateformat = "%b. %e, '%y"
+}
+
+VenuAddress : WOString {
+	value = venueInList.mapAddressForHTML;
+	escapeHTML = false;
+}
+
+VenuFacility : WOString {
+	value = venueInList.facilityName;
+}
+
+VenuHotelInfoStatus : WOString {
+	value = statusHotelInformation;
+}
+
+VenuTravelInfoStatus : WOString {
+	value = statusTravelInformation;
+}
+
+VenuPassportInfoStatus : WOString {
+	value = statusPassportInformation;
+}
+
+VenuEventsStauts : WOString {
+	value = statusSelectedEvents;
+}
+
+VenuLink : WOHyperlink {
+	action = updateViewVenu;
+	disabled = venueInList.expired;
+}
+
+PassportInfoLink : WOHyperlink {
+	action = updatePassportInfo;
+	disabled = true;
+}
+
+EventsLink : WOHyperlink {
+	action = updateEventsSignup;
+	disabled = venueInList.expired;
+}
+
+VenuPhone : WOString {
+	value = venueInList.facilityPhone;
+}
+
+VenuPhoneLink : WOHyperlink {
+	href = venueInList.facilityPhoneURL;
+}
+
+URLToICaleandar : WOHyperlink {
+	href = urlToICalendar;
+}
+
+DocumentsURL : WOHyperlink {
+	href = venueInList.documentsURLFull;
+}
+
+RegisterForVenue : WOForm {	
+}
+
+SecretCode : WOTextField {
+	value = secretCode;
+	style = "width: 80px;";
+}
+
+RegisterVenue : WOSubmitButton {
+	action = registerForVenue;
+	value ="Ok";
+}
+
+CurrentAndFutureVenuesAvailable : WOConditional {
+	condition = currentAndFutureVenuesAvailable;
+}
+
+PastVenueAvailable : WOConditional {
+	condition = pastVenuesAvailable;
+}
+
+MessageOnScreen : WOString {
+	value = messageOnScreen;
+}
+
+ShowDownloadsLink : WOConditional {
+	condition = venueInList.documentsURLEmpty;
+	negate = true;
+}

@@ -1,0 +1,51 @@
+{
+    attributes = (
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = idAttendee; 
+            name = idAttendee; 
+            prototypeName = id; 
+        }, 
+        {allowsNull = N; columnName = idVenue; name = idVenue; prototypeName = id; }, 
+        {allowsNull = Y; columnName = idVEvent; name = idVEvent; prototypeName = id; }, 
+        {
+            allowsNull = N; 
+            columnName = participants; 
+            name = participants; 
+            prototypeName = intNumber; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.AttendeeSelectedVEvent"; 
+    classProperties = (attendee, event, participants, venue); 
+    externalName = attendeeselectedvevent; 
+    fetchSpecificationDictionary = {}; 
+    name = AttendeeSelectedVEvent; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            destination = Attendee; 
+            isMandatory = Y; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendee; }); 
+            name = attendee; 
+        }, 
+        {
+            deleteRule = EODeleteRuleNoAction; 
+            destination = VEvent; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVEvent; }); 
+            name = event; 
+        }, 
+        {
+            destination = Venue; 
+            isMandatory = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idVenue; }); 
+            name = venue; 
+        }
+    ); 
+}

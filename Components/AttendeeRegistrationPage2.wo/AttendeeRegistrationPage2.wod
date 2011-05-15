@@ -1,0 +1,107 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+AttendeeStyles: ERXStyleSheet {
+	filename = "attendeestyles.css";
+}
+
+VenueLable: WOString {
+	value = venue.lable;
+}
+
+RegistrationForm : WOForm {
+	multipleSubmit = true;
+}
+
+Salutation : WOString {
+	value = attendee.salutation;
+}
+
+NameFamily : WOString {
+	value = attendee.nameFamily;
+}
+
+JobTitle : WOTextField {
+	value = attendee.jobTitle;
+	style = "width: 100%";
+}
+
+AttendeeFunction : WOPopUpButton {
+	list = attendeeFunctionList;
+	item = attendeeFunctionInList;
+	selection = attendee.function;
+	displayString = attendeeFunctionInList.lable;
+	noSelectionString = "Select your job roll..."; 
+}
+
+CompanyName : WOTextField {
+	value = attendee.companyName;
+	style = "width: 100%";
+}
+
+Street1 : WOTextField {
+	value = attendee.addressStreet1;
+	style = "width: 100%";
+}
+
+Street2 : WOTextField {
+	value = attendee.addressStreet2;
+	style = "width: 100%";
+}
+
+City : WOTextField {
+	value = attendee.addressCity;
+	style = "width: 100%";
+}
+
+PostalCode : WOTextField {
+	value = attendee.addressPostalCode;
+	style = "width: 100%";
+}
+
+Country : WOTextField {
+	value = attendee.addressCountry;
+	style = "width: 100%";
+}
+
+Fax : WOTextField {
+	value = attendee.fax;
+	style = "width: 100%";
+}
+
+Phone : WOTextField {
+	value = attendee.phone;
+	style = "width: 100%";
+}
+
+MessageOnPage : WOString {
+  value = "";
+}
+
+SpecialNeeds : WOCheckBoxList {
+	list = specialNeedList;
+	item = specialNeedInList;
+	displayString = specialNeedInList.lable;
+	selections = attendee.specialNeeds;
+	type = "checkbox";
+	suffix = "<br>";
+}
+
+SubmitForm : WOSubmitButton {
+	action = submitForm;
+	value = "Finish Registration. Sign up for Fundays";
+}
+
+SpecialNeedsNotes : WOText {
+	value = attendee.specialNeedsNotes;
+	style = "width: 100%; height: 100%;";
+}

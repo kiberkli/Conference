@@ -1,0 +1,271 @@
+{
+    attributes = (
+        {
+            allowsNull = Y; 
+            columnName = addressCity; 
+            name = addressCity; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = addressCountry; 
+            name = addressCountry; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = addressPostalCode; 
+            name = addressPostalCode; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = addressState; 
+            name = addressState; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = addressStreet1; 
+            name = addressStreet1; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = addressStreet2; 
+            name = addressStreet2; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = companyName; 
+            name = companyName; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = dateLastEdited; 
+            name = dateLastEdited; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateLastVisit; 
+            name = dateLastVisit; 
+            prototypeName = dateTime; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = dateRegistered; 
+            name = dateRegistered; 
+            prototypeName = dateTime; 
+        }, 
+        {allowsNull = Y; columnName = fax; name = fax; prototypeName = longText; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = idAttendee; 
+            name = idAttendee; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idAttendeeFunction; 
+            name = idAttendeeFunction; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idAttendeeMealPreference; 
+            name = idAttendeeMealPreference; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idAttendeeType; 
+            name = idAttendeeType; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = idPassportInformation; 
+            name = idPassportInformation; 
+            prototypeName = id; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = jobTitle; 
+            name = jobTitle; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = nameFamily; 
+            name = nameFamily; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = nameGiven; 
+            name = nameGiven; 
+            prototypeName = longText; 
+        }, 
+        {allowsNull = Y; columnName = phone; name = phone; prototypeName = longText; }, 
+        {
+            allowsNull = Y; 
+            columnName = salutation; 
+            name = salutation; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = Y; 
+            columnName = specialNeedsNotes; 
+            name = specialNeedsNotes; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = userEmailAddress; 
+            name = userEmailAddress; 
+            prototypeName = longText; 
+        }, 
+        {
+            allowsNull = N; 
+            columnName = userPassword; 
+            name = userPassword; 
+            prototypeName = longText; 
+        }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.Attendee"; 
+    classProperties = (
+        addressCity, 
+        addressCountry, 
+        addressPostalCode, 
+        addressState, 
+        addressStreet1, 
+        addressStreet2, 
+        companyName, 
+        dateLastEdited, 
+        dateLastVisit, 
+        dateRegistered, 
+        fax, 
+        function, 
+        groupMembers, 
+        hotelInformations, 
+        jobTitle, 
+        mealPreference, 
+        nameFamily, 
+        nameGiven, 
+        passportInformation, 
+        phone, 
+        registrant, 
+        salutation, 
+        selectedEvents, 
+        specialNeeds, 
+        specialNeedsNotes, 
+        travelInformations, 
+        type, 
+        userEmailAddress, 
+        userPassword, 
+        venues
+    ); 
+    externalName = attendee; 
+    fetchSpecificationDictionary = {}; 
+    name = Attendee; 
+    primaryKeyAttributes = (id); 
+    relationships = (
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = AttendeeSpecialNeed; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = attendeeId; sourceAttribute = id; }); 
+            name = attendeeSpecialNeeds; 
+            propagatesPrimaryKey = Y; 
+        }, 
+        {
+            destination = AttendeeFunction; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendeeFunction; }); 
+            name = function; 
+        }, 
+        {
+            destination = Attendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendee; sourceAttribute = id; }); 
+            name = groupMembers; 
+        }, 
+        {
+            destination = HotelInformation; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendee; sourceAttribute = id; }); 
+            name = hotelInformations; 
+        }, 
+        {
+            destination = AttendeeMealPreference; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendeeMealPreference; }); 
+            name = mealPreference; 
+        }, 
+        {
+            destination = PassportInformation; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idPassportInformation; }); 
+            name = passportInformation; 
+        }, 
+        {
+            destination = Attendee; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendee; }); 
+            name = registrant; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = AttendeeSelectedVEvent; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendee; sourceAttribute = id; }); 
+            name = selectedEvents; 
+        }, 
+        {
+            definition = "attendeeSpecialNeeds.specialNeed"; 
+            deleteRule = EODeleteRuleCascade; 
+            name = specialNeeds; 
+        }, 
+        {
+            destination = TravelInformation; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = idAttendee; sourceAttribute = id; }); 
+            name = travelInformations; 
+        }, 
+        {
+            destination = AttendeeType; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idAttendeeType; }); 
+            name = type; 
+        }, 
+        {
+            deleteRule = EODeleteRuleCascade; 
+            destination = VenueAttendee; 
+            isToMany = Y; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = attendeeId; sourceAttribute = id; }); 
+            name = venueAttendees; 
+            propagatesPrimaryKey = Y; 
+        }, 
+        {
+            definition = "venueAttendees.venue"; 
+            deleteRule = EODeleteRuleCascade; 
+            name = venues; 
+        }
+    ); 
+}

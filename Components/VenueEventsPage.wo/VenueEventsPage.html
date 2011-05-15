@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<webobjects name="TextStyles"></webobjects>
+	<webobjects name="TableStyles"></webobjects>
+	<webobjects name="PageStyles"></webobjects>
+	<title>Conference Administrators - <webobject name = "VenueLable"/> Sections</title>
+</head>
+<body>
+
+<webobject name = "AdminsBanner"/>
+
+<div class="pagecontent">
+
+<h3><webobject name = "VenueLable"/></h3>
+
+<blockquote>
+<p><webobject name = "VenueDescription"/><p>
+<p><webobject name = "WebpageURL">Public Web Page</webobject>
+<webobject name = "DocumentsURLEmpty">
+| <webobject name = "DocumentsURL">Documents</webobject>
+</webobject></p>
+</blockquote>
+
+<h4>Location</h4>
+
+<blockquote>
+<p><b><webobject name = "VenuFacilityName"/></b><br><webobject name = "VenueAddress"/></p>
+<p><b>Tel:</b> <webobject name = "VenueFacilityPhone"/> <webobject name = "VenuFacilityPhoneLink"><webobject name = "PhoneImage"/></webobject></p>
+</blockquote>
+
+<p><b>Dates:</b> <webobject name = "VenueDateStart"/> - <webobject name = "VenueDateEnd"/></p>
+
+<p><b>Primary Contact:</b> <webobject name = "VenueAdmin"/> <webobject name = "VenueAdminEmail"><webobject name = "EmailImage"/></webobject></p>
+
+
+<webobject name = "SubmitEvents">
+<table cellspacing="0" cellpadding="0" border="0" class="inline">
+<tr>
+	<th colspan="1" class="group">&nbsp;</th>
+	<th colspan="5" class="group">Sections</th>
+</tr>
+<webobject name = "EventsList">
+<tr class="alternating">
+	<td nowrap style='text-align: right; border-left: 3px solid <webobject name = "EventInListColor"/>;'><webobject name = "EventInListDay"/></td>
+	<td nowrap><webobject name = "EventInListDate"/></td>
+	<td nowrap><webobject name = "EventInListTimeStart"/><webobject name = "EventInListTimeEnd"/></td>
+	<td><b><webobject name = "EventInListLable"/></b><br>
+		<webobject name = "EventInListDescription"/></td>
+	<td><webobject name = "EventInListMeetingPlace"/></td>
+	<td nowrap style="text-align: right;">
+		<webobject name = "EditEventInList"><webobject name = "EditImage"></webobject></webobject>
+		<webobject name = "DeleteEventFromList"><webobject name = "RemoveImage"/></webobject></td>
+</tr>
+</webobject>
+<tr>
+	<td colspan="2" style="text-align: left;"><webobject name = "CancelAllEvents"/></td>
+	<td colspan="4" style="text-align: right;"><em><webobject name = "MessageOnPage"/></em> <webobject name = "SaveAllEvents"/></td>
+</tr>
+</table>
+</webobject>
+</div>
+
+
+
+<webobject name = "AddEventsForm">
+<table cellspacing="0" cellpadding="0" border="0" class="form" style="width: 600px;">
+<tr>
+	<th>Time</th>
+	<td nowrap><webobject name = "VenueDatesList"/> <webobject name = "TimeStart"/> - <webobject name = "TimeEnd"/> <webobject name = "CurrentTimezone"/> Time</td>
+</tr>
+<tr>
+	<th>Short/<br>Long Description</th>
+	<td><webobject name = "Lable"/><br><webobject name = "Description"/></td>
+</tr>
+<tr>
+	<th>Location</th>
+	<td><webobject name = "MeetingPlace"/></td>
+</tr>
+<tr>
+	<th>Color</th>
+	<td nowrap class="radiobuttons-horizontal">
+	<webobject name = "ColorList"/>
+	</td>
+</tr>
+<tr>
+	<td class="buttoncell-left"><input type="reset" value="Revert" /></td>
+	<td class="buttoncell-right"><webobject name = "AddEventToList"/></td>
+</tr>
+</table>
+</webobject>
+
+</body>
+</html>

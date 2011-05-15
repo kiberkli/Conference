@@ -1,0 +1,187 @@
+TextStyles: ERXStyleSheet {
+	filename = "textstyles.css";
+}
+
+TableStyles: ERXStyleSheet {
+	filename = "tablestyles.css";
+}
+
+PageStyles: ERXStyleSheet {
+	filename = "pagestyles.css";
+}
+
+Scriptaculous: ERXJavaScript {
+	filename = "scriptaculous/scriptaculous.js";	
+}
+
+ScriptaculousPrototypes: ERXJavaScript {
+	filename = "scriptaculous/prototype.js";	
+}
+
+AdminsBanner : AdminsBanner {
+}
+
+VenueList : WORepetition {
+	list = venueList;
+	item = venueInList;
+}
+
+LableInList : WOString {
+	value = venueInList.lable;
+}
+
+DateStartInList : WOString {
+	value = venueInList.dateStart;
+	dateformat = "%a. %b. %e"
+}
+
+DateEndInList : WOString {
+	value = venueInList.dateEnd;
+	dateformat = "%a. %b. %e, '%y"
+}
+
+AddressInList : WOString {
+	value = venueInList.mapAddressForHTML;
+	escapeHTML = false;
+}
+
+InvitedInList : WOString {
+	value = venueInList.invitees.@count;
+}
+
+AttendeesInList : WOString {
+	value = venueInList.attendees.@count;
+}
+
+VenueForm : WOForm {
+	multipleSubmit = true;
+}
+
+Lable : WOTextField {
+	value = lable;
+	style = "width: 100%;";
+}
+
+DateStart : WOTextField {
+	value = dateStart;
+	width = "8";
+	dateformat = "%m/%d/%Y";
+}
+
+DateEnd : WOTextField {
+	value = dateEnd;
+	width = "8";
+	dateformat = "%m/%d/%Y";
+}
+
+CancelVenue : WOSubmitButton {
+	action = cancelVenue;
+	value = "Cancel";
+}
+
+SaveFormData : WOSubmitButton {
+	action = saveFormData;
+	value = "Save";
+}
+
+WebpageURL : WOTextField {
+	value = webpageURL;
+	style = "width: 100%;";
+}
+
+Description : WOText {
+	value = description;
+	style = "width: 100%; height: 150px;";
+}
+
+MapAddress : WOText {
+	value = mapAddress;
+	style = "width: 100%;";
+}
+
+EventsInList : WOString {
+	value = venueInList.events.@count;
+}
+
+MessageOnPage : WOString {
+	value = messageOnPage;
+}
+
+EditVenueInList : WOHyperlink {
+	action = editSelectedVenue;
+	title = "Edit";
+}
+
+VenueEventsPage : WOHyperlink {
+	action = venueEventsPage;
+	title = "Add, edit or remove events";
+}
+
+SecretCode : WOTextField {
+	value = secretCode;
+	style = "width: 100%;";
+}
+
+FacilityNameInList : WOString {
+	value = venueInList.facilityName;
+}
+
+FacilityName : WOTextField {
+	value = facilityName;
+	style = "width: 100%;";
+}
+
+PromptOnPage : WOString {
+	value = promptOnPage;
+}
+
+FacilityPhone : WOTextField {
+	value = facilityPhone;
+	style = "width: 100%;";
+}
+
+VenuAttendeesPage : WOHyperlink {
+	action = venueAttendeesPage;
+	title = "See attendees";
+}
+
+DateStartPicker : AjaxDatePicker {
+	value = dateStart;
+	size = "10";
+	format = "%m/%d/%Y";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+DateEndPicker : AjaxDatePicker {
+	value = dateEnd;
+	size = "10";
+	format = "%m/%d/%Y";
+	calendarCSS = "myCalendar.css";
+	calendarCSSFramework = "application";
+}
+
+DetailsImage : WOImage {
+	filename = "details.png";
+	class = "buttonimage";
+}
+
+ShowImage : WOImage {
+	filename = "follow.png";
+	class = "buttonimage";
+}
+
+DocumentsURL : WOTextField {
+	value = documentsURL;
+	style = "width: 100%;";
+}
+
+DocumentsURLUsername : WOTextField {
+	value = documentsURLUsername;
+	style = "width: 80px;";
+}
+
+DocumentsURLPassword : WOPasswordField {
+	value = documentsURLPassword;
+	style = "width: 80px;";
+}
