@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to Attendee.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to Attendee.java instead.
 package com.dyned.conf.eom;
 
 import com.webobjects.eoaccess.*;
@@ -28,6 +28,7 @@ public abstract class _Attendee extends  EOGenericRecord {
 	public static final String NAME_FAMILY_KEY = "nameFamily";
 	public static final String NAME_GIVEN_KEY = "nameGiven";
 	public static final String PHONE_KEY = "phone";
+	public static final String PW_HASH_CODE_KEY = "pwHashCode";
 	public static final String SALUTATION_KEY = "salutation";
 	public static final String SPECIAL_NEEDS_NOTES_KEY = "specialNeedsNotes";
 	public static final String USER_EMAIL_ADDRESS_KEY = "userEmailAddress";
@@ -219,6 +220,17 @@ public abstract class _Attendee extends  EOGenericRecord {
     	_Attendee.LOG.debug( "updating phone from " + phone() + " to " + value);
     }
     takeStoredValueForKey(value, "phone");
+  }
+
+  public Integer pwHashCode() {
+    return (Integer) storedValueForKey("pwHashCode");
+  }
+
+  public void setPwHashCode(Integer value) {
+    if (_Attendee.LOG.isDebugEnabled()) {
+    	_Attendee.LOG.debug( "updating pwHashCode from " + pwHashCode() + " to " + value);
+    }
+    takeStoredValueForKey(value, "pwHashCode");
   }
 
   public String salutation() {
@@ -771,6 +783,7 @@ public abstract class _Attendee extends  EOGenericRecord {
   public static Attendee createAttendee(EOEditingContext editingContext, NSTimestamp dateLastVisit
 , NSTimestamp dateRegistered
 , String nameFamily
+, Integer pwHashCode
 , String userEmailAddress
 , String userPassword
 ) {
@@ -778,6 +791,7 @@ public abstract class _Attendee extends  EOGenericRecord {
 		eo.setDateLastVisit(dateLastVisit);
 		eo.setDateRegistered(dateRegistered);
 		eo.setNameFamily(nameFamily);
+		eo.setPwHashCode(pwHashCode);
 		eo.setUserEmailAddress(userEmailAddress);
 		eo.setUserPassword(userPassword);
     return eo;

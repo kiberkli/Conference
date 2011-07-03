@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
 import com.dyned.conf.eom.Venue;
@@ -44,6 +46,8 @@ import er.extensions.appserver.ERXApplication;
 
 public class VenuePage extends CompCommon {
 
+	private static Logger log = Logger.getLogger(VenuePage.class);
+			
 	public Admin administrator;
 
 	public NSArray<Venue> venueList;
@@ -128,7 +132,7 @@ public class VenuePage extends CompCommon {
 		} catch (RuntimeException ex) {
 			ec.revert();
 			messageOnPage = "There was a problem with the database. Please try again later.";
-			ERXApplication.log.error(ex.getMessage());
+			log.error(ex.getMessage());
 			return null;
 		}
 		return pageWithName(VenuePage.class);
@@ -159,7 +163,7 @@ public class VenuePage extends CompCommon {
 				(dateEnd != null)
 		) {
 			if (venue == null) {
-				ERXApplication.log.info("Venue appears to be new.");
+				log.info("Venue appears to be new.");
 				venue = (Venue)EOUtilities.createAndInsertInstance(ec, Venue.ENTITY_NAME);
 				venue.setDateCreated(new NSTimestamp());
 				venue.setAdminRelationship(administrator);
@@ -212,11 +216,11 @@ public class VenuePage extends CompCommon {
 
 // Grave yard
 
-//ERXApplication.log.info("administrator: " + administrator.fullName());
-//ERXApplication.log.info("lable:         " + lable);
-//ERXApplication.log.info("dateStart:     " + dateStart);
-//ERXApplication.log.info("dateEnd:       " + dateEnd);
-//ERXApplication.log.info("webpageURL:    " + webpageURL);
-//ERXApplication.log.info("mapAddress:    " + mapAddress);
-//ERXApplication.log.info("description:   " + description);
-//ERXApplication.log.info("lable:         " + lable);
+//log.info("administrator: " + administrator.fullName());
+//log.info("lable:         " + lable);
+//log.info("dateStart:     " + dateStart);
+//log.info("dateEnd:       " + dateEnd);
+//log.info("webpageURL:    " + webpageURL);
+//log.info("mapAddress:    " + mapAddress);
+//log.info("description:   " + description);
+//log.info("lable:         " + lable);

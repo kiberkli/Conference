@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
 import com.webobjects.eoaccess.EOUtilities;
@@ -45,6 +47,8 @@ import com.webobjects.foundation.NSTimestamp;
 
 public class AdminsPage extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AdminsPage.class);
+	
 	public String fullName;
 	public String username;
 	public String password;
@@ -81,8 +85,8 @@ public class AdminsPage extends CompCommon {
     	if (aValue != null) {
     		fullName  = new String(aValue.fullName());
     		username = new String(aValue.username());
-    		password = new String(aValue.password());
-    		passwordConfirm = new String(aValue.password());
+    		password = null;
+    		passwordConfirm = null;
     		emailAddres = new String(aValue.emailAddress());
     		
     		promptOnPage = "Edit the selected administrator";
@@ -121,7 +125,7 @@ public class AdminsPage extends CompCommon {
 			} catch (RuntimeException ex) {
 				ec.revert();
 				messageOnPage = "There was a problem saving to the database. Please try again later.";
-				ERXApplication.log.error(ex.getMessage());
+				log.error(ex.getMessage());
 				return null;
 			}
 		} else {

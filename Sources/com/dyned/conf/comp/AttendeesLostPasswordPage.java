@@ -6,14 +6,14 @@ All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
 
-	* Redistributions of source code must retain the above copyright notice, 
+ * Redistributions of source code must retain the above copyright notice, 
 	  this list of conditions and the following disclaimer.
 
-	* Redistributions in binary form must reproduce the above copyright notice, 
+ * Redistributions in binary form must reproduce the above copyright notice, 
 	  this list of conditions and the following disclaimer in the documentation 
 	  and/or other materials provided with the distribution.
 
-	* Neither the name of DynEd International, Inc. nor the names of its 
+ * Neither the name of DynEd International, Inc. nor the names of its 
 	  contributors may be used to endorse or promote products derived from this 
 	  software without specific prior written permission.
 
@@ -28,17 +28,20 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-*/
+ */
 
 package com.dyned.conf.comp;
 
-import com.dyned.conf.EMailUtility;
-import com.dyned.conf.eom.Attendee;
+import org.apache.log4j.Logger;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities.MoreThanOneException;
-import er.extensions.appserver.ERXApplication;
+import com.dyned.conf.Application;
+import com.dyned.conf.EMailUtility;
+import com.dyned.conf.eom.Attendee;
 
 public class AttendeesLostPasswordPage extends CompCommon {
+
+	private static Logger log = Logger.getLogger(AttendeesLostPasswordPage.class);
 
 	public String messageOnScreen;
 	public String attendeeEmail;
@@ -49,7 +52,7 @@ public class AttendeesLostPasswordPage extends CompCommon {
 
 		messageOnScreen = new String();
 		attendeeEmail = new String();
-		
+
 		messageSent = false;
 	}
 
@@ -60,19 +63,19 @@ public class AttendeesLostPasswordPage extends CompCommon {
 	public void setMessageSent(boolean aValue) {
 		messageSent = aValue;
 	}
-	
+
 	public AttendeesLostPasswordPage sendLostPassword() {
 		if (attendeeEmail != null) {
-			
+
 			Attendee attendee = null;
-			
+
 			try {
-			attendee = Attendee.fetchAttendee(ec, Attendee.USER_EMAIL_ADDRESS_KEY, attendeeEmail);
+				attendee = Attendee.fetchAttendee(ec, Attendee.USER_EMAIL_ADDRESS_KEY, attendeeEmail);
 			} catch (MoreThanOneException ex) {
-				ERXApplication.log.error("Too many attendees match " + attendeeEmail);
+				log.error("Too many attendees match " + attendeeEmail);
 				ex.printStackTrace();
 			} catch (RuntimeException ex) {
-				ERXApplication.log.error(ex.getMessage());
+				log.error(ex.getMessage());
 				ex.printStackTrace();
 			}
 
@@ -80,20 +83,21 @@ public class AttendeesLostPasswordPage extends CompCommon {
 				try {
 					AttendeesLostPasswordMessage  messageBody = (AttendeesLostPasswordMessage)pageWithName(AttendeesLostPasswordMessage.class);
 					messageBody.setAttendeeForPage(attendee);
+					messageBody.setNewPassword(attendee.resetPassword());
 					EMailUtility.composeAndSendComponentMail(
 							messageBody,
-							"webmaster@dyned.com",
-							"DynEd International, Inc.",
+							((Application)application()).emailSenderAddress,
+							((Application)application()).emailSenderFullName,
 							attendee.userEmailAddress(),
 							attendee.fullName(),
 							null,
-							"webmaster@dyned.com",
-							"Your Requested Information"
+							((Application)application()).emailSenderAddress,
+							((Application)application()).emailSenderFullName
 					);
 					messageOnScreen = "Your password has been set to your email address with log in information. You may close this window.";
 				} catch (RuntimeException ex) {
-					ERXApplication.log.error("Failed sending welcome message to " + attendee.userEmailAddress());
-					ERXApplication.log.error(ex.getMessage());
+					log.error("Failed sending welcome message to " + attendee.userEmailAddress());
+					log.error(ex.getMessage());
 					ex.printStackTrace();
 					messageOnScreen = "Unable to sent you your password, please try again later.";
 				}

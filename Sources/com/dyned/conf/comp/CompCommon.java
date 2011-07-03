@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
 import com.dyned.conf.eom.Attendee;
@@ -54,6 +56,9 @@ import er.extensions.appserver.ERXApplication;
 import er.extensions.components.ERXComponent;
 
 public class CompCommon extends ERXComponent {
+
+	private static Logger log = Logger.getLogger(CompCommon.class);
+			 
 	public EOEditingContext ec;
 	
 	public CompCommon(WOContext context) {
@@ -71,8 +76,8 @@ public class CompCommon extends ERXComponent {
 		try {
 			results = ec.objectsWithFetchSpecification(theFetchSpecs);
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Error fetching AttendeeFunction list:");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Error fetching AttendeeFunction list:");
+			log.error(ex.getMessage());
 		}
 
 		return results;
@@ -88,8 +93,8 @@ public class CompCommon extends ERXComponent {
 		try {
 			results = ec.objectsWithFetchSpecification(theFetchSpecs);
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Error fetching AttendeeFunction list:");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Error fetching AttendeeFunction list:");
+			log.error(ex.getMessage());
 		}
 
 		return results;
@@ -112,8 +117,8 @@ public class CompCommon extends ERXComponent {
 		try {
 			results = ec.objectsWithFetchSpecification(theFetchSpecs);
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Error fetching Venue list:");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Error fetching Venue list:");
+			log.error(ex.getMessage());
 		}
 		
 		return results;
@@ -136,8 +141,8 @@ public class CompCommon extends ERXComponent {
 		try {
 			results = ec.objectsWithFetchSpecification(theFetchSpecs);
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Error fetching Admin list:");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Error fetching Admin list:");
+			log.error(ex.getMessage());
 		}
 		
     	return results;
@@ -148,11 +153,11 @@ public class CompCommon extends ERXComponent {
 		try {
 			ec.saveChanges();
 			returnValue = true;
-			ERXApplication.log.info("++++ Save sucessful.");
+			log.info("++++ Save sucessful.");
 		} catch (RuntimeException ex) {
 			ec.revert();
-			ERXApplication.log.error("--- " + errorStringOnFail + ":");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("--- " + errorStringOnFail + ":");
+			log.error(ex.getMessage());
 		}
 		return returnValue;
 	}
@@ -166,14 +171,14 @@ public class CompCommon extends ERXComponent {
 		try {
 			administrator = (Admin)EOUtilities.objectMatchingValues(ec,Admin.ENTITY_NAME, bindings);
 		} catch (EOUtilities.MoreThanOneException e1) {
-			ERXApplication.log.error("Found more then one of " + emailAddress);
-			ERXApplication.log.error(e1.getMessage());
+			log.error("Found more then one of " + emailAddress);
+			log.error(e1.getMessage());
 		} catch (EOObjectNotAvailableException e2) {
-			ERXApplication.log.error("Did not find " + emailAddress);
-			ERXApplication.log.error(e2.getMessage());
+			log.error("Did not find " + emailAddress);
+			log.error(e2.getMessage());
 		} catch (RuntimeException e3) {
-			ERXApplication.log.error("Looking for " + emailAddress + " failed");
-			ERXApplication.log.error(e3.getMessage());
+			log.error("Looking for " + emailAddress + " failed");
+			log.error(e3.getMessage());
 		}
 		
 		if (administrator != null)
@@ -191,14 +196,14 @@ public class CompCommon extends ERXComponent {
 		try {
 			attendee = (Attendee)EOUtilities.objectMatchingValues(ec,Attendee.ENTITY_NAME, bindings);
 		} catch (EOUtilities.MoreThanOneException e1) {
-			ERXApplication.log.error("Found more then one of " + emailAddress);
-			ERXApplication.log.error(e1.getMessage());
+			log.error("Found more then one of " + emailAddress);
+			log.error(e1.getMessage());
 		} catch (EOObjectNotAvailableException e2) {
-			ERXApplication.log.error("Did not find " + emailAddress);
-			ERXApplication.log.error(e2.getMessage());
+			log.error("Did not find " + emailAddress);
+			log.error(e2.getMessage());
 		} catch (RuntimeException e3) {
-			ERXApplication.log.error("Looking for " + emailAddress + " failed");
-			ERXApplication.log.error(e3.getMessage());
+			log.error("Looking for " + emailAddress + " failed");
+			log.error(e3.getMessage());
 		}
 		
 		if (attendee != null)

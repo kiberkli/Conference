@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.EMailUtility;
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
@@ -44,6 +46,8 @@ import er.extensions.appserver.ERXApplication;
 
 public class VenueEmailPage extends CompCommon {
 	
+	private static Logger log = Logger.getLogger(VenueEmailPage.class);
+			
 	public Admin administrator;
 
 	public NSArray<Venue> venueList;
@@ -117,8 +121,8 @@ public class VenueEmailPage extends CompCommon {
 					errorsForMessages.add(attendeeInList.userEmailAddress());
 				}
 			} catch (RuntimeException ex) {
-				ERXApplication.log.error("Error sending email to " + attendeeInList.userEmailAddress());
-				ERXApplication.log.error(ex.getMessage());
+				log.error("Error sending email to " + attendeeInList.userEmailAddress());
+				log.error(ex.getMessage());
 			}
 		}
 

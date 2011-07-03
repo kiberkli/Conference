@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.TimestampUtilities;
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.TravelInformation;
@@ -45,6 +47,8 @@ import er.extensions.components.ERXComponent;
 
 public class AttendeeTravelInformation extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AttendeeTravelInformation.class);
+	
 	public ERXComponent returnToPage;
 
 	public Venue venue;
@@ -90,7 +94,7 @@ public class AttendeeTravelInformation extends CompCommon {
     		travelInformation.setVenueRelationship(venue);
     		travelInformation.setAttendeeRelationship(attendee);
     		
-    		ERXApplication.log.error("Created missing travel information");
+    		log.error("Created missing travel information");
     	}
 
     	return attendee.travelInformationForVenue(venue);

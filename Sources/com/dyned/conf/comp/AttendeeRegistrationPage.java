@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.EMailUtility;
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Attendee;
@@ -44,6 +46,8 @@ import com.webobjects.foundation.NSTimestamp;
 import er.extensions.appserver.ERXApplication;
 
 public class AttendeeRegistrationPage extends CompCommon {
+	
+	private static Logger log = Logger.getLogger(AttendeeRegistrationPage.class);
 	
 	public Venue venue;
 
@@ -150,12 +154,12 @@ public class AttendeeRegistrationPage extends CompCommon {
     						venue.lable() + " Registration Confirmation"
     				);
     			} catch (RuntimeException ex) {
-    				ERXApplication.log.error("Failed sending welcome message to "+attendee.userEmailAddress());
-    				ERXApplication.log.error(ex.getMessage());
+    				log.error("Failed sending welcome message to "+attendee.userEmailAddress());
+    				log.error(ex.getMessage());
     			}
     			
     			if (venue.expired()) {
-    				ERXApplication.log.info("The venue " + venue.lable() + " has expired. Sending " + attendee.nameFamily() + " to home page.");
+    				log.info("The venue " + venue.lable() + " has expired. Sending " + attendee.nameFamily() + " to home page.");
     				AttendeeHomePage nextPage = ((AttendeeHomePage)pageWithName(AttendeeHomePage.class));
         			return nextPage;
     			} else {

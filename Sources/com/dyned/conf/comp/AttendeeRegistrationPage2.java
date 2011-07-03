@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.AttendeeFunction;
@@ -43,6 +45,8 @@ import com.webobjects.foundation.NSTimestamp;
 
 public class AttendeeRegistrationPage2 extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AttendeeRegistrationPage2.class);
+			
 	public Venue venue;
 	public Attendee attendee;
 	
@@ -117,7 +121,7 @@ public class AttendeeRegistrationPage2 extends CompCommon {
 //		attendee.setDateLastEdited(new NSTimestamp());
 //		if (saveMyChanges("Failed to update attendee " + attendee.nameFamily())) {
 //			if (venue.expired()) {
-//				ERXApplication.log.info("The venue " + venue.lable() + " has expired. Sending " + attendee.nameFamily() + " to home page.");
+//				log.info("The venue " + venue.lable() + " has expired. Sending " + attendee.nameFamily() + " to home page.");
 //				AttendeeHomePage returnPage = ((AttendeeHomePage)pageWithName(AttendeeHomePage.class));
 //				return ((CompCommon)returnPage);
 //			} else {

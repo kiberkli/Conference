@@ -32,11 +32,12 @@
         }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
         {
-            allowsNull = N; 
+            allowsNull = Y; 
             columnName = password; 
             name = password; 
             prototypeName = longText; 
         }, 
+        {columnName = pwHashCode; name = pwHashCode; prototypeName = intNumber; }, 
         {
             allowsNull = N; 
             columnName = username; 
@@ -54,6 +55,7 @@
         fullName, 
         invitees, 
         password, 
+        pwHashCode, 
         username, 
         venues
     ); 

@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
 import com.dyned.conf.eom.Attendee;
@@ -46,6 +48,8 @@ import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.foundation.NSDictionary;
 
 public class AdminsLogin extends ERXComponent {
+	
+	private static Logger log = Logger.getLogger(AdminsLogin.class);
 	
 	public EOEditingContext ec;
 	
@@ -81,32 +85,60 @@ public class AdminsLogin extends ERXComponent {
     		return null;
     	} else {
     		Admin administrator = null;
-    		Object[] keys = {Admin.USERNAME_KEY, Admin.PASSWORD_KEY};
-    		Object[] values = {username, password};
+    		//Object[] keys = {Admin.USERNAME_KEY, Admin.PASSWORD_KEY};
+    		//Object[] values = {username.trim(), password};
+    		Object[] keys = {Admin.USERNAME_KEY};
+    		Object[] values = {username.trim()};
     		NSDictionary<Object, Object> bindings = new NSDictionary<Object, Object>(values, keys);
 
     		try {
     			administrator = (Admin)EOUtilities.objectMatchingValues(ec,Admin.ENTITY_NAME, bindings);
     		} catch (EOUtilities.MoreThanOneException e1) {
     			messsageOnPage = "Bad login, please try again:";
-    			ERXApplication.log.error("Message to user: " + messsageOnPage);
-    			ERXApplication.log.error(e1.getMessage());
+    			log.error("Message to user: " + messsageOnPage);
+    			log.error(e1.getMessage());
+    			e1.printStackTrace();
     			return null;
     		} catch (EOObjectNotAvailableException e2) {
     			messsageOnPage = "Invalid Login, please try again:";
-    			ERXApplication.log.error("Message to user: " + messsageOnPage);
-    			ERXApplication.log.error(e2.getMessage());
+    			log.error("Message to user: " + messsageOnPage);
+    			log.error(e2.getMessage());
+    			e2.printStackTrace();
     			return null;
     		} catch (RuntimeException e3) {
     			messsageOnPage = "Unable to log you in at this time.";
-    			ERXApplication.log.error("Message to user: " + messsageOnPage);
-    			ERXApplication.log.error(e3.getMessage());
+    			log.error("Message to user: " + messsageOnPage);
+    			log.error(e3.getMessage());
+    			e3.printStackTrace();
     			return null;
+    		}
+
+    		// Fixing the password. Remove the old clear text passwords to the hashcode.
+    		if (administrator != null && administrator.pwHashCodeInt() != password.hashCode()) {
+    			if (administrator.password() != null && administrator.password().compareTo(password) == 0) {
+    				// Log in ok with old password, reset the password to hashcode.
+    				administrator.setPassword(administrator.password());
+    				try {
+    					ec.saveChanges();
+    				} catch (RuntimeException e4) {
+    					ec.revert();
+    					log.error("User logged in but we failed to upgrade password for " + username);
+    					log.error(e4.getMessage());
+    					e4.printStackTrace();
+    				}
+    			} else {
+    				messsageOnPage = "Invalid Login, please try again.";
+    				log.error("User " + username + " doees not have a upgraded password nor a matching old password.");
+    				log.error("Message to user: " + messsageOnPage);
+    				return null;
+    			}
     		}
     		
     		if (administrator != null) {
     			((Session)session()).setAdministrator(administrator);
     			((Session)session()).setTimeOut(3600);
+
+    			log.info("User " + administrator.fullName() + " ("+administrator.username()+") logged in.");
 
     			// The attendee email is here from a link when requesting an invite letter for visa request.
     			if (attendeeEmail != null) {
@@ -116,7 +148,7 @@ public class AdminsLogin extends ERXComponent {
     					nextPage.setAttendeeForPage(attendee);
     					return nextPage;
     				} else {
-    					messsageOnPage = "Could not find Attendee.";
+    					messsageOnPage = "Could not find Administrator.";
     					return null;
     				}
     			} else {
@@ -124,10 +156,10 @@ public class AdminsLogin extends ERXComponent {
     				return adminsHomePage;
     			}
     		} else {
-    			messsageOnPage = "Login Failed, please try again:";
-    			ERXApplication.log.error("Something bad happened. No administrator found with " +
+    			messsageOnPage = "Unable to log you in at this time.:";
+    			log.error("Something bad happened. No administrator found with " +
     					"username = " + username +
-    					"and password = " + password + 
+    					" and password = " + password + 
     					". Unable to catch this with an execption.");
     					
     			return null;

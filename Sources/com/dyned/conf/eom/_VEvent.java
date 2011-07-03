@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to VEvent.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to VEvent.java instead.
 package com.dyned.conf.eom;
 
 import com.webobjects.eoaccess.*;

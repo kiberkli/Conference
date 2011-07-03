@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to AttendeeMealPreference.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to AttendeeMealPreference.java instead.
 package com.dyned.conf.eom;
 
 import com.webobjects.eoaccess.*;

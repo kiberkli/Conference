@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.DirectAction;
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Attendee;
@@ -43,6 +45,8 @@ import er.extensions.appserver.ERXApplication;
 
 public class AttendeeHomePage extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AttendeeHomePage.class);
+			
 	public String messageOnScreen;
 	public Attendee attendee;
 	public String secretCode;
@@ -118,13 +122,13 @@ public class AttendeeHomePage extends CompCommon {
 	}
 	
 	public AttendeeHomePage registerForVenue() {
-		ERXApplication.log.info(attendee.nameFamily() + " registering for " + secretCode);
+		log.info(attendee.nameFamily() + " registering for " + secretCode);
 		Venue venueToRegisterFor = null;
 		try {
 			venueToRegisterFor = Venue.withSecretCode(ec, secretCode);
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Execption looking up venue using scretCode.");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Execption looking up venue using scretCode.");
+			log.error(ex.getMessage());
 			messageOnScreen = "Cound not look up an event with that code.";
 			return null;
 		}
@@ -132,7 +136,7 @@ public class AttendeeHomePage extends CompCommon {
 		if (venueToRegisterFor != null) {
 			// Check if the attendee is not already registered for it.
 			if (attendee.venues().containsObject(venueToRegisterFor)) {
-				ERXApplication.log.error("Attendee already registered for this venue.");
+				log.error("Attendee already registered for this venue.");
 				messageOnScreen = "You are already registered for this event.";
 				return null;
 			} else {

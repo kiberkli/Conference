@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.AttendeeFunction;
 import com.dyned.conf.eom.SpecialNeed;
@@ -44,6 +46,8 @@ import er.extensions.components.ERXComponent;
 
 public class AttendeeProfile extends CompCommon {
 	
+	private static Logger log = Logger.getLogger(AttendeeProfile.class);
+			
 	public Attendee attendee;
 	public ERXComponent returnToPage;
 	
@@ -86,7 +90,7 @@ public class AttendeeProfile extends CompCommon {
     
     public void setUserEmailaddress(Object aValue) {
     	userEmailaddress = (String)aValue;
-    	ERXApplication.log.info("Set form email to " + userEmailaddress);
+    	log.info("Set form email to " + userEmailaddress);
     }
     
     public String getUserEmailaddress() {
@@ -105,18 +109,18 @@ public class AttendeeProfile extends CompCommon {
     			(userPassword.length() > 0 && userPassword.equals(userPasswordVerified))
     	) {
     		attendee.setUserPassword(userPassword);
-    		ERXApplication.log.info("Password is long and are equal.");
+    		log.info("Password is long and are equal.");
     	} else if (
     			(userPassword != null && userPasswordVerified != null) &&
     			(! userPassword.equals(userPasswordVerified))
     	) {
 			messageOnScreen = "The passwords are not identical, please confirm you password.";
-			ERXApplication.log.info("Passwords are not the same.");
+			log.info("Passwords are not the same.");
 			return null;
     	}
 
-    	ERXApplication.log.info("Form email:     " + userEmailaddress);
-    	ERXApplication.log.info("Attendee email: " + attendee.userEmailAddress());
+    	log.info("Form email:     " + userEmailaddress);
+    	log.info("Attendee email: " + attendee.userEmailAddress());
     	
     	if (!userEmailaddress.equals(attendee.userEmailAddress()) && emailAddressExistInAttendee(userEmailaddress)) {
     		messageOnScreen = "The address " + userEmailaddress + " is already registered.";

@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf;
 
+import org.apache.log4j.Logger;
+
 import com.webobjects.appserver.*;
 import com.webobjects.eoaccess.EOObjectNotAvailableException;
 import com.webobjects.eoaccess.EOUtilities;
@@ -55,6 +57,8 @@ import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.Venue;
 
 public class DirectAction extends ERXDirectAction {
+	
+	private static Logger log = Logger.getLogger(DirectAction.class);
 	
 	public static final String ATTENDEE_KEY = "attendee";
 	public static final String CONFID_KEY = "confid";
@@ -102,7 +106,7 @@ public class DirectAction extends ERXDirectAction {
 				(userEMailAddress != null && userEMailAddress.length() > 0)
 		) {
 			if (userPassword == null || userPassword.length() == 0) {
-				ERXApplication.log.error("Missgin password for " + userEMailAddress);
+				log.error("Missing password for " + userEMailAddress);
 				Main nextPage = (Main)pageWithName(Main.class);
 				nextPage.setMessageOnScreen("Missing password");
 				return nextPage;
@@ -110,33 +114,56 @@ public class DirectAction extends ERXDirectAction {
 
 			Attendee attendee = null;
 
-			Object[] keys = {Attendee.USER_EMAIL_ADDRESS_KEY, Attendee.USER_PASSWORD_KEY};
-			Object[] values = {userEMailAddress, userPassword};
+			//Object[] keys = {Attendee.USER_EMAIL_ADDRESS_KEY, Attendee.USER_PASSWORD_KEY};
+			//Object[] values = {userEMailAddress, userPassword};
+			Object[] keys = {Attendee.USER_EMAIL_ADDRESS_KEY};
+			Object[] values = {userEMailAddress};
 			NSDictionary<Object, Object> bindings = new NSDictionary<Object, Object>(values, keys);
 
 			try {
 				attendee = (Attendee)EOUtilities.objectMatchingValues(ec, Attendee.ENTITY_NAME, bindings);
 			} catch (EOUtilities.MoreThanOneException e1) {
-				ERXApplication.log.error("More then one with email address " + userEMailAddress);
-				ERXApplication.log.error(e1.getMessage());
+				log.error("More then one with email address " + userEMailAddress);
+				log.error(e1.getMessage());
 
 				Main nextPage = (Main)pageWithName(Main.class);
 				nextPage.setMessageOnScreen("Bad login, please try again");
 				return nextPage;
 			} catch (EOObjectNotAvailableException e2) {
-				ERXApplication.log.error("Invalid login by " + userEMailAddress);
-				ERXApplication.log.error(e2.getMessage());
+				log.error("Invalid login by " + userEMailAddress);
+				log.error(e2.getMessage());
 
 				Main nextPage = (Main)pageWithName(Main.class);
 				nextPage.setMessageOnScreen("Invalid Login, please try again");
 				return nextPage;
 			} catch (RuntimeException e3) {
-				ERXApplication.log.error("Full runtime exception, logging in " + userEMailAddress);
-				ERXApplication.log.error(e3.getMessage());
+				log.error("Full runtime exception, logging in " + userEMailAddress);
+				log.error(e3.getMessage());
 
 				Main nextPage = (Main)pageWithName(Main.class);
 				nextPage.setMessageOnScreen("Unable to log you in at this time");
 				return nextPage;
+			}
+			
+			if (attendee != null && attendee.pwHashCodeInt() != userPassword.hashCode()) {
+				if (attendee.userPassword() != null && attendee.userPassword().compareTo(userPassword) == 0) {
+    				// Log in ok with old password, reset the password to hashcode.
+					attendee.setUserPassword(attendee.userPassword());
+    				try {
+    					ec.saveChanges();
+    				} catch (RuntimeException ex) {
+    					ec.revert();
+    					log.error("User logged in but we failed to upgrade password for " + userEMailAddress);
+    					log.error(ex.getMessage());
+    					ex.printStackTrace();
+    				}
+    			} else {
+    				log.error("Attendee " + userEMailAddress + " doees not have a upgraded password nor a matching old password.");
+
+    				Main nextPage = (Main)pageWithName(Main.class);
+    				nextPage.setMessageOnScreen("Invalid Login, please try again");
+    				return nextPage;
+    			}
 			}
 
 			if (attendee != null) {
@@ -144,7 +171,9 @@ public class DirectAction extends ERXDirectAction {
 				((Session)session()).setAdministrator(null);
 				((Session)session()).setTimeOut(3600);
 				
-				// TODO Change this code to go the venue's specific page if there is only one registered.
+    			log.info("Attendee " + attendee.fullName() + " ("+attendee.userEmailAddress()+") logged in.");
+
+    			// TODO Change this code to go the venue's specific page if there is only one registered.
 				/*
 				if (attendee.venues().count() > 1) {
 					AttendeeHomePage attendeeHomePage = pageWithName(AttendeeHomePage.class);
@@ -179,13 +208,13 @@ public class DirectAction extends ERXDirectAction {
 			try {
 				venue = (Venue)(EOUtilities.objectMatchingValues(ec, Venue.ENTITY_NAME, bindings));
 			} catch (EOUtilities.MoreThanOneException e1) {
-				ERXApplication.log.error("More then one venue matches " + secretCode);
+				log.error("More then one venue matches " + secretCode);
 				return pageWithName(Main.class);
 			} catch (EOObjectNotAvailableException e2) {
-				ERXApplication.log.error("Could not find a venue matching " + secretCode);
+				log.error("Could not find a venue matching " + secretCode);
 				return pageWithName(Main.class);
 			} catch (RuntimeException e3) {
-				ERXApplication.log.error("Problem with the database looking for secretCode: " + secretCode);
+				log.error("Problem with the database looking for secretCode: " + secretCode);
 				return pageWithName(Main.class);
 			}
 

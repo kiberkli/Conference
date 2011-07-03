@@ -113,6 +113,12 @@
         {allowsNull = Y; columnName = phone; name = phone; prototypeName = longText; }, 
         {
             allowsNull = Y; 
+            columnName = pwHashCode; 
+            name = pwHashCode; 
+            prototypeName = intNumber; 
+        }, 
+        {
+            allowsNull = Y; 
             columnName = salutation; 
             name = salutation; 
             prototypeName = longText; 
@@ -130,7 +136,7 @@
             prototypeName = longText; 
         }, 
         {
-            allowsNull = N; 
+            allowsNull = Y; 
             columnName = userPassword; 
             name = userPassword; 
             prototypeName = longText; 
@@ -159,6 +165,7 @@
         nameGiven, 
         passportInformation, 
         phone, 
+        pwHashCode, 
         registrant, 
         salutation, 
         selectedEvents, 

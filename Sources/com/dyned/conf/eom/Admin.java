@@ -35,8 +35,22 @@ package com.dyned.conf.eom;
 import org.apache.log4j.Logger;
 
 public class Admin extends _Admin {
-	@SuppressWarnings("unused")
+
 	private static Logger log = Logger.getLogger(Admin.class);
+		
+	public void setPassword(String pw) {
+		if (pw != null) {
+			this.setPwHashCode(pw.hashCode());
+			super.setPassword(null);
+		} 
+	}
+
+	public int pwHashCodeInt() {
+		if (this.pwHashCode() != null)
+			return this.pwHashCode().intValue();
+		else
+			return 0;
+	}
 	
 	public String emailAddressURL() {
 		if (this.emailAddress() != null) 
@@ -44,5 +58,5 @@ public class Admin extends _Admin {
 		else
 			return "#";
 	}
-
+	
 }

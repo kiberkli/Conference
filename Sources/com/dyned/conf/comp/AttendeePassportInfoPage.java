@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.PassportInformation;
@@ -44,6 +46,8 @@ import er.extensions.components.ERXComponent;
 
 public class AttendeePassportInfoPage extends CompCommon {
 	
+	private static Logger log = Logger.getLogger(AttendeePassportInfoPage.class);
+			
 	public ERXComponent returnToPage;
 	public String messageOnScreen;
 
@@ -116,7 +120,7 @@ public class AttendeePassportInfoPage extends CompCommon {
     			passportInformation.setPassportDateIssued(passportDateIssued);
     			passportInformation.setPassportNumber(passportNumber);
     		} catch (RuntimeException ex) {
-    			ERXApplication.log.error("Something is wrong with the form data for " + attendee.nameFamily());
+    			log.error("Something is wrong with the form data for " + attendee.nameFamily());
     			messageOnScreen = "Some of the information in the form is not valid.";
     			return null;
     		}

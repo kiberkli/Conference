@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.eom.Admin;
 import com.dyned.conf.eom.Attendee;
 import com.webobjects.foundation.NSTimestamp;
@@ -40,7 +42,8 @@ import er.extensions.appserver.ERXApplication;
 import er.extensions.appserver.ERXSession;
 
 public class Session extends ERXSession {
-	private static final long serialVersionUID = 1L;
+	
+	private static Logger log = Logger.getLogger(Session.class);
 	
 	public Admin administrator;
 	public Attendee attendee;
@@ -68,19 +71,19 @@ public class Session extends ERXSession {
 
 		if (administrator != null) {
 			administrator.setDateLastLogin(new NSTimestamp());
-			ERXApplication.log.info("Administrator " + administrator.fullName() + " logged out.");
+			log.info("Administrator " + administrator.fullName() + " logged out.");
 		}
 
 		if (attendee != null) {
 			attendee.setDateLastVisit(new NSTimestamp());
-			ERXApplication.log.info("Attendee " + attendee.nameFamily() + " logged out.");
+			log.info("Attendee " + attendee.nameFamily() + " logged out.");
 		}
 
 		try {
 			defaultEditingContext().saveChanges();
 		} catch (RuntimeException ex) {
-			ERXApplication.log.error("Unable to save last login date to database while terminating session.");
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Unable to save last login date to database while terminating session.");
+			log.error(ex.getMessage());
 		}
 
 

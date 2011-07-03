@@ -34,6 +34,8 @@ package com.dyned.conf;
 
 import java.util.TimeZone;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.comp.ExceptionPage;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOMessage;
@@ -43,17 +45,25 @@ import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSTimeZone;
 
 import er.extensions.appserver.ERXApplication;
+import er.extensions.eof.ERXObjectStoreCoordinator;
 
 public class Application extends ERXApplication {
 	
+	private static Logger log = Logger.getLogger(Application.class);
+			
 	public boolean makeSecureLinks;
 	
+	public String emailSenderAddress = null;
+	public String emailSenderFullName = null;
+	public String conferenceSiteName = null;
+
+	
 	public static void main(String[] argv) {
-		ERXApplication.main(argv, Application.class);
+		main(argv, Application.class);
 	}
 
 	public Application() {
-		ERXApplication.log.info("Welcome to " + name() + " !");
+		log.info("Welcome to " + name() + " !");
 
 		this.setDefaultEncoding("UTF-8");
 		//WOMessage.setDefaultEncoding("UTF-8");
@@ -63,9 +73,26 @@ public class Application extends ERXApplication {
 		NSTimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"));
 
 		setDefaultRequestHandler(requestHandlerForKey (directActionRequestHandlerKey()));
-
+				
 		makeSecureLinks = false;
+		
+		emailSenderAddress = System.getProperty("emailSenderAddress");
+		emailSenderFullName = System.getProperty("emailSenderFullName");
+		conferenceSiteName = System.getProperty("conferenceSiteName");
+		
 	}
+
+//	public String emailSenderAddress() {
+//		return emailSenderAddress;
+//	}
+//	
+//	public String emailSenderFullName() {
+//		return emailSenderFullName;
+//	}
+//
+//	public String conferenceSiteName() {
+//		return conferenceSiteName;
+//	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public WOResponse handleSessionRestorationErrorInContext(WOContext aContext) {
@@ -92,7 +119,7 @@ public class Application extends ERXApplication {
 
 //NSArray timezones = new NSArray(NSTimeZone.getAvailableIDs());
 //for (int i=0; i < timezones.count(); i++) {
-//	ERXApplication.log.info(timezones.objectAtIndex(i).toString());
+//	log.info(timezones.objectAtIndex(i).toString());
 //}
 
 

@@ -32,6 +32,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.eom;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import org.apache.log4j.Logger;
 
 import com.webobjects.eocontrol.*;
@@ -41,6 +44,27 @@ public class Attendee extends _Attendee {
 	private static Logger log = Logger.getLogger(Attendee.class);
 
 	public static final NSArray<String> salutations = new NSArray<String>("Mr.", "Mrs.", "Ms.", "Dr.");
+
+	public void setUserPassword(String pw) {
+		if (pw != null) {
+			this.setPwHashCode(pw.hashCode());
+			super.setUserPassword(null);
+		} 
+	}
+	
+	public int pwHashCodeInt() {
+		if (this.pwHashCode() != null)
+			return this.pwHashCode().intValue();
+		else
+			return 0;
+	}
+	
+    public String resetPassword() {
+    	SecureRandom random = new SecureRandom();
+    	String randomPassword = new BigInteger(130, random).toString(32);
+    	this.setUserPassword(randomPassword);
+    	return randomPassword;
+	}
 	
 	public NSArray<Venue> pastVenues() {
 		NSArray<Venue> results = null;

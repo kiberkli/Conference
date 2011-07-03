@@ -1,4 +1,4 @@
-// $LastChangedRevision: 5810 $ DO NOT EDIT.  Make changes to Admin.java instead.
+// $LastChangedRevision$ DO NOT EDIT.  Make changes to Admin.java instead.
 package com.dyned.conf.eom;
 
 import com.webobjects.eoaccess.*;
@@ -19,6 +19,7 @@ public abstract class _Admin extends  EOGenericRecord {
 	public static final String EMAIL_ADDRESS_KEY = "emailAddress";
 	public static final String FULL_NAME_KEY = "fullName";
 	public static final String PASSWORD_KEY = "password";
+	public static final String PW_HASH_CODE_KEY = "pwHashCode";
 	public static final String USERNAME_KEY = "username";
 
 	// Relationships
@@ -99,6 +100,17 @@ public abstract class _Admin extends  EOGenericRecord {
     	_Admin.LOG.debug( "updating password from " + password() + " to " + value);
     }
     takeStoredValueForKey(value, "password");
+  }
+
+  public Integer pwHashCode() {
+    return (Integer) storedValueForKey("pwHashCode");
+  }
+
+  public void setPwHashCode(Integer value) {
+    if (_Admin.LOG.isDebugEnabled()) {
+    	_Admin.LOG.debug( "updating pwHashCode from " + pwHashCode() + " to " + value);
+    }
+    takeStoredValueForKey(value, "pwHashCode");
   }
 
   public String username() {
@@ -270,6 +282,7 @@ public abstract class _Admin extends  EOGenericRecord {
 , String emailAddress
 , String fullName
 , String password
+, Integer pwHashCode
 , String username
 ) {
     Admin eo = (Admin) EOUtilities.createAndInsertInstance(editingContext, _Admin.ENTITY_NAME);    
@@ -278,6 +291,7 @@ public abstract class _Admin extends  EOGenericRecord {
 		eo.setEmailAddress(emailAddress);
 		eo.setFullName(fullName);
 		eo.setPassword(password);
+		eo.setPwHashCode(pwHashCode);
 		eo.setUsername(username);
     return eo;
   }

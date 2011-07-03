@@ -42,6 +42,7 @@ public class AttendeesLostPasswordMessage extends WOComponent {
 	
 	public Attendee attendee;
 	public Venue venue;
+	public String newPassword;
 	
     public AttendeesLostPasswordMessage(WOContext context) {
         super(context);
@@ -53,6 +54,10 @@ public class AttendeesLostPasswordMessage extends WOComponent {
     
     public void setVenueForPage(Venue aValue) {
     	venue = aValue;
+    }
+    
+    public void setNewPassword(String pw) {
+    	newPassword = pw;
     }
     
     public String urlToLoginPage() {

@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Application;
 import com.dyned.conf.Session;
 import com.dyned.conf.TimestampUtilities;
@@ -52,6 +54,8 @@ import er.extensions.components.ERXComponent;
 import er.extensions.foundation.ERXTimestampUtilities;
 
 public class ConferencePage extends CompCommon {
+	
+	private static Logger log = Logger.getLogger(ConferencePage.class);
 	
 	public ERXComponent thisPageComponet;
 
@@ -263,7 +267,7 @@ public class ConferencePage extends CompCommon {
 		theBody.append("\r\n");
 		theBody.append("\r\n");
 
-		ERXApplication.log.info(theBody.toString());
+		log.info(theBody.toString());
 
 		WOMailDelivery mailMessage = WOMailDelivery.sharedInstance();
 		try {
@@ -278,11 +282,11 @@ public class ConferencePage extends CompCommon {
 			letterOfInviteRequestStatus = "Request for invitaion letter has been submitted.";
 		} catch (RuntimeException ex) {
 			letterOfInviteRequestError = "Unable to notify our staff of your request, please try again later.";
-			ERXApplication.log.error("Unable to send visa request email for " + attendee.nameFamily());
-			ERXApplication.log.error("Sender: " + theSender);
-			ERXApplication.log.error("Body:");
-			ERXApplication.log.error(theBody.toString());
-			ERXApplication.log.error(ex.getMessage());
+			log.error("Unable to send visa request email for " + attendee.nameFamily());
+			log.error("Sender: " + theSender);
+			log.error("Body:");
+			log.error(theBody.toString());
+			log.error(ex.getMessage());
 		}
 
 		return null;
@@ -331,14 +335,14 @@ public class ConferencePage extends CompCommon {
 //				VEvent attendeeSelectedVEvent = attendeeSelectedVEvents.objectAtIndex(attendeeSelectedVEventIndex).event();
 //				 
 //				if (attendeeSelectedVEvent.equals(vEvent) ) {
-//					ERXApplication.log.info("Not adding " + vEvent.lable());
+//					log.info("Not adding " + vEvent.lable());
 //					eventFound = true;
 //					break;
 //				}
 //			}
 //
 //			if (!eventFound) {
-//				ERXApplication.log.info("Adding event " + vEvent.lable());
+//				log.info("Adding event " + vEvent.lable());
 //				AttendeeSelectedVEvent newAttendeeSelectedVEvents = (AttendeeSelectedVEvent)(EOUtilities.createAndInsertInstance(ec, AttendeeSelectedVEvent.ENTITY_NAME));
 //				newAttendeeSelectedVEvents.setParticipants(0);
 //				newAttendeeSelectedVEvents.setEventRelationship(vEvent);
@@ -499,13 +503,13 @@ for (int venueEventIndex = 0; venueEventIndex < venueEvents.count(); venueEventI
 		VEvent attendeeSelectedVEvent = results.objectAtIndex(attendeeSelectedVEventIndex).event();
 		 
 		if (! attendeeSelectedVEvent.equals(vEvent) ) {
-			ERXApplication.log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Not adding " + vEvent.lable());
+			log.info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Not adding " + vEvent.lable());
 			eventNeedsToBeAdded = true;
 		}
 	}
 
 	if (eventNeedsToBeAdded) {
-		ERXApplication.log.info("Adding event " + vEvent.lable());
+		log.info("Adding event " + vEvent.lable());
 		AttendeeSelectedVEvent newAttendeeSelectedVEvents = (AttendeeSelectedVEvent)(EOUtilities.createAndInsertInstance(ec, AttendeeSelectedVEvent.ENTITY_NAME));
 		newAttendeeSelectedVEvents.setParticipants(0);
 		newAttendeeSelectedVEvents.setEventRelationship(vEvent);

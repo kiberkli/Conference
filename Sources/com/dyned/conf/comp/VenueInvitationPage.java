@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Admin;
 import com.dyned.conf.eom.Invitee;
@@ -43,6 +45,8 @@ import com.webobjects.foundation.*;
 
 public class VenueInvitationPage extends CompCommon {
 
+	private static Logger log = Logger.getLogger(VenueInvitationPage.class);
+	
 	public Admin administrator;
 	public String messageOnPage;
 
@@ -148,8 +152,8 @@ public NSArray<Venue> venues() {
 	try {
 		results = ec.objectsWithFetchSpecification(theFetchSpecs);
 	} catch (Exception ex) {
-		ERXApplication.log.error("Error fetching Venue list:");
-		ERXApplication.log.error(ex.getMessage());
+		log.error("Error fetching Venue list:");
+		log.error(ex.getMessage());
 	}
 
 	return results;

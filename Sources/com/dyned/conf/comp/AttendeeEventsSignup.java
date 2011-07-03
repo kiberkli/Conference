@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.AttendeeSelectedVEvent;
@@ -46,6 +48,8 @@ import er.extensions.appserver.ERXApplication;
 
 public class AttendeeEventsSignup extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AttendeeEventsSignup.class);
+	
 	public Venue venue;
 	public Attendee attendee;
 
@@ -86,14 +90,14 @@ public class AttendeeEventsSignup extends CompCommon {
 			for (int attendeeSelectedVEventIndex = 0; attendeeSelectedVEventIndex < attendeeSelectedVEventsCount; attendeeSelectedVEventIndex++) {
 				VEvent attendeeSelectedVEvent = attendeeSelectedVEvents.objectAtIndex(attendeeSelectedVEventIndex).event();
 				if (attendeeSelectedVEvent.equals(vEvent) ) {
-					ERXApplication.log.debug("Not adding " + vEvent.lable());
+					log.debug("Not adding " + vEvent.lable());
 					eventFound = true;
 					break;
 				}
 			}
 			// ------------
 			if (!eventFound) {
-				ERXApplication.log.debug("Adding event " + vEvent.lable());
+				log.debug("Adding event " + vEvent.lable());
 				AttendeeSelectedVEvent newAttendeeSelectedVEvents = (AttendeeSelectedVEvent)(EOUtilities.createAndInsertInstance(ec, AttendeeSelectedVEvent.ENTITY_NAME));
 				newAttendeeSelectedVEvents.setParticipants(0);
 				newAttendeeSelectedVEvents.setEventRelationship(vEvent);

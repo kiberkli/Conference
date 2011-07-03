@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.TimestampUtilities;
 import com.dyned.conf.eom.Attendee;
 import com.dyned.conf.eom.HotelInformation;
@@ -46,6 +48,8 @@ import er.extensions.foundation.ERXTimestampUtilities;
 
 public class AttendeeHotelReservation extends CompCommon {
 
+	private static Logger log = Logger.getLogger(AttendeeHotelReservation.class);
+	
 	public ERXComponent returnToPage;
 
 	public Venue venue;
@@ -91,7 +95,7 @@ public class AttendeeHotelReservation extends CompCommon {
 			hotelInformation.setVenueRelationship(venue);
 			hotelInformation.setAttendeeRelationship(attendee);
 			
-			ERXApplication.log.error("Created missing hotel information");
+			log.error("Created missing hotel information");
 		}
 
 		return attendee.hotelInformationForVenue(venue);

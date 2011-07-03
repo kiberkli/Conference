@@ -34,6 +34,8 @@ package com.dyned.conf.comp;
 
 import java.util.GregorianCalendar;
 
+import org.apache.log4j.Logger;
+
 import com.dyned.conf.Session;
 import com.dyned.conf.TimestampUtilities;
 import com.dyned.conf.eom.Admin;
@@ -47,6 +49,8 @@ import com.webobjects.foundation.*;
 import er.extensions.appserver.ERXApplication;
 
 public class VenueEventsPage extends CompCommon {
+
+	private static Logger log = Logger.getLogger(VenueEventsPage.class);
 
 	public Admin administrator;
 	
@@ -111,19 +115,19 @@ public class VenueEventsPage extends CompCommon {
     			venue.addToEventsRelationship(event);
     		}
     		
-    		ERXApplication.log.info("selectedVenueDate: " + selectedVenueDate);
-    		ERXApplication.log.info("dateTimeStart:     " + dateTimeStart);
-    		ERXApplication.log.info("dateTimeEnd:       " + dateTimeEnd);
+    		log.info("selectedVenueDate: " + selectedVenueDate);
+    		log.info("dateTimeStart:     " + dateTimeStart);
+    		log.info("dateTimeEnd:       " + dateTimeEnd);
 
     		try {
     			event.setDateTimeStart(TimestampUtilities.timestampByAddingTime(selectedVenueDate, dateTimeStart));
     			event.setDateTimeEnd(TimestampUtilities.timestampByAddingTime(selectedVenueDate, dateTimeEnd));
     		} catch (RuntimeException ex) {
     			messageOnPage = "Unable to read the start or end time for the event.";
-    			ERXApplication.log.error("Badly formmated dates:");
-    			ERXApplication.log.error("   dateTimeStart: " + dateTimeStart);
-    			ERXApplication.log.error("   dateTimeEnd:   " + dateTimeEnd);
-    			ERXApplication.log.error(ex.getMessage());
+    			log.error("Badly formmated dates:");
+    			log.error("   dateTimeStart: " + dateTimeStart);
+    			log.error("   dateTimeEnd:   " + dateTimeEnd);
+    			log.error(ex.getMessage());
 
     			return null;
     		}
@@ -137,7 +141,7 @@ public class VenueEventsPage extends CompCommon {
     		return nextPage;
     	}
     	messageOnPage = "There is no venue for this page";
-    	ERXApplication.log.error("Page " + VenueEventsPage.class.getName() + " requires a venue.");
+    	log.error("Page " + VenueEventsPage.class.getName() + " requires a venue.");
     		
     	return null;
     }
@@ -214,7 +218,7 @@ public class VenueEventsPage extends CompCommon {
     		//results.addObject(dateEnd);
 
     	} else {
-    		ERXApplication.log.error("No start and end date for this venue: " + venue.lable());
+    		log.error("No start and end date for this venue: " + venue.lable());
     	}
     	return results.immutableClone();
     }
