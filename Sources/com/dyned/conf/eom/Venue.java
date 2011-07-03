@@ -118,20 +118,13 @@ public class Venue extends _Venue {
 	}
 	
 	public String googleAddressSearchURLEmbedded() {
-//		String urlEncoded = null;
-//		try { 
-//			urlEncoded = URLEncoder.encode(this.mapAddress().replaceAll("\\r\\n", " "), "UTF-8");
-//		} catch (UnsupportedEncodingException ex) {
-//			urlEncoded = this.mapAddress().replaceAll("\\r\\n", " ");
-//		}
-//		return "http://maps.google.com/maps?q=" + urlEncoded + "&iwloc=&output=embed";
 		return googleAddressSearchURL() + "&iwloc=&output=embed";
 	}
 
 	public String googleAddressSearchURL() {
 		String urlEncoded = null;
 		try { 
-			urlEncoded = URLEncoder.encode(this.facilityName() + " " + this.mapAddress().replaceAll("\\r\\n", " "), "UTF-8");
+			urlEncoded = URLEncoder.encode(this.mapAddress().replaceAll("\\r\\n", " "), "UTF-8");
 		} catch (UnsupportedEncodingException ex) {
 			urlEncoded = this.mapAddress().replaceAll("\\r\\n", " ");
 		}

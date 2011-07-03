@@ -235,7 +235,7 @@ VenueDateEnd : WOString {
 VenueFacilityMap : WOGenericContainer {
 	elementName = "iframe";
 	width = "300";
-	height = "150";
+	height = "200";
 	frameborder = "0";
 	scrolling = "no";
 	marginheight = "0";
