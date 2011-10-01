@@ -3,6 +3,8 @@ emailSenderFullName=Acme Inc.
 
 conferenceSiteName=Acme Conferences
 
+er.extensions.ERXSession.autoAdjustTimeZone=true
+
 # OGNL
 ognl.helperFunctions=true
 ognl.inlineBindings=true

@@ -41,11 +41,11 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOMessage;
 import com.webobjects.appserver.WORedirect;
 import com.webobjects.appserver.WOResponse;
+import com.webobjects.appserver._private.WOHostUtilities;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSTimeZone;
 
 import er.extensions.appserver.ERXApplication;
-import er.extensions.eof.ERXObjectStoreCoordinator;
 
 public class Application extends ERXApplication {
 	
@@ -80,6 +80,7 @@ public class Application extends ERXApplication {
 		emailSenderFullName = System.getProperty("emailSenderFullName");
 		conferenceSiteName = System.getProperty("conferenceSiteName");
 		
+		log.info("Local hosts: " + WOHostUtilities.getLocalHosts().toString());
 	}
 
 //	public String emailSenderAddress() {
