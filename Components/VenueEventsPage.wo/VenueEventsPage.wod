@@ -51,14 +51,9 @@ EventsList : WORepetition {
 	item = eventInList;
 }
 
-EventInListDay : WOString {
-	value = eventInList.dateTimeStart;
-	dateformat = "%a";
-}
-
 EventInListDate : WOString {
-	value = eventInList.dateTimeStart;
-	dateformat = "%m/%d";
+	value = eventInList.sectionDate;
+	dateformat = "%a %m/%d";
 }
 
 EventInListTimeStart : WOString {
@@ -68,7 +63,7 @@ EventInListTimeStart : WOString {
 
 EventInListTimeEnd : WOString {
 	value = eventInList.dateTimeEnd;
-	dateformat = " - %H:%M";
+	dateformat = "%H:%M";
 	valueWhenEmpty = "";
 }
 
@@ -93,7 +88,7 @@ EditEventInList : WOHyperlink {
 VenueDatesList : WOPopUpButton {
 	list = venueDatesList;
 	item = venueDatesListItem;
-	selection = selectedVenueDate;
+	selection = selectedVEventDate;
 	displayString = venueDatesListItemDisplay;
 	noSelectionString = "Date...";
 }
@@ -132,16 +127,28 @@ SaveAllEvents : WOSubmitButton {
 	value = "Save All Changes";
 }
 
-TimeStart : WOTextField {
-	value = dateTimeStart;
-	dateformat = "%H:%M";
-	size = "5";
+StartHour : WOPopUpButton {
+	list = hourList;
+	item = startHourItemInList;
+	selection = startHour;
 }
 
-TimeEnd : WOTextField {
-	value = dateTimeEnd;
-	dateformat = "%H:%M";
-	size = "5";
+StartMinute : WOPopUpButton {
+	list = minuteList;
+	item =  startMinuteItemInList;
+	selection = startMinute;
+}
+
+EndHour : WOPopUpButton {
+	list = hourList;
+	item = startHourItemInList;
+	selection = endHour;
+}
+
+EndMinute : WOPopUpButton {
+	list = minuteList;
+	item =  startMinuteItemInList;
+	selection = endMinute;
 }
 
 DeleteEventFromList : WOHyperlink {
@@ -150,14 +157,14 @@ DeleteEventFromList : WOHyperlink {
 }
 
 CurrentTimezone : WOString {
-	value = currentTimezone;
+	value = venue.timeZoneInfo.zoneId;
 }
 
 ColorList : WORadioButtonList {
 	list = colorList;
 	item = colorItemInList;
 	selection = selectedColor;
-	prefix = "<tt style='border: 1px solid #202020; background-color: ";
+	prefix = "&nbsp;<tt style='border: 1px solid #202020; background-color: ";
 	suffix = ";'>&nbsp;&nbsp;&nbsp;</tt>&nbsp;&nbsp;&nbsp;";
 }
 

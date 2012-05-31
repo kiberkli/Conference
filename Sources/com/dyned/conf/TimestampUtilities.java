@@ -34,6 +34,10 @@ package com.dyned.conf;
 
 import java.util.GregorianCalendar;
 
+import org.apache.log4j.Logger;
+
+import com.webobjects.foundation.NSArray;
+import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimeZone;
 import com.webobjects.foundation.NSTimestamp;
 
@@ -41,6 +45,8 @@ import er.extensions.foundation.ERXTimestampUtilities;
 
 public class TimestampUtilities extends ERXTimestampUtilities {
 
+	private static Logger log = Logger.getLogger(TimestampUtilities.class);
+	
 	/*
 	 * Adds the days to the first timestamp. Does not change the time.
 	 * Parameters:
@@ -71,10 +77,70 @@ public class TimestampUtilities extends ERXTimestampUtilities {
 				hour, 
 				minute, 
 				seconds, 
-				NSTimeZone.getDefault()
+				NSTimeZone.getGMT()
 		);
 
 		return results;
 	}
 
+	public static NSTimestamp timestampByAddingHours(NSTimestamp ts, int hourToAdd) {
+		GregorianCalendar myCalendar = new GregorianCalendar();
+		myCalendar.setTime(ts);
+		
+		myCalendar.add(GregorianCalendar.HOUR_OF_DAY, hourToAdd);
+
+		int year = myCalendar.get(GregorianCalendar.YEAR);
+		int month = myCalendar.get(GregorianCalendar.MONTH);
+		int day = myCalendar.get(GregorianCalendar.DAY_OF_MONTH);
+		int hour = myCalendar.get(GregorianCalendar.HOUR_OF_DAY);
+		int minute = myCalendar.get(GregorianCalendar.MINUTE);
+		int seconds = myCalendar.get(GregorianCalendar.SECOND);
+
+		NSTimestamp results = new NSTimestamp(
+				year, 
+				month+1, 
+				day, 
+				hour, 
+				minute, 
+				seconds, 
+				NSTimeZone.getGMT()
+		);
+
+		return results;
+	}
+
+	public static NSArray datesArray(NSTimestamp startTimeDate, NSTimestamp endTimeDate, int addDaysBefore, int addDaysAfter) {
+		log.info(startTimeDate.toString());
+		log.info(endTimeDate.toString());
+
+		NSMutableArray<NSTimestamp> results = new NSMutableArray<NSTimestamp>();
+		
+		for (int i = 1; i <= addDaysBefore; i++) {
+			results.addObject(timestampByAddingDays(startTimeDate, i));
+		}
+		
+		results.addObject(startTimeDate);
+		while (true) {
+			NSTimestamp nextDay = timestampByAddingDays(results.lastObject(), 1);
+			if (nextDay.before(endTimeDate)) {
+				results.addObject(nextDay);
+			} else {
+				break;
+			}
+		}
+		results.addObject(endTimeDate);
+
+		for (int i = 1; i <= addDaysAfter; i++) {
+			results.addObject(timestampByAddingDays(endTimeDate, i));
+		}
+
+		log.info(results.immutableClone().toString());
+		
+		return results.immutableClone();
+	}
+	
+	public NSTimestamp dateInArray(NSTimestamp testTimeDate, NSArray<NSTimestamp> timeDateArray) {
+		NSTimestamp aTimeDate = null;
+		return aTimeDate;
+	}
 }

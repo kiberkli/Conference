@@ -27,6 +27,7 @@
             name = PassportInformation; 
         }, 
         {className = "com.dyned.conf.eom.SpecialNeed"; name = SpecialNeed; }, 
+        {className = "com.dyned.conf.eom.TimeZoneInfo"; name = TimeZoneInfo; }, 
         {
             className = "com.dyned.conf.eom.TravelInformation"; 
             name = TravelInformation; 

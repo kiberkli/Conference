@@ -164,7 +164,7 @@ table.form th {
 }
 
 table.form td {
-	vertical-align: top;
+	vertical-align: middle;
 	text-align: left;
 	padding: 3px;
 }

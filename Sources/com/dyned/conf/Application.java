@@ -32,16 +32,19 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf;
 
+import java.util.Arrays;
 import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 
 import com.dyned.conf.comp.ExceptionPage;
+import com.sun.tools.javac.code.Attribute.Array;
 import com.webobjects.appserver.WOContext;
 import com.webobjects.appserver.WOMessage;
 import com.webobjects.appserver.WORedirect;
 import com.webobjects.appserver.WOResponse;
 import com.webobjects.appserver._private.WOHostUtilities;
+import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSTimeZone;
 
@@ -69,8 +72,8 @@ public class Application extends ERXApplication {
 		//WOMessage.setDefaultEncoding("UTF-8");
 		WOMessage.setDefaultURLEncoding("UTF-8");
 
-		TimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"));
-		NSTimeZone.setDefault(TimeZone.getTimeZone("America/Los_Angeles"));
+		TimeZone.setDefault(TimeZone.getTimeZone("Etc/GMT"));
+		NSTimeZone.setDefault(TimeZone.getTimeZone("Etc/GMT"));
 
 		setDefaultRequestHandler(requestHandlerForKey (directActionRequestHandlerKey()));
 				
@@ -81,6 +84,16 @@ public class Application extends ERXApplication {
 		conferenceSiteName = System.getProperty("conferenceSiteName");
 		
 		log.info("Local hosts: " + WOHostUtilities.getLocalHosts().toString());
+
+//		log.info("TimeZones:");
+//		String[] timeZoneStringArray= TimeZone.getAvailableIDs();
+//		Arrays.sort(timeZoneStringArray);
+//		NSArray<String> timeZoneStrings = new NSArray<String>(timeZoneStringArray);
+//		for (String timeZoneString : timeZoneStrings) {
+//			log.info(timeZoneString);
+//		}
+//		log.info("# Zones: "+timeZoneStrings.count());
+		
 	}
 
 //	public String emailSenderAddress() {

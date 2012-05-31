@@ -32,12 +32,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf;
 
+import java.util.TimeZone;
+
+import org.apache.log4j.Logger;
+
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSTimestamp;
 
 import er.calendar.ERCalendarEvent;
 
 public class CalendarEvent implements ERCalendarEvent {
+	
+	private static Logger log = Logger.getLogger(CalendarEvent.class);
 
 	public final String EVENTSTATUS_TENTATIVE = "TENTATIVE";
 	public final String EVENTSTATUS_CONFIRMED = "CONFIRMED";
@@ -55,13 +61,39 @@ public class CalendarEvent implements ERCalendarEvent {
 			NSTimestamp anEndTime, 
 			String aSummary, 
 			String aUniqueId,
-			boolean theWholeDay
+			boolean theWholeDay,
+			TimeZone tz
 	) {
-		startTime = aStartTime;
-		endTime = anEndTime; //anEndTime == null ? aStartTime : anEndTime;
+		startTime = new NSTimestamp(
+				aStartTime.yearOfCommonEra(),
+				aStartTime.monthOfYear(), 
+				aStartTime.dayOfMonth(), 
+				aStartTime.hourOfDay(), 
+				aStartTime.minuteOfHour(), 
+				aStartTime.secondOfMinute(), 
+				tz
+			);
+		if (anEndTime == null)
+			anEndTime = aStartTime;
+		endTime = new NSTimestamp(
+				anEndTime.yearOfCommonEra(),
+				anEndTime.monthOfYear(), 
+				anEndTime.dayOfMonth(), 
+				anEndTime.hourOfDay(), 
+				anEndTime.minuteOfHour(), 
+				anEndTime.secondOfMinute(), 
+				tz
+			); //anEndTime == null ? aStartTime : anEndTime;
 		summary = aSummary;
 		uniqueId = aUniqueId;		
 		wholeDay = theWholeDay;
+		
+		log.info("startTime: "+startTime.toString());
+		log.info("endTime:   "+endTime.toString());
+		log.info("summary:   "+summary);
+		log.info("uniqueId:  "+uniqueId);
+		log.info("wholeDay:  "+wholeDay);
+		log.info("tz:        "+tz);
 	}
 
 	public NSTimestamp endTime() {

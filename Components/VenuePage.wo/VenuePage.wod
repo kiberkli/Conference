@@ -32,12 +32,12 @@ LableInList : WOString {
 
 DateStartInList : WOString {
 	value = venueInList.dateStart;
-	dateformat = "%a. %b. %e"
+	formatter = dateFormatterDateStart;
 }
 
 DateEndInList : WOString {
 	value = venueInList.dateEnd;
-	dateformat = "%a. %b. %e, '%y"
+	formatter = dateFormatterDateEnd;
 }
 
 AddressInList : WOString {
@@ -184,4 +184,12 @@ DocumentsURLUsername : WOTextField {
 DocumentsURLPassword : WOPasswordField {
 	value = documentsURLPassword;
 	style = "width: 80px;";
+}
+
+TimeZonesPopup : WOPopUpButton {
+	list = fullTimeZoneInfoList;
+	item = timeZoneInfoInList;
+	selection = timeZoneInfoSelected;
+	displayString = timeZoneInfoInList.zoneId;
+	noSelectionString = "Select time zone...";
 }

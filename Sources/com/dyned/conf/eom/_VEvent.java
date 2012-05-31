@@ -14,11 +14,14 @@ public abstract class _VEvent extends  EOGenericRecord {
 
 	// Attributes
 	public static final String COLOR_KEY = "color";
-	public static final String DATE_TIME_END_KEY = "dateTimeEnd";
-	public static final String DATE_TIME_START_KEY = "dateTimeStart";
 	public static final String DESCRIPTION_KEY = "description";
+	public static final String END_HOUR_KEY = "endHour";
+	public static final String END_MINUTE_KEY = "endMinute";
 	public static final String LABLE_KEY = "lable";
 	public static final String MEETING_PLACE_KEY = "meetingPlace";
+	public static final String SECTION_DATE_KEY = "sectionDate";
+	public static final String START_HOUR_KEY = "startHour";
+	public static final String START_MINUTE_KEY = "startMinute";
 
 	// Relationships
 	public static final String ATTENDEE_SELECTED_V_EVENTS_KEY = "attendeeSelectedVEvents";
@@ -45,28 +48,6 @@ public abstract class _VEvent extends  EOGenericRecord {
     takeStoredValueForKey(value, "color");
   }
 
-  public NSTimestamp dateTimeEnd() {
-    return (NSTimestamp) storedValueForKey("dateTimeEnd");
-  }
-
-  public void setDateTimeEnd(NSTimestamp value) {
-    if (_VEvent.LOG.isDebugEnabled()) {
-    	_VEvent.LOG.debug( "updating dateTimeEnd from " + dateTimeEnd() + " to " + value);
-    }
-    takeStoredValueForKey(value, "dateTimeEnd");
-  }
-
-  public NSTimestamp dateTimeStart() {
-    return (NSTimestamp) storedValueForKey("dateTimeStart");
-  }
-
-  public void setDateTimeStart(NSTimestamp value) {
-    if (_VEvent.LOG.isDebugEnabled()) {
-    	_VEvent.LOG.debug( "updating dateTimeStart from " + dateTimeStart() + " to " + value);
-    }
-    takeStoredValueForKey(value, "dateTimeStart");
-  }
-
   public String description() {
     return (String) storedValueForKey("description");
   }
@@ -76,6 +57,28 @@ public abstract class _VEvent extends  EOGenericRecord {
     	_VEvent.LOG.debug( "updating description from " + description() + " to " + value);
     }
     takeStoredValueForKey(value, "description");
+  }
+
+  public Integer endHour() {
+    return (Integer) storedValueForKey("endHour");
+  }
+
+  public void setEndHour(Integer value) {
+    if (_VEvent.LOG.isDebugEnabled()) {
+    	_VEvent.LOG.debug( "updating endHour from " + endHour() + " to " + value);
+    }
+    takeStoredValueForKey(value, "endHour");
+  }
+
+  public Integer endMinute() {
+    return (Integer) storedValueForKey("endMinute");
+  }
+
+  public void setEndMinute(Integer value) {
+    if (_VEvent.LOG.isDebugEnabled()) {
+    	_VEvent.LOG.debug( "updating endMinute from " + endMinute() + " to " + value);
+    }
+    takeStoredValueForKey(value, "endMinute");
   }
 
   public String lable() {
@@ -98,6 +101,39 @@ public abstract class _VEvent extends  EOGenericRecord {
     	_VEvent.LOG.debug( "updating meetingPlace from " + meetingPlace() + " to " + value);
     }
     takeStoredValueForKey(value, "meetingPlace");
+  }
+
+  public NSTimestamp sectionDate() {
+    return (NSTimestamp) storedValueForKey("sectionDate");
+  }
+
+  public void setSectionDate(NSTimestamp value) {
+    if (_VEvent.LOG.isDebugEnabled()) {
+    	_VEvent.LOG.debug( "updating sectionDate from " + sectionDate() + " to " + value);
+    }
+    takeStoredValueForKey(value, "sectionDate");
+  }
+
+  public Integer startHour() {
+    return (Integer) storedValueForKey("startHour");
+  }
+
+  public void setStartHour(Integer value) {
+    if (_VEvent.LOG.isDebugEnabled()) {
+    	_VEvent.LOG.debug( "updating startHour from " + startHour() + " to " + value);
+    }
+    takeStoredValueForKey(value, "startHour");
+  }
+
+  public Integer startMinute() {
+    return (Integer) storedValueForKey("startMinute");
+  }
+
+  public void setStartMinute(Integer value) {
+    if (_VEvent.LOG.isDebugEnabled()) {
+    	_VEvent.LOG.debug( "updating startMinute from " + startMinute() + " to " + value);
+    }
+    takeStoredValueForKey(value, "startMinute");
   }
 
   public com.dyned.conf.eom.Venue venue() {
@@ -195,14 +231,20 @@ public abstract class _VEvent extends  EOGenericRecord {
   }
 
 
-  public static VEvent createVEvent(EOEditingContext editingContext, NSTimestamp dateTimeEnd
-, NSTimestamp dateTimeStart
+  public static VEvent createVEvent(EOEditingContext editingContext, Integer endHour
+, Integer endMinute
 , String lable
+, NSTimestamp sectionDate
+, Integer startHour
+, Integer startMinute
 , com.dyned.conf.eom.Venue venue) {
     VEvent eo = (VEvent) EOUtilities.createAndInsertInstance(editingContext, _VEvent.ENTITY_NAME);    
-		eo.setDateTimeEnd(dateTimeEnd);
-		eo.setDateTimeStart(dateTimeStart);
+		eo.setEndHour(endHour);
+		eo.setEndMinute(endMinute);
 		eo.setLable(lable);
+		eo.setSectionDate(sectionDate);
+		eo.setStartHour(startHour);
+		eo.setStartMinute(startMinute);
     eo.setVenueRelationship(venue);
     return eo;
   }

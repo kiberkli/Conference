@@ -1,0 +1,16 @@
+{
+    attributes = (
+        {columnName = countryCode; name = countryCode; prototypeName = shortString; }, 
+        {allowsNull = N; name = id; prototypeName = id; }, 
+        {columnName = summerTime; name = summerTime; prototypeName = shortString; }, 
+        {columnName = utcOffset; name = utcOffset; prototypeName = shortString; }, 
+        {columnName = zoneId; name = zoneId; prototypeName = shortString; }
+    ); 
+    attributesUsedForLocking = (id); 
+    className = "com.dyned.conf.eom.TimeZoneInfo"; 
+    classProperties = (countryCode, summerTime, utcOffset, zoneId); 
+    externalName = TimeZoneInfo; 
+    fetchSpecificationDictionary = {}; 
+    name = TimeZoneInfo; 
+    primaryKeyAttributes = (id); 
+}

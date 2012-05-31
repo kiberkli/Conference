@@ -37,6 +37,7 @@ import java.security.SecureRandom;
 
 import org.apache.log4j.Logger;
 
+import com.dyned.conf.TimestampUtilities;
 import com.webobjects.eocontrol.*;
 import com.webobjects.foundation.*;
 
@@ -69,11 +70,11 @@ public class Attendee extends _Attendee {
 	public NSArray<Venue> pastVenues() {
 		NSArray<Venue> results = null;
 		
-		String queryString = new String(Venue.DATE_END_KEY + " < %@");
-		NSArray<Object> objects = new NSArray<Object>(new NSTimestamp());
+		String queryString = new String(Venue.DATE_END_KEY   + " < %@ ");
+		NSMutableArray<Object> objects = new NSMutableArray<Object>(new NSTimestamp());
 		
 		EOQualifier qualifier = EOQualifier.qualifierWithQualifierFormat(queryString, objects);
-		NSArray<EOSortOrdering> sortOrderings = new NSArray<EOSortOrdering>(new EOSortOrdering(Venue.DATE_START_KEY, EOSortOrdering.CompareDescending));
+		NSArray<EOSortOrdering> sortOrderings = new NSArray<EOSortOrdering>(new EOSortOrdering(Venue.DATE_START_KEY, EOSortOrdering.CompareAscending));
 		
 		results = this.venues(qualifier, sortOrderings);
 		return results;
@@ -146,13 +147,17 @@ public class Attendee extends _Attendee {
 		if (aVenue != null) {
 			EOQualifier eoQualifier = EOQualifier.qualifierToMatchAnyValue(new NSDictionary<String, Object>(aVenue, AttendeeSelectedVEvent.VENUE_KEY));
 
-			EOSortOrdering datetimeSortOrdering = new EOSortOrdering(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.DATE_TIME_START_KEY, EOSortOrdering.CompareAscending);
-			EOSortOrdering lableSortOrdering = new EOSortOrdering(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.LABLE_KEY,  EOSortOrdering.CompareAscending);
+//			EOSortOrdering datetimeSortOrdering = new EOSortOrdering(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.DATE_TIME_START_KEY, EOSortOrdering.CompareAscending);
+//			EOSortOrdering lableSortOrdering = new EOSortOrdering(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.LABLE_KEY,  EOSortOrdering.CompareAscending);
 
 			NSMutableArray<EOSortOrdering> sortOrderings = new NSMutableArray<EOSortOrdering>();
-			sortOrderings.add(datetimeSortOrdering);
-			sortOrderings.add(lableSortOrdering);
-
+//			sortOrderings.add(datetimeSortOrdering);
+//			sortOrderings.add(lableSortOrdering);
+			//sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.DATE_TIME_START_KEY, EOSortOrdering.CompareAscending));
+			sortOrderings.add(EOSortOrdering.sortOrderingWithKey(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.SECTION_DATE_KEY, EOSortOrdering.CompareAscending));
+			sortOrderings.add(EOSortOrdering.sortOrderingWithKey(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.START_HOUR_KEY, EOSortOrdering.CompareAscending));
+			sortOrderings.add(EOSortOrdering.sortOrderingWithKey(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.START_MINUTE_KEY, EOSortOrdering.CompareAscending));
+			sortOrderings.add(EOSortOrdering.sortOrderingWithKey(AttendeeSelectedVEvent.EVENT_KEY+"."+VEvent.LABLE_KEY, EOSortOrdering.CompareAscending));
 			return this.selectedEvents(eoQualifier, sortOrderings, false);
 		} else
 			return null;
@@ -188,52 +193,52 @@ public class Attendee extends _Attendee {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public NSArray<AttendeeSelectedVEvent> selectedEventsForVenueOld(Venue aVenue) {
-		if (aVenue != null) {
-			NSArray<AttendeeSelectedVEvent> results = null;
-
-			if (aVenue != null) {
-
-				// This is the format string used in the EOQualifier
-				StringBuffer formatString = new StringBuffer(
-						AttendeeSelectedVEvent.VENUE_KEY + " = %@ AND " + 
-						AttendeeSelectedVEvent.ATTENDEE_KEY + " = %@"
-				);
-
-				// This is used to add search parameters using objects such as Language, Topics, etc.
-				NSMutableArray args = new NSMutableArray();
-				args.addObject(aVenue);
-				args.addObject(this);
-
-				EOQualifier eoQualifier = EOQualifier.qualifierWithQualifierFormat(formatString.toString(), args);
-
-				NSArray<EOSortOrdering> dateStartOrderings = new NSArray<EOSortOrdering>(
-						EOSortOrdering.sortOrderingWithKey(
-								AttendeeSelectedVEvent.EVENT_KEY + "." + VEvent.DATE_TIME_START_KEY,
-								EOSortOrdering.CompareAscending
-						)
-				);
-
-				EOFetchSpecification theFetchSpecs = new EOFetchSpecification(
-						AttendeeSelectedVEvent.ENTITY_NAME,
-						eoQualifier,
-						dateStartOrderings
-				);
-
-				try {
-					results = this.editingContext().objectsWithFetchSpecification(theFetchSpecs);
-				} catch (RuntimeException ex) {
-					log.info("Found no selected events for from attendee " + this.nameFamily() + "and venue " + aVenue.lable());
-					log.error(ex.getMessage());
-				}
-
-			}
-
-			return results;
-		} else
-			return null;
-	}
+//	@SuppressWarnings("unchecked")
+//	public NSArray<AttendeeSelectedVEvent> selectedEventsForVenueOld(Venue aVenue) {
+//		if (aVenue != null) {
+//			NSArray<AttendeeSelectedVEvent> results = null;
+//
+//			if (aVenue != null) {
+//
+//				// This is the format string used in the EOQualifier
+//				StringBuffer formatString = new StringBuffer(
+//						AttendeeSelectedVEvent.VENUE_KEY + " = %@ AND " + 
+//						AttendeeSelectedVEvent.ATTENDEE_KEY + " = %@"
+//				);
+//
+//				// This is used to add search parameters using objects such as Language, Topics, etc.
+//				NSMutableArray args = new NSMutableArray();
+//				args.addObject(aVenue);
+//				args.addObject(this);
+//
+//				EOQualifier eoQualifier = EOQualifier.qualifierWithQualifierFormat(formatString.toString(), args);
+//
+//				NSArray<EOSortOrdering> dateStartOrderings = new NSArray<EOSortOrdering>(
+//						EOSortOrdering.sortOrderingWithKey(
+//								AttendeeSelectedVEvent.EVENT_KEY + "." + VEvent.DATE_TIME_START_KEY,
+//								EOSortOrdering.CompareAscending
+//						)
+//				);
+//
+//				EOFetchSpecification theFetchSpecs = new EOFetchSpecification(
+//						AttendeeSelectedVEvent.ENTITY_NAME,
+//						eoQualifier,
+//						dateStartOrderings
+//				);
+//
+//				try {
+//					results = this.editingContext().objectsWithFetchSpecification(theFetchSpecs);
+//				} catch (RuntimeException ex) {
+//					log.info("Found no selected events for from attendee " + this.nameFamily() + "and venue " + aVenue.lable());
+//					log.error(ex.getMessage());
+//				}
+//
+//			}
+//
+//			return results;
+//		} else
+//			return null;
+//	}
 
 }
 

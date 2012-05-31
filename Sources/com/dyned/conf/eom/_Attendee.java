@@ -783,17 +783,13 @@ public abstract class _Attendee extends  EOGenericRecord {
   public static Attendee createAttendee(EOEditingContext editingContext, NSTimestamp dateLastVisit
 , NSTimestamp dateRegistered
 , String nameFamily
-, Integer pwHashCode
 , String userEmailAddress
-, String userPassword
 ) {
     Attendee eo = (Attendee) EOUtilities.createAndInsertInstance(editingContext, _Attendee.ENTITY_NAME);    
 		eo.setDateLastVisit(dateLastVisit);
 		eo.setDateRegistered(dateRegistered);
 		eo.setNameFamily(nameFamily);
-		eo.setPwHashCode(pwHashCode);
 		eo.setUserEmailAddress(userEmailAddress);
-		eo.setUserPassword(userPassword);
     return eo;
   }
 

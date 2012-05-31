@@ -35,11 +35,7 @@ package com.dyned.conf.comp;
 import org.apache.log4j.Logger;
 
 import com.dyned.conf.Session;
-import com.dyned.conf.eom.Admin;
-import com.dyned.conf.eom.Attendee;
-import com.dyned.conf.eom.AttendeeFunction;
-import com.dyned.conf.eom.SpecialNeed;
-import com.dyned.conf.eom.Venue;
+import com.dyned.conf.eom.*;
 
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOObjectNotAvailableException;
@@ -98,6 +94,25 @@ public class CompCommon extends ERXComponent {
 		}
 
 		return results;
+	}
+	
+	public NSArray<TimeZoneInfo> fullTimeZoneInfoList() {
+		NSArray<TimeZoneInfo> results = null;
+		
+		// Add sort options here:
+		NSMutableArray<EOSortOrdering> sortOrderings = new NSMutableArray<EOSortOrdering>(new EOSortOrdering(TimeZoneInfo.ZONE_ID_KEY, EOSortOrdering.CompareDescending));
+
+		// Create the fetch spec:
+		EOFetchSpecification theFetchSpecs = new EOFetchSpecification(TimeZoneInfo.ENTITY_NAME, null, sortOrderings);
+		
+		try {
+			results = (NSArray<TimeZoneInfo>)(ec.objectsWithFetchSpecification(theFetchSpecs));
+		} catch (RuntimeException ex) {
+			log.error("Error fetching TimeZoneInfo list:");
+			log.error(ex.getMessage());
+		}
+
+		return results;		
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -32,6 +32,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.dyned.conf.comp;
 
+import java.util.TimeZone;
+
 import org.apache.log4j.Logger;
 
 import com.dyned.conf.Session;
@@ -43,6 +45,8 @@ import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
+import com.webobjects.foundation.NSTimeZone;
+import com.webobjects.foundation.NSTimestampFormatter;
 
 import er.extensions.appserver.ERXApplication;
 
@@ -59,6 +63,9 @@ public class AttendeeEventsSignup extends CompCommon {
 	public String messageOnScreen;
 	public String eventInListError;
 
+	public NSTimestampFormatter timeFormatter;
+	public NSTimestampFormatter dayFormatter;
+	public NSTimestampFormatter dateFormatter;
 
 	public AttendeeEventsSignup(WOContext context) {
 		super(context);
@@ -73,6 +80,15 @@ public class AttendeeEventsSignup extends CompCommon {
 //		attendee = attendeeValue;
 		venue = venueValue;
 		eventForAttendeeList = myEventForAttendeeList();
+		
+		timeFormatter = new NSTimestampFormatter("%H:%M");
+//		timeFormatter.setDefaultFormatTimeZone(venue.tz());
+
+		dayFormatter = new NSTimestampFormatter("%A");
+//		dayFormatter.setDefaultFormatTimeZone(venue.tz());
+
+		dateFormatter = new NSTimestampFormatter("%m/%d");
+//		dateFormatter.setDefaultFormatTimeZone(venue.tz());
 	}
 
 	public NSArray<AttendeeSelectedVEvent>myEventForAttendeeList() {

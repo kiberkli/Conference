@@ -6,24 +6,14 @@
             name = dateCreated; 
             prototypeName = dateTime; 
         }, 
-        {
-            allowsNull = N; 
-            columnName = dateEnd; 
-            name = dateEnd; 
-            prototypeName = dateTime; 
-        }, 
+        {columnName = dateEnd; name = dateEnd; prototypeName = dateTime; }, 
         {
             allowsNull = N; 
             columnName = dateModified; 
             name = dateModified; 
             prototypeName = dateTime; 
         }, 
-        {
-            allowsNull = N; 
-            columnName = dateStart; 
-            name = dateStart; 
-            prototypeName = dateTime; 
-        }, 
+        {columnName = dateStart; name = dateStart; prototypeName = dateTime; }, 
         {
             allowsNull = Y; 
             columnName = description; 
@@ -62,6 +52,12 @@
         }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
         {allowsNull = N; columnName = idAdmin; name = idAdmin; prototypeName = id; }, 
+        {
+            allowsNull = Y; 
+            columnName = idTimeZoneInfo; 
+            name = idTimeZoneInfo; 
+            prototypeName = id; 
+        }, 
         {
             allowsNull = Y; 
             columnName = inactive; 
@@ -109,6 +105,7 @@
         lable, 
         mapAddress, 
         secretCode, 
+        timeZoneInfo, 
         webpageURL
     ); 
     externalName = venue; 
@@ -138,6 +135,13 @@
             joinSemantic = EOInnerJoin; 
             joins = ({destinationAttribute = idVenue; sourceAttribute = id; }); 
             name = invitees; 
+        }, 
+        {
+            destination = TimeZoneInfo; 
+            isToMany = N; 
+            joinSemantic = EOInnerJoin; 
+            joins = ({destinationAttribute = id; sourceAttribute = idTimeZoneInfo; }); 
+            name = timeZoneInfo; 
         }, 
         {
             deleteRule = EODeleteRuleCascade; 

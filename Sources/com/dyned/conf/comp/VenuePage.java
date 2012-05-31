@@ -6,14 +6,14 @@ All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
 
-	* Redistributions of source code must retain the above copyright notice, 
+ * Redistributions of source code must retain the above copyright notice, 
 	  this list of conditions and the following disclaimer.
 
-	* Redistributions in binary form must reproduce the above copyright notice, 
+ * Redistributions in binary form must reproduce the above copyright notice, 
 	  this list of conditions and the following disclaimer in the documentation 
 	  and/or other materials provided with the distribution.
 
-	* Neither the name of DynEd International, Inc. nor the names of its 
+ * Neither the name of DynEd International, Inc. nor the names of its 
 	  contributors may be used to endorse or promote products derived from this 
 	  software without specific prior written permission.
 
@@ -28,41 +28,45 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-*/
+ */
 
 package com.dyned.conf.comp;
 
 import org.apache.log4j.Logger;
 
-import com.dyned.conf.Session;
-import com.dyned.conf.eom.Admin;
-import com.dyned.conf.eom.Venue;
-
 import com.webobjects.appserver.WOContext;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.foundation.*;
 
-import er.extensions.appserver.ERXApplication;
+import com.dyned.conf.Session;
+import com.dyned.conf.eom.Admin;
+import com.dyned.conf.eom.Venue;
+import com.dyned.conf.eom.TimeZoneInfo;
 
 public class VenuePage extends CompCommon {
 
 	private static Logger log = Logger.getLogger(VenuePage.class);
-			
+
 	public Admin administrator;
+
+	public NSArray<TimeZoneInfo> fullTimeZoneInfoList;
+	public TimeZoneInfo timeZoneInfoInList;
+	public TimeZoneInfo timeZoneInfoSelected;
 
 	public NSArray<Venue> venueList;
 	public Venue venueInList;
 	public Venue venue;
-	
+
 	public String messageOnPage;
 	public String promptOnPage;
-	
+
 	// Form fields:
-//	public String dayStartString;
-//	public String dayEndString;
-	
+	//	public String dayStartString;
+	//	public String dayEndString;
+
 	public NSTimestamp dateStart;
 	public NSTimestamp dateEnd;
+	public String timeZoneString;
 	public String description;
 	public String lable;
 	public String webpageURL;
@@ -75,35 +79,47 @@ public class VenuePage extends CompCommon {
 	public String documentsURLUsername;
 	public String documentsURLPassword;
 
-	public VenuePage(WOContext context) {
-        super(context);
-        
-        administrator = ((Session)session()).administrator;
-        
-        venueList = fullVenuList();
-        venue = null;
-        
-        dateStart = new NSTimestamp();
-        dateEnd = new NSTimestamp();
-        
-        description = new String();
-        lable = new String();
-        webpageURL = new String();
-        mapAddress = new String();
-        secretCode = new String();
+	public NSTimestampFormatter dateFormatterDateStart;
+	public NSTimestampFormatter dateFormatterDateEnd;
 
-        documentsURL = new String();
-        documentsURLUsername = new String();
-        documentsURLPassword = new String();
-        
-        messageOnPage = new String();
-        promptOnPage = new String("Add a New Venue");
-    }
-	
+	public VenuePage(WOContext context) {
+		super(context);
+
+		administrator = ((Session)session()).administrator;
+
+		venueList = fullVenuList();
+		venue = null;
+
+		fullTimeZoneInfoList = fullTimeZoneInfoList();
+
+		dateStart = new NSTimestamp();
+		dateEnd = new NSTimestamp();
+
+		description = new String();
+		lable = new String();
+		webpageURL = new String();
+		mapAddress = new String();
+		secretCode = new String();
+
+		documentsURL = new String();
+		documentsURLUsername = new String();
+		documentsURLPassword = new String();
+
+		messageOnPage = new String();
+		promptOnPage = new String("Add a New Venue");
+
+		dateFormatterDateStart = new NSTimestampFormatter("%a. %b. %e");
+//		dateFormatterDateStart.setDefaultFormatTimeZone(NSTimeZone.getGMT());
+
+		dateFormatterDateEnd = new NSTimestampFormatter("%a. %b. %e, '%y");
+//		dateFormatterDateEnd.setDefaultFormatTimeZone(NSTimeZone.getGMT());
+	}
+
 	public void setVenueForPage(Venue aValue) {
 		if (aValue != null) {
 			dateStart = aValue.dateStart();
 			dateEnd = aValue.dateEnd();
+			timeZoneInfoSelected = aValue.timeZoneInfo();
 
 			description = aValue.description();
 			lable = aValue.lable();
@@ -116,12 +132,12 @@ public class VenuePage extends CompCommon {
 			documentsURL = aValue.documentsURL();
 			documentsURLUsername = aValue.documentsURLUsername();
 			documentsURLPassword = aValue.documentsURLPassword();
-			
+
 			promptOnPage = "Edit the Selected Venue";
 		}
 		venue = aValue;
 	}
-	
+
 	public VenuePage deleteThisVenue() {
 		if (venueInList.attendees().count() > 0) {
 			venueInList.setInactive(true);
@@ -137,15 +153,15 @@ public class VenuePage extends CompCommon {
 		}
 		return pageWithName(VenuePage.class);
 	}
-	
+
 	public VenuePage editSelectedVenue() {
 		VenuePage nextPage = pageWithName(VenuePage.class);
 		nextPage.setVenueForPage(venueInList);
 		return nextPage;
 	}
-	
+
 	public VenuePage saveFormData() {
-		
+
 		if (
 				documentsURL != null && 
 				documentsURL.length() > 0 
@@ -155,13 +171,13 @@ public class VenuePage extends CompCommon {
 			messageOnPage = "The Documents URL is not a proper http URL.";
 			return null;
 		}
-				
+
 		if (
 				(mapAddress != null && mapAddress.length() > 0) &&
 				(lable != null && lable.length() > 0) &&
 				(dateStart != null) && 
 				(dateEnd != null)
-		) {
+				) {
 			if (venue == null) {
 				log.info("Venue appears to be new.");
 				venue = (Venue)EOUtilities.createAndInsertInstance(ec, Venue.ENTITY_NAME);
@@ -170,46 +186,48 @@ public class VenuePage extends CompCommon {
 			}
 			venue.setDateModified(new NSTimestamp());
 			venue.setLable(lable);
-			venue.setDateStart(dateStart);
-			venue.setDateEnd(dateEnd);
+			venue.setDateStart(new NSTimestamp(dateStart.yearOfCommonEra(), dateStart.monthOfYear(), dateStart.dayOfMonth(), 12, 0, 0, NSTimeZone.getGMT()));
+			venue.setDateEnd(new NSTimestamp(dateEnd.yearOfCommonEra(), dateEnd.monthOfYear(), dateEnd.dayOfMonth(), 12, 0, 0, NSTimeZone.getGMT()));
+			venue.setTimeZoneInfoRelationship(timeZoneInfoSelected);
 			venue.setWebpageURL(webpageURL);
 			venue.setFacilityName(facilityName);
 			venue.setFacilityPhone(facilityPhone);
 			venue.setMapAddress(mapAddress);
 			venue.setDescription(description);
 			venue.setSecretCode(secretCode);
-			
+
 			venue.setDocumentsURL(documentsURL);
 			venue.setDocumentsURLUsername(documentsURLUsername);
 			venue.setDocumentsURLPassword(documentsURLPassword);
 
 			if (saveMyChanges("Failed to save new or edited venue to database"))
 				return pageWithName(VenuePage.class);
-			else
+			else {
 				messageOnPage = "There was a problem with the database. Please try again later.";
 				return null;
+			}
 		} else {
 			messageOnPage = "Some values are invalid or missing, a short description is required and check the dates.";
 			return null;
 		}
 	}
-	
-    public AdminsHomePage cancelVenue() {
-    	ec.revert();
-    	return pageWithName(AdminsHomePage.class);
-    }
-    
-    public VenueEventsPage venueEventsPage() {
-    	VenueEventsPage nextPage = pageWithName(VenueEventsPage.class);
-    	nextPage.setVenueForPage(venueInList);
-    	return nextPage;
-    }
-    
-    public VenueAttendeesPage venueAttendeesPage() {
-    	VenueAttendeesPage nextPage = pageWithName(VenueAttendeesPage.class);
-    	nextPage.setVenueForPage(venueInList);
-    	return nextPage;
-    }
+
+	public AdminsHomePage cancelVenue() {
+		ec.revert();
+		return pageWithName(AdminsHomePage.class);
+	}
+
+	public VenueEventsPage venueEventsPage() {
+		VenueEventsPage nextPage = pageWithName(VenueEventsPage.class);
+		nextPage.setVenueForPage(venueInList);
+		return nextPage;
+	}
+
+	public VenueAttendeesPage venueAttendeesPage() {
+		VenueAttendeesPage nextPage = pageWithName(VenueAttendeesPage.class);
+		nextPage.setVenueForPage(venueInList);
+		return nextPage;
+	}
 }
 
 

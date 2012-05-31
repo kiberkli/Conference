@@ -34,6 +34,7 @@ public abstract class _Venue extends  EOGenericRecord {
 	public static final String ATTENDEES_KEY = "attendees";
 	public static final String EVENTS_KEY = "events";
 	public static final String INVITEES_KEY = "invitees";
+	public static final String TIME_ZONE_INFO_KEY = "timeZoneInfo";
 
   private static Logger LOG = Logger.getLogger(_Venue.class);
 
@@ -225,6 +226,24 @@ public abstract class _Venue extends  EOGenericRecord {
       }
     } else {
     	addObjectToBothSidesOfRelationshipWithKey(value, "admin");
+    }
+  }
+  
+  public com.dyned.conf.eom.TimeZoneInfo timeZoneInfo() {
+    return (com.dyned.conf.eom.TimeZoneInfo)storedValueForKey("timeZoneInfo");
+  }
+
+  public void setTimeZoneInfoRelationship(com.dyned.conf.eom.TimeZoneInfo value) {
+    if (_Venue.LOG.isDebugEnabled()) {
+      _Venue.LOG.debug("updating timeZoneInfo from " + timeZoneInfo() + " to " + value);
+    }
+    if (value == null) {
+    	com.dyned.conf.eom.TimeZoneInfo oldValue = timeZoneInfo();
+    	if (oldValue != null) {
+    		removeObjectFromBothSidesOfRelationshipWithKey(oldValue, "timeZoneInfo");
+      }
+    } else {
+    	addObjectToBothSidesOfRelationshipWithKey(value, "timeZoneInfo");
     }
   }
   

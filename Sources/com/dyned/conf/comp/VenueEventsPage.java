@@ -6,14 +6,14 @@ All rights reserved.
 Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
 
-	* Redistributions of source code must retain the above copyright notice, 
+ * Redistributions of source code must retain the above copyright notice, 
 	  this list of conditions and the following disclaimer.
 
-	* Redistributions in binary form must reproduce the above copyright notice, 
+ * Redistributions in binary form must reproduce the above copyright notice, 
 	  this list of conditions and the following disclaimer in the documentation 
 	  and/or other materials provided with the distribution.
 
-	* Neither the name of DynEd International, Inc. nor the names of its 
+ * Neither the name of DynEd International, Inc. nor the names of its 
 	  contributors may be used to endorse or promote products derived from this 
 	  software without specific prior written permission.
 
@@ -28,7 +28,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-*/
+ */
 
 package com.dyned.conf.comp;
 
@@ -46,14 +46,12 @@ import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEnterpriseObject;
 import com.webobjects.foundation.*;
 
-import er.extensions.appserver.ERXApplication;
-
 public class VenueEventsPage extends CompCommon {
 
 	private static Logger log = Logger.getLogger(VenueEventsPage.class);
 
 	public Admin administrator;
-	
+
 	public Venue venue;
 
 	public String messageOnPage;
@@ -61,180 +59,201 @@ public class VenueEventsPage extends CompCommon {
 
 	public NSArray<NSTimestamp> venueDatesList;
 	public NSTimestamp venueDatesListItem;
-	public NSTimestamp selectedVenueDate;
-	
+	public NSTimestamp selectedVEventDate;
+
 	public VEvent eventInList;
 	public VEvent event;
-		
-	public NSTimestamp dateTimeStart;
-	public NSTimestamp dateTimeEnd;
+
+	public String startHour;
+	public String startMinute;
+	public String endHour;
+	public String endMinute;
+	
 	public String description;
 	public String lable;
 	public String meetingPlace;
-	
+
 	public NSArray<String> colorList;
 	public String colorItemInList;
 	public String selectedColor;
+	
+	public NSArray<String> hourList;
+	public NSArray<String> minuteList;
+	public String startHourItemInList;
+	public String startMinuteItemInList;
+	public String endHourItemInList;
+	public String endMinuteItemInList;
 
-    public VenueEventsPage(WOContext context) {
-        super(context);
-        
-        administrator = ((Session)session()).administrator;
+	public VenueEventsPage(WOContext context) {
+		super(context);
 
-        messageOnPage = new String("");
-        currentTimezone = NSTimeZone.getDefault().getDisplayName();
+		administrator = ((Session)session()).administrator;
 
-        venue = null;
+		messageOnPage = new String("");
+		currentTimezone = NSTimeZone.getDefault().getDisplayName();
 
-        eventInList = null;
-        
-        venueDatesList = null;
-        venueDatesListItem = null;
-        selectedVenueDate = null;
-        
-        colorList = new NSArray<String>("#ffffff","#2F64DA","#37B11B","#E71E27","#F38B1E","#BE33BB","#6138AF");
-        selectedColor = "#ffffff";
+		venue = null;
 
-    }
-    
-    public void setVenueForPage(Venue aValue) {
-    	venue = aValue;
-        venueDatesList = venueDays(venue);
-        dateTimeStart = new NSTimestamp(0, venue.dateStart());
-        dateTimeEnd =  new NSTimestamp(0, venue.dateEnd());
-    }
-    
-    public VenueEventsPage addEventToList() {
-    	if (venue != null) {
-    		if (dateTimeEnd.before(dateTimeStart)) {
-    	    	messageOnPage = "The event end time is before the start time";
-    			return null;
-    		}
-    		if (event == null) {
-    			event = (VEvent)(EOUtilities.createAndInsertInstance(ec, VEvent.ENTITY_NAME));
-    			venue.addToEventsRelationship(event);
-    		}
-    		
-    		log.info("selectedVenueDate: " + selectedVenueDate);
-    		log.info("dateTimeStart:     " + dateTimeStart);
-    		log.info("dateTimeEnd:       " + dateTimeEnd);
+		eventInList = null;
 
-    		try {
-    			event.setDateTimeStart(TimestampUtilities.timestampByAddingTime(selectedVenueDate, dateTimeStart));
-    			event.setDateTimeEnd(TimestampUtilities.timestampByAddingTime(selectedVenueDate, dateTimeEnd));
-    		} catch (RuntimeException ex) {
-    			messageOnPage = "Unable to read the start or end time for the event.";
-    			log.error("Badly formmated dates:");
-    			log.error("   dateTimeStart: " + dateTimeStart);
-    			log.error("   dateTimeEnd:   " + dateTimeEnd);
-    			log.error(ex.getMessage());
+		venueDatesList = null;
+		venueDatesListItem = null;
+		selectedVEventDate = null;
 
-    			return null;
-    		}
-    		event.setDescription(description);
-    		event.setLable(lable);
-    		event.setMeetingPlace(meetingPlace);
-    		event.setColor(selectedColor);
-    		
-    		VenueEventsPage nextPage = pageWithName(VenueEventsPage.class);
-    		nextPage.setVenueForPage(venue);
-    		return nextPage;
-    	}
-    	messageOnPage = "There is no venue for this page";
-    	log.error("Page " + VenueEventsPage.class.getName() + " requires a venue.");
-    		
-    	return null;
-    }
-    
-    public VenueEventsPage deleteEventFromList() {
-   		venue.removeFromEventsRelationship(eventInList);
-   		ec.deleteObject((EOEnterpriseObject)eventInList);
-   		return null;
-    }
-    
-    public VenueEventsPage editEventInList() {
-    	selectedVenueDate = new NSTimestamp(
-    			eventInList.dateTimeStart().yearOfCommonEra(), 
-    			eventInList.dateTimeStart().monthOfYear(), 
-    			eventInList.dateTimeStart().dayOfMonth(), 
-    			0, 0, 0, NSTimeZone.getDefault());
-    	
-    	dateTimeStart = eventInList.dateTimeStart();
-    	dateTimeEnd = eventInList.dateTimeEnd();
+		colorList = new NSArray<String>("#ffffff","#2F64DA","#37B11B","#E71E27","#F38B1E","#BE33BB","#6138AF");
+		selectedColor = "#ffffff";
+		
+		hourList = new NSArray<String>("00","1","2","3","4","5","6","7","8","9","10","11","12",
+				"13","14","15","16","17","18","19","20","21","22","23");
+		minuteList = new NSArray<String>("00","05","10","15","20","25","30","35","40","45","55");
 
-    	lable = eventInList.lable();
-    	description = eventInList.description();
-    	meetingPlace = eventInList.meetingPlace();
-    	
-    	selectedColor = eventInList.color();
+	}
 
-    	event = eventInList;
-    	
-    	return null;
-    }
-    
-    public VenuePage saveAllEvents() {
-    	if (saveMyChanges("Failed to save new events to venu "+venue.lable())) {
-    		VenuePage nextPage = pageWithName(VenuePage.class);
-        	return nextPage;
-    	} else {
+	public void setVenueForPage(Venue aValue) {
+		venue = aValue;
+		venueDatesList = TimestampUtilities.datesArray(venue.dateStart(), venue.dateEnd(), 0, 0);
+	}
+
+	public VenueEventsPage addEventToList() {
+		if (venue != null) {
+//			if (dateTimeEnd.before(dateTimeStart)) {
+//				messageOnPage = "The event end time is before the start time";
+//				return null;
+//			}
+			if (event == null) {
+				event = (VEvent)(EOUtilities.createAndInsertInstance(ec, VEvent.ENTITY_NAME));
+				venue.addToEventsRelationship(event);
+			}
+
+			log.info("selectedVEventDate: " + selectedVEventDate);
+			log.info("Start Time:      " + startHour+":"+startMinute);
+			log.info("End Time:        " + endHour+":"+endMinute);
+
+			event.setSectionDate(selectedVEventDate);
+			event.setStartTime(Integer.parseInt(startHour), Integer.parseInt(startMinute));
+			event.setEndTime(Integer.parseInt(endHour), Integer.parseInt(endMinute));
+			event.setSectionDate(selectedVEventDate);
+			event.setDescription(description);
+			event.setLable(lable);
+			event.setMeetingPlace(meetingPlace);
+			event.setColor(selectedColor);
+
+			VenueEventsPage nextPage = pageWithName(VenueEventsPage.class);
+			nextPage.setVenueForPage(venue);
+			return nextPage;
+		}
+		messageOnPage = "There is no venue for this page";
+		log.error("Page " + VenueEventsPage.class.getName() + " requires a venue.");
+
+		return null;
+	}
+
+	public VenueEventsPage deleteEventFromList() {
+		venue.removeFromEventsRelationship(eventInList);
+		ec.deleteObject((EOEnterpriseObject)eventInList);
+		return null;
+	}
+
+	public VenueEventsPage editEventInList() {
+		selectedVEventDate = eventInList.sectionDate();
+		endHour = eventInList.endHourString();
+		endMinute = eventInList.endMinuteString();
+		startHour = eventInList.startHourString();
+		startMinute = eventInList.startMinuteString();
+		
+		lable = eventInList.lable();
+		description = eventInList.description();
+		meetingPlace = eventInList.meetingPlace();
+		selectedColor = eventInList.color();
+
+		event = eventInList;
+
+		return null;
+	}
+
+	public VenuePage saveAllEvents() {
+		if (saveMyChanges("Failed to save new events to venu "+venue.lable())) {
+			VenuePage nextPage = pageWithName(VenuePage.class);
+			return nextPage;
+		} else {
 			messageOnPage = "There was a problem with the database. Please try again later.";
-    		return null;
-    	}
-    }
-    
-    public VenuePage cancelAllEvents() {
-    	ec.revert();
-    	return pageWithName(VenuePage.class);
-    }
-    
-    private NSArray<NSTimestamp> venueDays(Venue venue) {
-    	NSMutableArray<NSTimestamp> results = new NSMutableArray<NSTimestamp>();
-    	if (venue != null && venue.dateStart() != null && venue.dateEnd() != null) {
+			return null;
+		}
+	}
 
-    		NSTimestamp dateStart = new NSTimestamp(venue.dateStart());
-    		NSTimestamp dateEnd = new NSTimestamp(venue.dateEnd());
-    		
-    		int dayToAdd = 0;
-    		while (
-    				(results.lastObject() == null) || 
-    				(! results.lastObject().after(dateEnd))
-    			) {
-    			GregorianCalendar myCalendar = new GregorianCalendar();
-    			myCalendar.setTime(dateStart);
-    			myCalendar.add(GregorianCalendar.DAY_OF_MONTH, dayToAdd);
+	public VenuePage cancelAllEvents() {
+		ec.revert();
+		return pageWithName(VenuePage.class);
+	}
 
-    			int year = myCalendar.get(GregorianCalendar.YEAR);
-    			int month = myCalendar.get(GregorianCalendar.MONTH);
-    			int day = myCalendar.get(GregorianCalendar.DAY_OF_MONTH);    			
-    			
-    			NSTimestamp nextDay = new NSTimestamp(year, month+1, day, 0, 0, 0, NSTimeZone.getDefault());
+	private NSArray<NSTimestamp> venueDays(Venue venue) {
+		NSMutableArray<NSTimestamp> results = new NSMutableArray<NSTimestamp>();
+		if (venue != null && venue.dateStart() != null && venue.dateEnd() != null) {
 
-    			results.addObject(nextDay);
-    			dayToAdd = dayToAdd + 1;
-    			if (dayToAdd > 30)
-    				break;
-    		}
-    		//results.addObject(dateEnd);
+			NSTimestamp dateStart = new NSTimestamp(venue.dateStart());
+			NSTimestamp dateEnd = new NSTimestamp(venue.dateEnd());
 
-    	} else {
-    		log.error("No start and end date for this venue: " + venue.lable());
-    	}
-    	return results.immutableClone();
-    }
-    
-    public String venueDatesListItemDisplay() {
-    	NSTimestampFormatter formatter = new NSTimestampFormatter("%a %m/%d");
-    	if (venueDatesListItem != null)
-    		return formatter.format(venueDatesListItem);
-    	else
-    		return "(unknown)";
-    }
-        
-    public String EventSubmitButtonValue() {
-    	if (event == null)
-    		return "Add to List";
-    	else
-    		return "Update";
-    }
+			int dayToAdd = 0;
+			while (
+					(results.lastObject() == null) || 
+					(! results.lastObject().after(dateEnd))
+					) {
+				GregorianCalendar myCalendar = new GregorianCalendar();
+				myCalendar.setTime(dateStart);
+				myCalendar.add(GregorianCalendar.DAY_OF_MONTH, dayToAdd);
+
+				int year = myCalendar.get(GregorianCalendar.YEAR);
+				int month = myCalendar.get(GregorianCalendar.MONTH);
+				int day = myCalendar.get(GregorianCalendar.DAY_OF_MONTH);    			
+
+				NSTimestamp nextDay = new NSTimestamp(year, month+1, day, 12, 0, 0, venue.tz());
+
+				results.addObject(nextDay);
+				dayToAdd = dayToAdd + 1;
+				if (dayToAdd > 30)
+					break;
+			}
+
+		} else {
+			log.error("No start and end date for this venue: " + venue.lable());
+		}
+		return results.immutableClone();
+	}
+
+	public String venueDatesListItemDisplay() {
+		NSTimestampFormatter formatter = new NSTimestampFormatter("%a %m/%d");
+		if (venueDatesListItem != null)
+			return formatter.format(venueDatesListItem);
+		else
+			return "(unknown)";
+	}
+
+	public String EventSubmitButtonValue() {
+		if (event == null)
+			return "Add to List";
+		else
+			return "Update";
+	}
+
 }
+
+
+
+//dateTimeStart = new NSTimestamp(
+//venue.dateStart().yearOfCommonEra(), 
+//venue.dateStart().monthOfYear(), 
+//venue.dateStart().dayOfMonth(),
+//9,
+//0,
+//0,
+//venue.tz()
+//);
+//dateTimeEnd = new NSTimestamp(
+//venue.dateStart().yearOfCommonEra(), 
+//venue.dateStart().monthOfYear(), 
+//venue.dateStart().dayOfMonth(),
+//10,
+//0,
+//0,
+//venue.tz()
+//);

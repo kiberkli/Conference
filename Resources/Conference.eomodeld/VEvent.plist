@@ -2,23 +2,13 @@
     attributes = (
         {allowsNull = Y; columnName = color; name = color; prototypeName = longText; }, 
         {
-            allowsNull = N; 
-            columnName = dateTimeEnd; 
-            name = dateTimeEnd; 
-            prototypeName = dateTime; 
-        }, 
-        {
-            allowsNull = N; 
-            columnName = dateTimeStart; 
-            name = dateTimeStart; 
-            prototypeName = dateTime; 
-        }, 
-        {
             allowsNull = Y; 
             columnName = description; 
             name = description; 
             prototypeName = longText; 
         }, 
+        {columnName = endHour; name = endHour; prototypeName = intNumber; }, 
+        {columnName = endMinute; name = endMinute; prototypeName = intNumber; }, 
         {allowsNull = N; name = id; prototypeName = id; }, 
         {allowsNull = N; columnName = idVenue; name = idVenue; prototypeName = id; }, 
         {allowsNull = N; columnName = lable; name = lable; prototypeName = longText; }, 
@@ -27,17 +17,23 @@
             columnName = meetingPlace; 
             name = meetingPlace; 
             prototypeName = longText; 
-        }
+        }, 
+        {columnName = sectionDate; name = sectionDate; prototypeName = dateTime; }, 
+        {columnName = startHour; name = startHour; prototypeName = intNumber; }, 
+        {columnName = startMinute; name = startMinute; prototypeName = intNumber; }
     ); 
     className = "com.dyned.conf.eom.VEvent"; 
     classProperties = (
         attendeeSelectedVEvents, 
         color, 
-        dateTimeEnd, 
-        dateTimeStart, 
         description, 
+        endHour, 
+        endMinute, 
         lable, 
         meetingPlace, 
+        sectionDate, 
+        startHour, 
+        startMinute, 
         venue
     ); 
     externalName = vevent; 

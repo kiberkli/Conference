@@ -45,9 +45,9 @@
 </tr>
 <webobject name = "EventsList">
 <tr class="alternating">
-	<td nowrap style='text-align: right; border-left: 3px solid <webobject name = "EventInListColor"/>;'><webobject name = "EventInListDay"/></td>
+	<td nowrap style='text-align: right; border-left: 3px solid <webobject name = "EventInListColor"/>;'>&nbsp;</td>
 	<td nowrap><webobject name = "EventInListDate"/></td>
-	<td nowrap><webobject name = "EventInListTimeStart"/><webobject name = "EventInListTimeEnd"/></td>
+	<td nowrap><webobject name = "EventInListTimeStart"/> - <webobject name = "EventInListTimeEnd"/></td>
 	<td><b><webobject name = "EventInListLable"/></b><br>
 		<webobject name = "EventInListDescription"/></td>
 	<td><webobject name = "EventInListMeetingPlace"/></td>
@@ -70,7 +70,11 @@
 <table cellspacing="0" cellpadding="0" border="0" class="form" style="width: 600px;">
 <tr>
 	<th>Time</th>
-	<td nowrap><webobject name = "VenueDatesList"/> <webobject name = "TimeStart"/> - <webobject name = "TimeEnd"/> <webobject name = "CurrentTimezone"/> Time</td>
+	<td nowrap><webobject name = "VenueDatesList"/><br>
+	<webobject name = "StartHour"/>:<webobject name = "StartMinute"/>
+	-
+	<webobject name = "EndHour"/>:<webobject name = "EndMinute"/>
+	<webobject name = "CurrentTimezone"/> Time</td>
 </tr>
 <tr>
 	<th>Short/<br>Long Description</th>

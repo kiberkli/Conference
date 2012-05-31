@@ -45,22 +45,22 @@ EventInListLable : WOString {
 
 EventInListTimeStart : WOString {
 	value = eventforAttendeeInList.event.dateTimeStart;
-	dateformat = "%H:%M";
+	formatter = timeFormatter;
 }
 
 EventInListTimeEnd : WOString {
 	value = eventforAttendeeInList.event.dateTimeEnd;
-	dateformat = "%H:%M";
+	formatter = timeFormatter;
 }
 
 EventInListDay : WOString {
 	value = eventforAttendeeInList.event.dateTimeStart;
-	dateformat = "%A";
+	formatter = dayFormatter;
 }
 
 EventInListDate : WOString {
 	value = eventforAttendeeInList.event.dateTimeStart;
-	dateformat = "%m/%d";
+	formatter = dateFormatter;
 }
 
 EventInListDescription : WOString {

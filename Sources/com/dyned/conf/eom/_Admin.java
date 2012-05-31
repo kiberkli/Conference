@@ -281,7 +281,6 @@ public abstract class _Admin extends  EOGenericRecord {
 , NSTimestamp dateModified
 , String emailAddress
 , String fullName
-, String password
 , Integer pwHashCode
 , String username
 ) {
@@ -290,7 +289,6 @@ public abstract class _Admin extends  EOGenericRecord {
 		eo.setDateModified(dateModified);
 		eo.setEmailAddress(emailAddress);
 		eo.setFullName(fullName);
-		eo.setPassword(password);
 		eo.setPwHashCode(pwHashCode);
 		eo.setUsername(username);
     return eo;

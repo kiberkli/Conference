@@ -38,6 +38,7 @@ import com.webobjects.appserver.*;
 import com.webobjects.eoaccess.EOObjectNotAvailableException;
 import com.webobjects.eoaccess.EOUtilities;
 import com.webobjects.eocontrol.EOEditingContext;
+import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSDictionary;
 import com.webobjects.foundation.NSMutableArray;
 import com.webobjects.foundation.NSTimeZone;
@@ -54,6 +55,8 @@ import com.dyned.conf.comp.AttendeeRegistrationPage;
 import com.dyned.conf.comp.AttendeesLostPasswordPage;
 import com.dyned.conf.comp.Main;
 import com.dyned.conf.eom.Attendee;
+import com.dyned.conf.eom.AttendeeSelectedVEvent;
+import com.dyned.conf.eom.VEvent;
 import com.dyned.conf.eom.Venue;
 
 public class DirectAction extends ERXDirectAction {
@@ -78,9 +81,9 @@ public class DirectAction extends ERXDirectAction {
 		return pageWithName(AttendeesLostPasswordPage.class);
 	}
 	
-	public WOActionResults adminsPageAction() {
-		return pageWithName(AdminsPage.class);
-	}
+//	public WOActionResults adminsPageAction() {
+//		return pageWithName(AdminsPage.class);
+//	}
 
 	public WOActionResults adminsLoginAction() {
 		String attendeeEmail = request().stringFormValueForKey(DirectAction.ATTENDEE_KEY);
@@ -249,38 +252,42 @@ public class DirectAction extends ERXDirectAction {
 						attendee.travelInformationForVenue(venue).arrivalDate(),
 						null,
 						"Arriving for " + venue.lable(),
-						"ARRIVAL-"+attendee.travelInformationForVenue(venue).uniqueID()+"-"+venue.secretCode()+"@dyned.com",
-						true
+						"ARRIVAL-"+attendee.travelInformationForVenue(venue).uniqueID()+"-"+venue.secretCode()+"@conf.dyned.com",
+						true,
+						venue.tz()
 				)
 		);
 
-//		calendarEventList.add(
-//				new CalendarEvent(
-//						attendee.travelInformationForVenue(venue).departureDate(),
-//						null,
-//						"Leaving " + venue.lable(),
-//						"DEPARTURE-"+attendee.travelInformationForVenue(venue).uniqueID()+"-"+venue.secretCode()+"@dyned.com",
-//						true
-//				)
-//		);
-//		
-//		for (int i = 0; i < eventList.count(); i++) {
-//			VEvent eventInList = eventList.objectAtIndex(i);
-//			calendarEventList.add(
-//					new CalendarEvent(
-//							eventInList.dateTimeStart(),
-//							eventInList.dateTimeEnd(),
-//							eventInList.lable(),
-//							eventInList.uniqueID()+"-"+venue.secretCode()+"@dyned.com",
-//							false
-//					)
-//			);			
-//		}
+		calendarEventList.add(
+				new CalendarEvent(
+						attendee.travelInformationForVenue(venue).departureDate(),
+						null,
+						"Leaving " + venue.lable(),
+						"DEPARTURE-"+attendee.travelInformationForVenue(venue).uniqueID()+"-"+venue.secretCode()+"@conf.dyned.com",
+						true,
+						venue.tz()
+				)
+		);
+		
+		NSArray<AttendeeSelectedVEvent> attendeeSelectedVEvents = attendee.selectedEventsForVenue(venue);
+		for (int i = 0; i < attendeeSelectedVEvents.count(); i++) {
+			AttendeeSelectedVEvent attendeeSelectedVEvent = attendeeSelectedVEvents.objectAtIndex(i);
+			VEvent eventInList = attendeeSelectedVEvent.event();
+			CalendarEvent calendarEvent = new CalendarEvent(
+					eventInList.dateTimeStart(), 
+					eventInList.dateTimeEnd(), 
+					eventInList.lable(), 
+					eventInList.uniqueID()+"-"+venue.secretCode()+"@conf.dyned.com", 
+					false,
+					venue.tz()
+				);
+			calendarEventList.add(calendarEvent);
+		}
 		
 		// Build the ics:
 		ERPublishCalendarPage icalendar = new ERPublishCalendarPage(request().context());
 		icalendar.setCalendarName(venue.lable());
-		icalendar.setCalendarTimeZone(NSTimeZone.getDefault().getDisplayName());
+		icalendar.setCalendarTimeZone(venue.timeZoneInfo().zoneId());
 		icalendar.addEventsFromArray(calendarEventList);
 		
 		return icalendar;

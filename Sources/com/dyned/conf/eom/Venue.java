@@ -36,12 +36,17 @@ import org.apache.log4j.Logger;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.TimeZone;
 
+import com.ibm.icu.util.GregorianCalendar;
 import com.webobjects.eocontrol.EOEditingContext;
 import com.webobjects.eocontrol.EOSortOrdering;
 import com.webobjects.foundation.NSArray;
 import com.webobjects.foundation.NSMutableArray;
+import com.webobjects.foundation.NSTimeZone;
 import com.webobjects.foundation.NSTimestamp;
+
+import er.extensions.foundation.ERXTimestampUtilities;
 
 public class Venue extends _Venue {
 	@SuppressWarnings("unused")
@@ -134,9 +139,20 @@ public class Venue extends _Venue {
 	public NSArray<VEvent> eventsSorted() {
 		NSMutableArray<EOSortOrdering> sortOrderings = new NSMutableArray<EOSortOrdering>();
 		
-		sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.DATE_TIME_START_KEY, EOSortOrdering.CompareAscending));
+		//sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.DATE_TIME_START_KEY, EOSortOrdering.CompareAscending));
+		sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.SECTION_DATE_KEY, EOSortOrdering.CompareAscending));
+		sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.START_HOUR_KEY, EOSortOrdering.CompareAscending));
+		sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.START_MINUTE_KEY, EOSortOrdering.CompareAscending));
 		sortOrderings.add(EOSortOrdering.sortOrderingWithKey(VEvent.LABLE_KEY, EOSortOrdering.CompareAscending));
 
 		return EOSortOrdering.sortedArrayUsingKeyOrderArray(this.events(), sortOrderings.immutableClone());
 	}
+	
+	public NSTimeZone tz() {
+		return NSTimeZone.timeZoneWithName(this.timeZoneInfo().zoneId(), false);
+	}
+	
+//	public TimeZone tz() {
+//		return TimeZone.getTimeZone(this.timeZoneInfo().zoneId());		
+//	}
 }
